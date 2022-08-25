@@ -1,6 +1,11 @@
 {
   "name": "table-tennis-results-tracker",
   "version": "0.0.0",
+  "author": {
+    "name": "Matej Buljan",
+    "email": "matejb6@icloud.com"
+  },
+  "description": "An Angular web app for tracking table tennis results",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -34,5 +39,16 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~4.7.2"
+  },
+  "keywords": [
+    "matejb6",
+    "Angular",
+    "Forms",
+    "Results",
+    "Assignment"
+  ],
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
   }
 }
