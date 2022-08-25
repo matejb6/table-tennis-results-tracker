@@ -1,4 +1,4 @@
-# Table Tennis results tracker
+# Table Tennis Results Tracker
 
 ## About
 An Angular web app for tracking table tennis results.
