@@ -1,2 +1,78 @@
-# table-tennis-results-tracker
-An Angular web app for tracking table tennis results
+# Table Tennis results tracker
+
+## About
+An Angular web app for tracking table tennis results.
+
+## App creation
+The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
+
+## Requirements
+* node.js v14.0 and higher
+* npm v6.0 and higher
+
+## Additional packages
+* `Angular Router` added during new app setup with: `ng new`
+* `Angular Material` added with: `ng add @angular/material`
+* `ESLint` added with: `ng add @angular-eslint/schematics`
+* `Prettier` added with: `npm install prettier --save-dev`
+* `Husky` added with: `npm install husky --save-dev`
+
+## About package
+### Scripts
+* `start`: Starts Angular development server and serves the app
+* `build`: Builds Angular app
+* `watch`: Builds Angular app when files change with development configuration
+* `prettier:check`: Checks code formatting with Prettier
+* `prettier:write`: Formats code with Prettier
+* `lint`: Lints code with ESLint
+* `test`: Tests Angular app with Karma
+* `test:ci`: Tests Angular app with Karma in headless mode
+* `test:coverage`: Tests Angular app with Karma in headless mode and code coverage
+* `prepare`: Prepare script to install Husky
+
+## Setup
+* In project root run `npm install` to install dependencies
+* Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
+
+## GitHub Actions
+There are two workflows:
+* `CI` is used as general CI workflow
+* `Version` is used for creating new versions
+
+For more details see `.github/workflows/`.
+
+## Commit hooks
+Pre commit hooks are used to check code with `Prettier` and `ESLint`.
+Before each commit, staged files are checked with defined scripts and committing of unchecked code will be prevented.
+To commit code successfully, check `Prettier` and `Lint` paragraphs of this file.
+
+## Start
+* In project root run `npm start` to start dev server
+* Navigate to `http://localhost:4200/`
+* The app will automatically reload if you change any of the source files
+
+## Build
+* In project root run `npm run build` to build the project
+
+## Prettier
+* In project root run `npm run prettier:check` to check if files are formatted
+* In project root run `npm run prettier:write` to format files
+
+## Lint
+* In project root run `npm run lint` to lint the project
+
+## Test
+* In project root run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io)
+* In project root run `npm run test:ci` to execute the unit tests in headless mode
+* In project root run `npm run test:coverage` to execute the unit tests in headless mode with coverage
+
+## New version
+* Go to GitHub repo
+* Click on `Actions`
+* Click on `Version` workflow
+* Click `Run workflow`
+* Select branch and enter next version (eg. major, minor, patch)
+* New version is created, commit and tag are pushed to repo
+
+## Developer
+**Matej Buljan**
