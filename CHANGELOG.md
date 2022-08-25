@@ -9,6 +9,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [0.1.0] - 2022-08-25
+### Added
+- Changelog
+- ESLint
+- Prettier
+- Husky pre commit hooks
+- GitHub Actions workflows
+- Angular Material
+### Changed
+- Default content removed
+- Files formatted with Prettier
+- Karma config
+- Readme
+
 ## [0.0.0] - 2022-08-25
 ### Added
 - Repository created
