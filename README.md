@@ -1,27 +1,78 @@
-# TableTennisResultsTracker
+# Table Tennis results tracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+## About
+An Angular web app for tracking table tennis results.
 
-## Development server
+## App creation
+The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requirements
+* node.js v14.0 and higher
+* npm v6.0 and higher
 
-## Code scaffolding
+## Additional packages
+* `Angular Router` added during new app setup with: `ng new`
+* `Angular Material` added with: `ng add @angular/material`
+* `ESLint` added with: `ng add @angular-eslint/schematics`
+* `Prettier` added with: `npm install prettier --save-dev`
+* `Husky` added with: `npm install husky --save-dev`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## About package
+### Scripts
+* `start`: Starts Angular development server and serves the app
+* `build`: Builds Angular app
+* `watch`: Builds Angular app when files change with development configuration
+* `prettier:check`: Checks code formatting with Prettier
+* `prettier:write`: Formats code with Prettier
+* `lint`: Lints code with ESLint
+* `test`: Tests Angular app with Karma
+* `test:ci`: Tests Angular app with Karma in headless mode
+* `test:coverage`: Tests Angular app with Karma in headless mode and code coverage
+* `prepare`: Prepare script to install Husky
+
+## Setup
+* In project root run `npm install` to install dependencies
+* Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
+
+## GitHub Actions
+There are two workflows:
+* `CI` is used as general CI workflow
+* `Version` is used for creating new versions
+
+For more details see `.github/workflows/`.
+
+## Commit hooks
+Pre commit hooks are used to check code with `Prettier` and `ESLint`.
+Before each commit, staged files are checked with defined scripts and committing of unchecked code will be prevented.
+To commit code successfully, check `Prettier` and `Lint` paragraphs of this file.
+
+## Start
+* In project root run `npm start` to start dev server
+* Navigate to `http://localhost:4200/`
+* The app will automatically reload if you change any of the source files
 
 ## Build
+* In project root run `npm run build` to build the project
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Prettier
+* In project root run `npm run prettier:check` to check if files are formatted
+* In project root run `npm run prettier:write` to format files
 
-## Running unit tests
+## Lint
+* In project root run `npm run lint` to lint the project
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Test
+* In project root run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io)
+* In project root run `npm run test:ci` to execute the unit tests in headless mode
+* In project root run `npm run test:coverage` to execute the unit tests in headless mode with coverage
 
-## Running end-to-end tests
+## New version
+* Go to GitHub repo
+* Click on `Actions`
+* Click on `Version` workflow
+* Click `Run workflow`
+* Select branch and enter next version (eg. major, minor, patch)
+* New version is created, commit and tag are pushed to repo
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Developer
+**Matej Buljan**
