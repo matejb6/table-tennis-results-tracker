@@ -13,6 +13,11 @@ const routes: Routes = [
     path: '',
     redirectTo: appRoutes.players,
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    title: 'Table Tennis Results Tracker • Page Not Found',
+    loadChildren: () => import('./views/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule)
   }
 ];
 
