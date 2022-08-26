@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { LayoutModule } from '../layout.module';
+import { ToolbarModule } from './toolbar.module';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarComponentQuery } from './toolbar.component.query.spec';
 
@@ -11,7 +12,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutModule]
+      imports: [ToolbarModule, RouterTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);
