@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { appRoutes } from './app-routes';
+
 const routes: Routes = [
   {
-    path: 'players',
+    path: appRoutes.players,
     title: 'Table Tennis Results Tracker • Players',
     loadChildren: () => import('./views/players/players.module').then((m) => m.PlayersModule)
   }
