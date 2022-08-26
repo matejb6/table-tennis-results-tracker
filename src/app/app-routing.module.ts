@@ -10,6 +10,11 @@ const routes: Routes = [
     loadChildren: () => import('./views/players/players.module').then((m) => m.PlayersModule)
   },
   {
+    path: appRoutes.matches,
+    title: 'Table Tennis Results Tracker • Matches',
+    loadChildren: () => import('./views/matches/matches.module').then((m) => m.MatchesModule)
+  },
+  {
     path: '',
     redirectTo: appRoutes.players,
     pathMatch: 'full'
