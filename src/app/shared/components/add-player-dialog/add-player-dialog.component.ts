@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-player-dialog',
@@ -11,7 +12,7 @@ export class AddPlayerDialogComponent implements OnInit {
     name: new FormControl()
   });
 
-  constructor() {}
+  constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, AddPlayerForm>) {}
 
   ngOnInit(): void {
     this.addPlayerFormGroup = new FormGroup({
@@ -20,7 +21,7 @@ export class AddPlayerDialogComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.addPlayerFormGroup);
+    this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
 }
 
