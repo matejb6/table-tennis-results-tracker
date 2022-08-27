@@ -1,4 +1,7 @@
 <div class="players-wrapper">
-  <h1 class="title">Players</h1>
+  <div class="title-bar">
+    <h1 class="title">Players</h1>
+    <button mat-raised-button color="primary">Add player</button>
+  </div>
   <app-table [displayedColumns]="displayedColumns" [dataSource]="dataSource"></app-table>
 </div>
