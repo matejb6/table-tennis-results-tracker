@@ -17,4 +17,8 @@ export class NavButtonsComponent implements OnInit {
   private getRoutesFromObject(obj: any): string[] {
     return Object.values(obj);
   }
+
+  public getRouteName(route: string): string {
+    return route.charAt(0).toUpperCase() + route.slice(1);
+  }
 }
