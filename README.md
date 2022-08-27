@@ -6,6 +6,10 @@ An Angular web app for tracking table tennis results.
 ## App creation
 The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
+## Content
+The app consists of two views: Players and Matches.
+Also, there is a Page Not Found view for unavailable routes.
+
 ## Requirements
 * node.js v14.0 and higher
 * npm v6.0 and higher
