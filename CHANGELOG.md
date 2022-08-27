@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [0.2.0] - 2022-08-27
+### Added
+- Assignment document
+- Toolbar with nav buttons
+- Page Not Found view
+- Players view
+- Matches view
+### Fixed
+- Readme title
+
 ## [0.1.0] - 2022-08-25
 ### Added
 - Changelog
