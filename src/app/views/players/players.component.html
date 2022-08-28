@@ -1,4 +1,4 @@
-<div class="players-wrapper">
+<div class="view-wrapper">
   <app-title-bar title="Players" buttonLabel="Add player" (buttonClick)="onAddPlayerClick()"></app-title-bar>
   <app-table [dataSource]="($players | async) || []" (rowClick)="onRowClick($event)"></app-table>
 </div>
