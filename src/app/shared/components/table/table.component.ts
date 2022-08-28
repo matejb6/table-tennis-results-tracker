@@ -25,7 +25,7 @@ export class TableComponent<T> implements OnInit, OnChanges {
   }
 
   private initColumns(): void {
-    this.columns = Object.keys(this.dataSource[0]);
+    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0]) : [];
   }
 
   private addPositionColumn(): void {
