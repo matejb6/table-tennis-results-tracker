@@ -36,7 +36,7 @@ export class PlayersComponent implements OnInit {
   }
 
   private newPlayerExists(players: Player[], newPlayerName: string): boolean {
-    return players.some((item) => item.name === newPlayerName);
+    return players.some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
   private async onAfterClosedObserver(value: AddPlayerForm | undefined): Promise<void> {
