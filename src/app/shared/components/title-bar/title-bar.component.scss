@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1.title {
+    width: fit-content;
+    margin: 0;
+  }
+}
