@@ -14,7 +14,7 @@ export class AddPlayerDialogComponent implements OnInit {
 
   constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, AddPlayerForm>) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.addPlayerFormGroup = new FormGroup({
       name: new FormControl('', [
         Validators.required,

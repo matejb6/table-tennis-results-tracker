@@ -27,7 +27,7 @@ export class PlayersComponent implements OnInit {
     private snackBarService: SnackBarService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.$players = this.dataService.getPlayersObs();
   }
 
