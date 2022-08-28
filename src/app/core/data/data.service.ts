@@ -9,7 +9,6 @@ import { players } from './initial-data';
 })
 export class DataService {
   private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject(players);
-  public $playersObs: Observable<Player[]> = this.playersBehaviorSubject.asObservable();
 
   constructor() {}
 
@@ -22,7 +21,7 @@ export class DataService {
   }
 
   /**
-   * @param name: Name
+   * @param name Name
    * @description Adds player by emitting new data with behavior subject
    */
   public addPlayer(name: string): void {
