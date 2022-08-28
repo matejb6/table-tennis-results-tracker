@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -7,8 +7,11 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class TableComponent<T> implements OnInit, OnChanges {
   private readonly positionKey: string = 'position';
+
   @Input()
   public dataSource: T[] = [];
+  @Output()
+  public rowClick: EventEmitter<T> = new EventEmitter<T>();
   public columns: string[] = [];
 
   constructor() {}
@@ -38,5 +41,9 @@ export class TableComponent<T> implements OnInit, OnChanges {
         value: index + 1
       });
     });
+  }
+
+  public onRowClick(row: T): void {
+    this.rowClick.emit(row);
   }
 }

@@ -3,5 +3,10 @@
 
   table {
     width: 100%;
+
+    .mat-row:hover .mat-cell {
+      background-color: lightgray;
+      cursor: pointer;
+    }
   }
 }
