@@ -10,7 +10,28 @@ import { players } from './initial-data';
 export class DataService {
   private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject(players);
 
-  constructor() {}
+  constructor() {
+    this.sortPlayersOnChange();
+  }
+
+  /**
+   * @param a Player A
+   * @param b Player B
+   * @returns Players by sets won comparison
+   * @description Players sort compare function, sort players by sets won from higher to lower
+   */
+  private playersBySetsWon(a: Player, b: Player): number {
+    return b.setsWon - a.setsWon;
+  }
+
+  /**
+   * @description Sorts players on change
+   */
+  private sortPlayersOnChange(): void {
+    this.playersBehaviorSubject.subscribe({
+      next: (value) => value.sort(this.playersBySetsWon.bind(this))
+    });
+  }
 
   /**
    * @returns Players observable
