@@ -10,6 +10,8 @@ import {
 } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
+// eslint-disable-next-line max-len
+import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
 
 @Component({
   selector: 'app-players',
@@ -61,5 +63,9 @@ export class PlayersComponent implements OnInit {
       .subscribe({
         next: this.onAfterClosedObserver.bind(this)
       });
+  }
+
+  public onRowClick(event: Player) {
+    this.dialogService.openDialog(PlayerOverviewDialogComponent, event);
   }
 }

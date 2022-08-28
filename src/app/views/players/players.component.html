@@ -3,5 +3,5 @@
     <h1 class="title">Players</h1>
     <button mat-raised-button color="primary" (click)="onAddPlayerClick()">Add player</button>
   </div>
-  <app-table [dataSource]="($players | async) || []"></app-table>
+  <app-table [dataSource]="($players | async) || []" (rowClick)="onRowClick($event)"></app-table>
 </div>
