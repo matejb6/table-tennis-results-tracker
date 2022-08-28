@@ -6,12 +6,12 @@ import { appRoutes } from './app-routes';
 const routes: Routes = [
   {
     path: appRoutes.players,
-    title: 'Table Tennis Results Tracker • Players',
+    title: 'TTRT • Players',
     loadChildren: () => import('./views/players/players.module').then((m) => m.PlayersModule)
   },
   {
     path: appRoutes.matches,
-    title: 'Table Tennis Results Tracker • Matches',
+    title: 'TTRT • Matches',
     loadChildren: () => import('./views/matches/matches.module').then((m) => m.MatchesModule)
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    title: 'Table Tennis Results Tracker • Page Not Found',
+    title: 'TTRT • Page Not Found',
     loadChildren: () => import('./views/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule)
   }
 ];

@@ -1,1 +1,7 @@
-<p>Players</p>
+<div class="players-wrapper">
+  <div class="title-bar">
+    <h1 class="title">Players</h1>
+    <button mat-raised-button color="primary" (click)="onAddPlayerClick()">Add player</button>
+  </div>
+  <app-table [dataSource]="($players | async) || []" (rowClick)="onRowClick($event)"></app-table>
+</div>
