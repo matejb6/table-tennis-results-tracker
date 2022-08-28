@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [0.3.0] - 2022-08-28
+### Added
+- Players table
+- Add new player form as dialog
+- Initial players data
+- Data service with players data observable
+- Dialog service
+- Snack bar service
+- Player overview as dialog
+### Changed
+- Toolbar elevation effect
+
 ## [0.2.0] - 2022-08-27
 ### Added
 - Assignment document
