@@ -47,7 +47,7 @@ export class DataService {
    */
   public addPlayer(name: string): void {
     const values = this.playersBehaviorSubject.getValue();
-    values.push({ position: values.length + 1, name: name, setsWon: 0 });
+    values.push({ name: name, setsWon: 0 });
     this.playersBehaviorSubject.next([...values]);
   }
 }
