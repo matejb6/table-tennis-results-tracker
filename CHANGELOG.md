@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Player overview as dialog
 ### Changed
 - Toolbar elevation effect
+- App title
+- View titles
 
 ## [0.2.0] - 2022-08-27
 ### Added
