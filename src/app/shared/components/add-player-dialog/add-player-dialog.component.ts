@@ -16,7 +16,12 @@ export class AddPlayerDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.addPlayerFormGroup = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern('^[a-zA-Z]+$')])
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('^[a-zA-Z]+$')
+      ])
     });
   }
 
