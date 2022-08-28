@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { firstValueFrom, Observable } from 'rxjs';
+import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
 import { Player } from '@core/models/player';
@@ -37,22 +37,29 @@ export class PlayersComponent implements OnInit {
     return players.some((item) => item.name === newPlayerName);
   }
 
+  private async onAfterClosedObserver(value: AddPlayerForm | undefined): Promise<void> {
+    const players = await this.getPlayers();
+    const newPlayerExists = this.newPlayerExists(players, value?.name!);
+
+    if (!newPlayerExists) {
+      this.dataService.addPlayer(value?.name!);
+      this.snackBarService.showSnackBar('Player added');
+    } else {
+      this.snackBarService.showSnackBar('Player already exists');
+    }
+  }
+
   public async onAddPlayerClick(): Promise<void> {
     const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
       AddPlayerDialogComponent,
       AddPlayerForm
     >;
 
-    const players = await this.getPlayers();
-    const newPlayer = await firstValueFrom(dialogRef.afterClosed());
-
-    const newPlayerExists = this.newPlayerExists(players, newPlayer?.name!);
-
-    if (!newPlayerExists) {
-      this.dataService.addPlayer(newPlayer?.name!);
-      this.snackBarService.showSnackBar('Player added');
-    } else {
-      this.snackBarService.showSnackBar('Player already exists');
-    }
+    dialogRef
+      .afterClosed()
+      .pipe(filter((item) => !!item))
+      .subscribe({
+        next: this.onAfterClosedObserver.bind(this)
+      });
   }
 }
