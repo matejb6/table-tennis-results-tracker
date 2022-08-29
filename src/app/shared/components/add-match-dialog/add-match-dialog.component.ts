@@ -11,30 +11,37 @@ import { Player } from '@core/models/player';
 })
 export class AddMatchDialogComponent implements OnInit {
   public playerNames: string[] = [];
-  public addMatchFormGroup: FormGroup = new FormGroup({
-    players: new FormArray([]),
-    sets: new FormArray([])
+  public addMatchFormGroup: FormGroup<AddMatchForm> = new FormGroup<AddMatchForm>({
+    players: new FormArray([new FormControl('', [Validators.required]), new FormControl('', [Validators.required])]),
+    sets: new FormArray(
+      [
+        new FormGroup<GameSetForm>(
+          {
+            firstPlayerScore: new FormControl(0, [
+              Validators.required,
+              Validators.pattern('^[0-9]+$'),
+              Validators.maxLength(2)
+            ]),
+            secondPlayerScore: new FormControl(0, [
+              Validators.required,
+              Validators.pattern('^[0-9]+$'),
+              Validators.maxLength(2)
+            ])
+          },
+          [this.setGems.bind(this)]
+        )
+      ],
+      this.matchSets.bind(this)
+    )
   });
 
   constructor(
-    private matDialogRef: MatDialogRef<AddMatchDialogComponent, AddMatchForm>,
+    private matDialogRef: MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>,
     @Inject(MAT_DIALOG_DATA) public players: Player[]
   ) {}
 
   ngOnInit() {
     this.playerNames = this.players instanceof Array ? this.players.map((item) => item.name) : [];
-    this.initAddMatchFormGroup();
-  }
-
-  /**
-   * @description Inits add match form group with validations
-   */
-  private initAddMatchFormGroup(): void {
-    this.addMatchFormGroup = new FormGroup({
-      players: new FormArray([new FormControl('', [Validators.required]), new FormControl('', [Validators.required])]),
-      sets: new FormArray([], this.matchSets.bind(this))
-    });
-    this.addSet();
   }
 
   /**
@@ -117,14 +124,14 @@ export class AddMatchDialogComponent implements OnInit {
    */
   public addSet(): void {
     (this.addMatchFormGroup.get('sets') as FormArray).push(
-      new FormGroup(
+      new FormGroup<GameSetForm>(
         {
-          firstPlayerScore: new FormControl('', [
+          firstPlayerScore: new FormControl(0, [
             Validators.required,
             Validators.pattern('^[0-9]+$'),
             Validators.maxLength(2)
           ]),
-          secondPlayerScore: new FormControl('', [
+          secondPlayerScore: new FormControl(0, [
             Validators.required,
             Validators.pattern('^[0-9]+$'),
             Validators.maxLength(2)
@@ -157,7 +164,21 @@ export class AddMatchDialogComponent implements OnInit {
   }
 }
 
+export interface GameSetForm {
+  firstPlayerScore: FormControl<number | null>;
+  secondPlayerScore: FormControl<number | null>;
+}
+export interface GameSetFormData {
+  firstPlayerScore: number | null;
+  secondPlayerScore: number | null;
+}
+
 export interface AddMatchForm {
-  players: string[];
-  sets: [number, number][];
+  players: FormArray<FormControl<string | null>>;
+  sets: FormArray<FormGroup<GameSetForm>>;
+}
+
+export interface AddMatchFormData {
+  players: (string | null)[];
+  sets: Partial<GameSetFormData>[];
 }
