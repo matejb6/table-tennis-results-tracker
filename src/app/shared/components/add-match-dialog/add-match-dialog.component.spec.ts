@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { AddMatchDialogModule } from './add-match-dialog.module';
 import { AddMatchDialogComponent } from './add-match-dialog.component';
@@ -13,7 +13,10 @@ describe('AddMatchDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, AddMatchDialogModule],
-      providers: [{ provide: MatDialogRef, useValue: {} }]
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddMatchDialogComponent);
