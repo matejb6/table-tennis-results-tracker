@@ -6,7 +6,7 @@ import { DataService } from '@core/data/data.service';
 import { Player } from '@core/models/player';
 import {
   AddPlayerDialogComponent,
-  AddPlayerForm
+  AddPlayerFormData
 } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
@@ -27,7 +27,7 @@ export class PlayersComponent implements OnInit {
     private snackBarService: SnackBarService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.$players = this.dataService.getPlayersObs();
   }
 
@@ -36,10 +36,10 @@ export class PlayersComponent implements OnInit {
   }
 
   private newPlayerExists(players: Player[], newPlayerName: string): boolean {
-    return players.some((item) => item.name === newPlayerName);
+    return players.some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
-  private async onAfterClosedObserver(value: AddPlayerForm | undefined): Promise<void> {
+  private async onAfterClosedObserver(value: AddPlayerFormData | undefined): Promise<void> {
     const players = await this.getPlayers();
     const newPlayerExists = this.newPlayerExists(players, value?.name!);
 
@@ -54,7 +54,7 @@ export class PlayersComponent implements OnInit {
   public async onAddPlayerClick(): Promise<void> {
     const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
       AddPlayerDialogComponent,
-      AddPlayerForm
+      AddPlayerFormData
     >;
 
     dialogRef

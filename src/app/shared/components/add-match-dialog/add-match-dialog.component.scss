@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 600px;
+
+  div.content-wrapper {
+    display: flex;
+
+    div.players-selection {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+    }
+
+    div.sets {
+      display: flex;
+      margin-left: 12px;
+
+      div.set {
+        margin-left: 12px;
+
+        div.ng-touched.ng-invalid {
+          border: 1px solid red;
+        }
+
+        mat-form-field.game {
+          display: flex;
+          flex-direction: column;
+          width: 64px;
+        }
+      }
+    }
+
+    div.set-buttons {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-left: 12px;
+    }
+  }
+}

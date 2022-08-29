@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -7,29 +7,30 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './add-player-dialog.component.html',
   styleUrls: ['./add-player-dialog.component.scss']
 })
-export class AddPlayerDialogComponent implements OnInit {
-  public addPlayerFormGroup: FormGroup = new FormGroup({
-    name: new FormControl()
+export class AddPlayerDialogComponent {
+  public addPlayerFormGroup: FormGroup<AddPlayerForm> = new FormGroup<AddPlayerForm>({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+      Validators.pattern('^[a-zA-Z]+$')
+    ])
   });
 
-  constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, AddPlayerForm>) {}
+  constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>) {}
 
-  ngOnInit(): void {
-    this.addPlayerFormGroup = new FormGroup({
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(20),
-        Validators.pattern('^[a-zA-Z]+$')
-      ])
-    });
-  }
-
+  /**
+   * @description Submits form, closes dialog and emits form data
+   */
   public onSubmit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
 }
 
 export interface AddPlayerForm {
-  name: string;
+  name: FormControl<string | null>;
+}
+
+export interface AddPlayerFormData {
+  name: string | null;
 }

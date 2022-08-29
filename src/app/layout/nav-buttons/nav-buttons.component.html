@@ -1,1 +1,7 @@
-<a mat-button [routerLink]="[route]" *ngFor="let route of routes">{{ getRouteName(route) }}</a>
+<a
+  mat-button
+  [class.mat-raised-button]="($routeChangeUrl | async)?.includes(route)"
+  [routerLink]="[route]"
+  *ngFor="let route of routes"
+  >{{ getRouteName(route) }}</a
+>

@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 import { Player } from '@core/models/player';
-import { players } from './initial-data';
+import { Match } from '@core/models/match';
+import { MatchTableRow } from '@core/models/match-table-row';
+import { matches, players } from './initial-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject(players);
+  private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(players);
+  private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(matches);
 
   constructor() {
     this.sortPlayersOnChange();
@@ -47,7 +50,52 @@ export class DataService {
    */
   public addPlayer(name: string): void {
     const values = this.playersBehaviorSubject.getValue();
-    values.push({ position: values.length + 1, name: name, setsWon: 0 });
+    values.push({ name: name, setsWon: 0 });
     this.playersBehaviorSubject.next([...values]);
+  }
+
+  /**
+   * @returns Matches observable
+   * @description Returns matches behavior subject as observable
+   */
+  public getMatchesObs(): Observable<Match[]> {
+    return this.matchesBehaviorSubject.asObservable();
+  }
+
+  /**
+   * @returns Matches observable
+   * @description Returns matches behavior subject as observable
+   */
+  public getMatchesTableRowObs(): Observable<MatchTableRow[]> {
+    return this.matchesBehaviorSubject.asObservable().pipe(
+      map((value) => {
+        return value.map((item) => {
+          let firstPlayerSetsWon = 0;
+          let secondPlayerSetsWon = 0;
+          item.sets.forEach((set) => {
+            if (set.firstPlayerScore > set.secondPlayerScore) {
+              firstPlayerSetsWon = ++firstPlayerSetsWon;
+            } else if (set.secondPlayerScore > set.firstPlayerScore) {
+              secondPlayerSetsWon = ++secondPlayerSetsWon;
+            }
+          });
+          return {
+            players: item.players.join(' vs. '),
+            score: firstPlayerSetsWon + ':' + secondPlayerSetsWon,
+            winner: firstPlayerSetsWon > secondPlayerSetsWon ? item.players[0] : item.players[1]
+          };
+        });
+      })
+    );
+  }
+
+  /**
+   * @param match Match
+   * @description Adds match by emitting new data with behavior subject
+   */
+  public addMatch(match: Match): void {
+    const values = this.matchesBehaviorSubject.getValue();
+    values.push(match);
+    this.matchesBehaviorSubject.next([...values]);
   }
 }

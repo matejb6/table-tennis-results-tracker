@@ -9,10 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [0.4.0] - 2022-08-29
+### Added
+- Highlight active route nav button
+- Title bar component
+- Theme file
+- Add match form as dialog
+- Matches table
+### Changed
+- Show "No data" label if table is empty
+### Fixed
+- Adding players with same name but different capital letters
+
 ## [0.3.0] - 2022-08-28
 ### Added
 - Players table
-- Add new player form as dialog
+- Add player form as dialog
 - Initial players data
 - Data service with players data observable
 - Dialog service
