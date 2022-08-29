@@ -1,0 +1,33 @@
+<form [formGroup]="addMatchFormGroup" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Add match</h1>
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose first player</mat-label>
+      <mat-select formControlName="firstPlayerName">
+        <mat-option
+          *ngFor="let player of players"
+          [value]="player.name"
+          [disabled]="addMatchFormGroup.value.secondPlayerName === player.name"
+        >
+          {{ player.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose second player</mat-label>
+      <mat-select formControlName="secondPlayerName">
+        <mat-option
+          *ngFor="let player of players"
+          [value]="player.name"
+          [disabled]="addMatchFormGroup.value.firstPlayerName === player.name"
+        >
+          {{ player.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Close</button>
+    <button mat-raised-button color="primary" [disabled]="addMatchFormGroup.invalid" type="submit">Add</button>
+  </mat-dialog-actions>
+</form>
