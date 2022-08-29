@@ -48,14 +48,14 @@ export class AddMatchDialogComponent implements OnInit {
    * @description Validator for match sets, valid if at least one player reaches 3 sets won
    */
   private matchSets(control: AbstractControl): ValidationErrors | null {
+    const sets: GameSetFormData[] = control.value;
     let firstPlayerSetsWon = 0;
     let secondPlayerSetsWon = 0;
-    const sets: { firstPlayerScore: number; secondPlayerScore: number }[] = control.value;
 
     sets.forEach((item) => {
-      if (item.firstPlayerScore > item.secondPlayerScore) {
+      if (item.firstPlayerScore! > item.secondPlayerScore!) {
         firstPlayerSetsWon = ++firstPlayerSetsWon;
-      } else {
+      } else if (item.firstPlayerScore! < item.secondPlayerScore!) {
         secondPlayerSetsWon = ++secondPlayerSetsWon;
       }
     });
@@ -116,7 +116,9 @@ export class AddMatchDialogComponent implements OnInit {
    * @description Add set button disabled if some sets are invalid of if 5 sets are reached
    */
   public addSetDisabled(): boolean {
-    return this.getSetControls().some((item) => item.invalid) || this.getSetControls().length >= 5;
+    return (
+      this.getSetControls().some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid
+    );
   }
 
   /**
@@ -154,8 +156,11 @@ export class AddMatchDialogComponent implements OnInit {
    * @description Removes set from set form array
    */
   public removeSet(): void {
+    ((this.addMatchFormGroup.get('sets') as FormArray).value as GameSetFormData[]).pop();
     this.getSetControls().pop();
+    this.addMatchFormGroup.get('sets')?.updateValueAndValidity();
   }
+
   /**
    * @description Submits form, closes dialog and emits form values
    */
