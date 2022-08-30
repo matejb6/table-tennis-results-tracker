@@ -66,7 +66,12 @@ export class PlayersComponent implements OnInit {
       });
   }
 
-  public onRowClick(event: PlayerTableRow) {
-    this.dialogService.openDialog(PlayerOverviewDialogComponent, event);
+  public async onRowClick(event: PlayerTableRow): Promise<void> {
+    const player = await this.dataService.getPlayerById(event.id);
+    if (player) {
+      this.dialogService.openDialog(PlayerOverviewDialogComponent, player);
+    } else {
+      this.snackBarService.showSnackBar('Player data unavailable');
+    }
   }
 }
