@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 
 import { Player } from '@core/models/player';
 import { Match } from '@core/models/match';
-import { MatchTableRow } from '@core/models/match-table-row';
-import { matches, players } from './initial-data';
 import { PlayerTableRow } from '@core/models/player-table-row';
+import { MatchTableRow } from '@core/models/match-table-row';
 import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
+import { matches, players } from './initial-data';
 
 @Injectable({
   providedIn: 'root'
@@ -114,11 +114,27 @@ export class DataService {
   }
 
   /**
+   * @returns Player
+   * @description Finds player by ID
+   */
+  public async getPlayerById(id: number): Promise<Player | undefined> {
+    return await firstValueFrom(this.getPlayersObs().pipe(map((value) => value.find((item) => item.id === id))));
+  }
+
+  /**
    * @returns Matches observable
    * @description Returns matches behavior subject as observable
    */
   public getMatchesObs(): Observable<Match[]> {
     return this.matchesBehaviorSubject.asObservable();
+  }
+
+  /**
+   * @returns Match
+   * @description Finds match by ID
+   */
+  public async getMatchById(id: number): Promise<Match | undefined> {
+    return await firstValueFrom(this.getMatchesObs().pipe(map((value) => value.find((item) => item.id === id))));
   }
 
   /**
