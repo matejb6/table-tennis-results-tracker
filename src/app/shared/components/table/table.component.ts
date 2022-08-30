@@ -16,10 +16,16 @@ export class TableComponent<T> implements OnInit {
 
   ngOnInit() {
     this.initColumns();
+    this.removeColumnId();
   }
 
   private initColumns(): void {
     this.columns = this.dataSource.length ? Object.keys(this.dataSource[0]) : ['No data'];
+  }
+
+  private removeColumnId(): void {
+    const indexOfId = this.columns.indexOf('id');
+    this.columns.splice(indexOfId, 1);
   }
 
   public onRowClick(row: T): void {
