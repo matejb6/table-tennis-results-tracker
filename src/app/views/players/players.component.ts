@@ -4,6 +4,7 @@ import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
 import { Player } from '@core/models/player';
+import { PlayerTableRow } from '@core/models/player-table-row';
 import {
   AddPlayerDialogComponent,
   AddPlayerFormData
@@ -19,7 +20,7 @@ import { PlayerOverviewDialogComponent } from '@shared/components/player-overvie
   styleUrls: ['./players.component.scss']
 })
 export class PlayersComponent implements OnInit {
-  public $players: Observable<Player[]> = new Observable<Player[]>();
+  public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   constructor(
     private dataService: DataService,
@@ -28,7 +29,7 @@ export class PlayersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.$players = this.dataService.getPlayersObs();
+    this.$playerTableRows = this.dataService.getPlayerTableRowsObs();
   }
 
   private async getPlayers(): Promise<Player[]> {
@@ -44,7 +45,7 @@ export class PlayersComponent implements OnInit {
     const newPlayerExists = this.newPlayerExists(players, value?.name!);
 
     if (!newPlayerExists) {
-      this.dataService.addPlayer(value?.name!);
+      this.dataService.addPlayer(value!);
       this.snackBarService.showSnackBar('Player added');
     } else {
       this.snackBarService.showSnackBar('Player already exists');
@@ -65,7 +66,7 @@ export class PlayersComponent implements OnInit {
       });
   }
 
-  public onRowClick(event: Player) {
+  public onRowClick(event: PlayerTableRow) {
     this.dialogService.openDialog(PlayerOverviewDialogComponent, event);
   }
 }
