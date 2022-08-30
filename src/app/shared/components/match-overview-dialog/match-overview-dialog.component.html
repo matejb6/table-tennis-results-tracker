@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Match overview</h1>
+<mat-dialog-content>
+  <p class="info-line">
+    <span class="label"><strong>Players:</strong></span>
+    <span class="value">{{ getPlayers() }}</span>
+  </p>
+  <p class="info-line">
+    <span class="label"><strong>Sets:</strong></span>
+    <span class="value">{{ getSets() }}</span>
+  </p>
+  <p class="info-line">
+    <span class="label"><strong>Score:</strong></span>
+    <span class="value">{{ getScore() }}</span>
+  </p>
+  <p class="info-line">
+    <span class="label"><strong>Winner:</strong></span>
+    <span class="value">{{ getWinnerName() }}</span>
+  </p>
+  <p class="info-line">
+    <span class="label"><strong>Date:</strong></span>
+    <span class="value">{{ match.date }}</span>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close type="button">Close</button>
+</mat-dialog-actions>

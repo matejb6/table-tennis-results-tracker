@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  width: 500px;
+
+  p.info-line {
+    span.label {
+      display: inline-block;
+      width: 30%;
+    }
+    span.value {
+      display: inline-block;
+      max-width: 70%;
+    }
+  }
+}
