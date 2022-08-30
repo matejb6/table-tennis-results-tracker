@@ -30,10 +30,17 @@ export class MatchesComponent implements OnInit {
     this.$matchTableRows = this.dataService.getMatchTableRowsObs();
   }
 
-  private onAfterClosedObserver(value: AddMatchFormData | undefined): void {
-    this.dataService.addMatch(value!);
+  /**
+   * @param addMatchFormData Add match form data
+   * @description After closed observer
+   */
+  private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
+    this.dataService.addMatch(addMatchFormData!);
   }
 
+  /**
+   * @description On add match click, opens dialog and observes when dialog is closed
+   */
   public async onAddMatchClick(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog(AddMatchDialogComponent, players) as MatDialogRef<
@@ -49,6 +56,10 @@ export class MatchesComponent implements OnInit {
       });
   }
 
+  /**
+   * @param event Table row click event
+   * @description Opens match overview dialog on row click, shows snackbar if no match found
+   */
   public async onRowClick(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);
     if (match) {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { filter, firstValueFrom, Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
 import { Player } from '@core/models/player';
@@ -32,26 +32,24 @@ export class PlayersComponent implements OnInit {
     this.$playerTableRows = this.dataService.getPlayerTableRowsObs();
   }
 
-  private async getPlayers(): Promise<Player[]> {
-    return await firstValueFrom(this.dataService.getPlayersObs());
-  }
-
-  private newPlayerExists(players: Player[], newPlayerName: string): boolean {
-    return players.some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
-  }
-
-  private async onAfterClosedObserver(value: AddPlayerFormData | undefined): Promise<void> {
-    const players = await this.getPlayers();
-    const newPlayerExists = this.newPlayerExists(players, value?.name!);
+  /**
+   * @param addPlayerFormData Add player form data
+   * @description After closed observer
+   */
+  private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
+    const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name!);
 
     if (!newPlayerExists) {
-      this.dataService.addPlayer(value!);
+      this.dataService.addPlayer(addPlayerFormData!);
       this.snackBarService.showSnackBar('Player added');
     } else {
       this.snackBarService.showSnackBar('Player already exists');
     }
   }
 
+  /**
+   * @description On add player click, opens dialog and observes when dialog is closed
+   */
   public async onAddPlayerClick(): Promise<void> {
     const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
       AddPlayerDialogComponent,
@@ -66,6 +64,10 @@ export class PlayersComponent implements OnInit {
       });
   }
 
+  /**
+   * @param event Table row click event
+   * @description Opens player overview dialog on row click, shows snackbar if no player found
+   */
   public async onRowClick(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);
     if (player) {
