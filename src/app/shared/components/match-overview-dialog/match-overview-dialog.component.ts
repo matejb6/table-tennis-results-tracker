@@ -34,12 +34,4 @@ export class MatchOverviewDialogComponent {
   public getScore(): string {
     return this.match.score?.join(':');
   }
-
-  /**
-   * @returns Winner name
-   * @description Returns winner name
-   */
-  public getWinnerName(): string {
-    return this.match.winner?.name;
-  }
 }

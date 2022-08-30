@@ -2,14 +2,18 @@
   display: block;
   width: 500px;
 
+  .match-overview {
+    margin-bottom: 12px;
+  }
+
   p.info-line {
     span.label {
       display: inline-block;
-      width: 30%;
+      width: 25%;
     }
     span.value {
       display: inline-block;
-      max-width: 70%;
+      max-width: 75%;
     }
   }
 }
