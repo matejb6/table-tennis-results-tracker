@@ -1,4 +1,4 @@
 <div class="view-wrapper">
   <app-title-bar title="Matches" buttonLabel="Add match" (buttonClick)="onAddMatchClick()"></app-title-bar>
-  <app-table [dataSource]="($matchesTableRow | async) || []"></app-table>
+  <app-table [dataSource]="($matchTableRows | async) || []"></app-table>
 </div>

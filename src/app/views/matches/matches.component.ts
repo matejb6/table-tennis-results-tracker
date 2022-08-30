@@ -3,7 +3,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
-import { Match } from '@core/models/match';
 import { MatchTableRow } from '@core/models/match-table-row';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import {
@@ -17,16 +16,16 @@ import {
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  public $matchesTableRow: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
+  public $matchTableRows: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   constructor(private dataService: DataService, private dialogService: DialogService) {}
 
   ngOnInit() {
-    this.$matchesTableRow = this.dataService.getMatchesTableRowObs();
+    this.$matchTableRows = this.dataService.getMatchTableRowsObs();
   }
 
   private onAfterClosedObserver(value: AddMatchFormData | undefined): void {
-    this.dataService.addMatch(value as Match);
+    this.dataService.addMatch(value!);
   }
 
   public async onAddMatchClick(): Promise<void> {
