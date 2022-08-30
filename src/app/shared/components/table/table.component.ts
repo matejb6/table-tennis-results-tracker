@@ -19,15 +19,27 @@ export class TableComponent<T> implements OnInit {
     this.removeColumnId();
   }
 
+  /**
+   * @description Inits columns based on provided data source and shows no data label in header if data source is empty
+   */
   private initColumns(): void {
     this.columns = this.dataSource.length ? Object.keys(this.dataSource[0]) : ['No data'];
   }
 
+  /**
+   * @description Removes ID column from table if table data exists
+   */
   private removeColumnId(): void {
-    const indexOfId = this.columns.indexOf('id');
-    this.columns.splice(indexOfId, 1);
+    if (this.columns.length && this.columns[0] !== 'No data') {
+      const indexOfId = this.columns.indexOf('id');
+      this.columns.splice(indexOfId, 1);
+    }
   }
 
+  /**
+   * @param row Row clicked
+   * @description Emits row click output on row click
+   */
   public onRowClick(row: T): void {
     this.rowClick.emit(row);
   }
