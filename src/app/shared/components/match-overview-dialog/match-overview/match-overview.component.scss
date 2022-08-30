@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  flex-direction: row;
+
+  div.players {
+    flex-basis: 25%;
+  }
+
+  div.sets {
+    display: flex;
+
+    div.set {
+      margin-right: 12px;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+}
