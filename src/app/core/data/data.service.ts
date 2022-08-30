@@ -114,6 +114,14 @@ export class DataService {
   }
 
   /**
+   * @returns Players
+   * @description Returns players
+   */
+  public async getPlayers(): Promise<Player[]> {
+    return await firstValueFrom(this.getPlayersObs());
+  }
+
+  /**
    * @returns Player
    * @description Finds player by ID
    */
@@ -127,6 +135,14 @@ export class DataService {
    */
   public getMatchesObs(): Observable<Match[]> {
     return this.matchesBehaviorSubject.asObservable();
+  }
+
+  /**
+   * @returns Matches
+   * @description Returns matches
+   */
+  public async getMatches(): Promise<Match[]> {
+    return await firstValueFrom(this.getMatchesObs());
   }
 
   /**
@@ -151,6 +167,14 @@ export class DataService {
    */
   public getMatchTableRowsObs(): Observable<MatchTableRow[]> {
     return this.matchesBehaviorSubject.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
+  }
+
+  /**
+   * @returns Player by name exist
+   * @description Checks if player by name already exists
+   */
+  public async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
+    return (await this.getPlayers()).some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
   /**
