@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Players and matches data connection
+- Match overview as dialog
 ### Changed
+- Data models
+- Table does not show ID column
 ### Fixed
 
 ## [0.4.0] - 2022-08-29
