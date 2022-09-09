@@ -8,9 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Players and matches data connection
 - Match overview as dialog
+- Label transform pipes
 ### Changed
 - Data models
-- Table does not show ID column
+- Initial data
+- Hide ID column in table
+- View components methods
+- Dialog content margin
+- Player overview dialog layout
+- Nav buttons labels transform with pipes
+- Table columns labels transform with pipes
 ### Fixed
 
 ## [0.4.0] - 2022-08-29
