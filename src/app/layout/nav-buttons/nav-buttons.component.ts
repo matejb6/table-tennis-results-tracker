@@ -39,13 +39,4 @@ export class NavButtonsComponent implements OnInit {
       map((value) => (value === '/' ? `/${appRoutes.players}` : value))
     );
   }
-
-  /**
-   * @param route Route
-   * @returns Route name
-   * @description Capitalizes route for display
-   */
-  public getRouteName(route: string): string {
-    return route.charAt(0).toUpperCase() + route.slice(1);
-  }
 }
