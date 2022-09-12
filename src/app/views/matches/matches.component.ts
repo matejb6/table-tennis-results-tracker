@@ -3,13 +3,14 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
-import { Match } from '@core/models/match';
 import { MatchTableRow } from '@core/models/match-table-row';
 import { DialogService } from '@shared/services/dialog/dialog.service';
+import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import {
   AddMatchDialogComponent,
   AddMatchFormData
 } from '@shared/components/add-match-dialog/add-match-dialog.component';
+import { MatchOverviewDialogComponent } from '@shared/components/match-overview-dialog/match-overview-dialog.component';
 
 @Component({
   selector: 'app-matches',
@@ -17,18 +18,29 @@ import {
   styleUrls: ['./matches.component.scss']
 })
 export class MatchesComponent implements OnInit {
-  public $matchesTableRow: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
+  public $matchTableRows: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
-  constructor(private dataService: DataService, private dialogService: DialogService) {}
+  constructor(
+    private dataService: DataService,
+    private dialogService: DialogService,
+    private snackBarService: SnackBarService
+  ) {}
 
   ngOnInit() {
-    this.$matchesTableRow = this.dataService.getMatchesTableRowObs();
+    this.$matchTableRows = this.dataService.getMatchTableRowsObs();
   }
 
-  private onAfterClosedObserver(value: AddMatchFormData | undefined): void {
-    this.dataService.addMatch(value as Match);
+  /**
+   * @param addMatchFormData Add match form data
+   * @description After closed observer
+   */
+  private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
+    this.dataService.addMatch(addMatchFormData!);
   }
 
+  /**
+   * @description On add match click, opens dialog and observes when dialog is closed
+   */
   public async onAddMatchClick(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog(AddMatchDialogComponent, players) as MatDialogRef<
@@ -42,5 +54,18 @@ export class MatchesComponent implements OnInit {
       .subscribe({
         next: this.onAfterClosedObserver.bind(this)
       });
+  }
+
+  /**
+   * @param event Table row click event
+   * @description Opens match overview dialog on row click, shows snackbar if no match found
+   */
+  public async onRowClick(event: MatchTableRow): Promise<void> {
+    const match = await this.dataService.getMatchById(event.id);
+    if (match) {
+      this.dialogService.openDialog(MatchOverviewDialogComponent, match);
+    } else {
+      this.snackBarService.showSnackBar('Match data unavailable');
+    }
   }
 }

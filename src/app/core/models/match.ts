@@ -1,7 +1,10 @@
+import { Player } from './player';
+
 export interface Match {
-  players: string[];
-  sets: {
-    firstPlayerScore: number;
-    secondPlayerScore: number;
-  }[];
+  id: number;
+  players: Player[];
+  sets: [number, number][];
+  score: [number, number];
+  winner: Player;
+  date: string;
 }

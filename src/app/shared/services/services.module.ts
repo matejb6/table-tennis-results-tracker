@@ -5,7 +5,7 @@ import { SnackBarModule } from './snack-bar/snack-bar.module';
 
 @NgModule({
   imports: [DialogModule, SnackBarModule],
-  exports: [DialogModule],
+  exports: [],
   declarations: [],
   providers: []
 })

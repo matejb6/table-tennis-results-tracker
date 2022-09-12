@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { Player } from '@core/models/player';
+import { CustomValidators } from './custom-validators';
 
 @Component({
   selector: 'app-add-match-dialog',
@@ -28,10 +29,10 @@ export class AddMatchDialogComponent implements OnInit {
               Validators.maxLength(2)
             ])
           },
-          [this.setGems.bind(this)]
+          [CustomValidators.setGems.bind(this)]
         )
       ],
-      this.matchSets.bind(this)
+      [CustomValidators.matchSets.bind(this)]
     )
   });
 
@@ -42,48 +43,6 @@ export class AddMatchDialogComponent implements OnInit {
 
   ngOnInit() {
     this.playerNames = this.players instanceof Array ? this.players.map((item) => item.name) : [];
-  }
-
-  /**
-   * @description Validator for match sets, valid if at least one player reaches 3 sets won
-   */
-  private matchSets(control: AbstractControl): ValidationErrors | null {
-    const sets: GameSetFormData[] = control.value;
-    let firstPlayerSetsWon = 0;
-    let secondPlayerSetsWon = 0;
-
-    sets.forEach((item) => {
-      if (item.firstPlayerScore! > item.secondPlayerScore!) {
-        firstPlayerSetsWon = ++firstPlayerSetsWon;
-      } else if (item.firstPlayerScore! < item.secondPlayerScore!) {
-        secondPlayerSetsWon = ++secondPlayerSetsWon;
-      }
-    });
-    const valid = firstPlayerSetsWon >= 3 || secondPlayerSetsWon >= 3;
-
-    return !valid ? { matchValid: true } : null;
-  }
-
-  /**
-   * @description Validator for set gems,
-   * valid if gem is won by 11 points and more than 1 point difference or by 12 or more points and 2 points difference
-   */
-  private setGems(control: AbstractControl): ValidationErrors | null {
-    const firstPlayerScore: number = control.value.firstPlayerScore;
-    const secondPlayerScore: number = control.value.secondPlayerScore;
-    let valid = false;
-
-    if (firstPlayerScore === 11 && secondPlayerScore < 10) {
-      valid = true;
-    } else if (secondPlayerScore === 11 && firstPlayerScore < 10) {
-      valid = true;
-    } else if (firstPlayerScore > 11 && secondPlayerScore === firstPlayerScore - 2) {
-      valid = true;
-    } else if (secondPlayerScore > 11 && firstPlayerScore === secondPlayerScore - 2) {
-      valid = true;
-    }
-
-    return !valid ? { setValid: true } : null;
   }
 
   /**
@@ -139,7 +98,7 @@ export class AddMatchDialogComponent implements OnInit {
             Validators.maxLength(2)
           ])
         },
-        [this.setGems.bind(this)]
+        [CustomValidators.setGems.bind(this)]
       )
     );
   }
@@ -173,6 +132,7 @@ export interface GameSetForm {
   firstPlayerScore: FormControl<number | null>;
   secondPlayerScore: FormControl<number | null>;
 }
+
 export interface GameSetFormData {
   firstPlayerScore: number | null;
   secondPlayerScore: number | null;

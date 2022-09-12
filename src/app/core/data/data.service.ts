@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 
 import { Player } from '@core/models/player';
 import { Match } from '@core/models/match';
+import { PlayerTableRow } from '@core/models/player-table-row';
 import { MatchTableRow } from '@core/models/match-table-row';
+import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-player-dialog.component';
+import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
+import { MatchDataService } from './match-data.service';
+import { FormParseService } from './form-parse.service';
 import { matches, players } from './initial-data';
 
 @Injectable({
@@ -13,26 +18,63 @@ export class DataService {
   private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(players);
   private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(matches);
 
-  constructor() {
-    this.sortPlayersOnChange();
+  constructor() {}
+
+  /**
+   * @param players Players
+   * @returns Players table row
+   * @description Maps players data into player table rows data
+   */
+  private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
+    return players
+      .map((player, index) => {
+        return {
+          id: player.id,
+          position: index,
+          name: player.name,
+          setsWon: player.setsWon
+        };
+      })
+      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this))
+      .map((player, index) => {
+        return {
+          id: player.id,
+          position: index + 1,
+          name: player.name,
+          setsWon: player.setsWon
+        };
+      });
   }
 
   /**
-   * @param a Player A
-   * @param b Player B
-   * @returns Players by sets won comparison
-   * @description Players sort compare function, sort players by sets won from higher to lower
+   * @param matches Matches
+   * @returns Matches table row
+   * @description Maps matches data into match table rows data
    */
-  private playersBySetsWon(a: Player, b: Player): number {
-    return b.setsWon - a.setsWon;
+  private mapMatchTableRows(matches: Match[]): MatchTableRow[] {
+    return matches.map((match) => {
+      return {
+        id: match.id,
+        players: match.players.map((player) => player.name).join(' vs. '),
+        score: `${match.score[0]}:${match.score[1]}`,
+        winner: match.winner.name
+      };
+    });
   }
 
   /**
-   * @description Sorts players on change
+   * @param match Match
+   * @description Update players with last match, creates new match players data which are added to existing players
    */
-  private sortPlayersOnChange(): void {
-    this.playersBehaviorSubject.subscribe({
-      next: (value) => value.sort(this.playersBySetsWon.bind(this))
+  private updatePlayers(match: Match): void {
+    const lastMatchPlayers: Player[] = MatchDataService.getMatchPlayersData(match);
+    this.playersBehaviorSubject.getValue().forEach((player) => {
+      const matchPlayer = MatchDataService.findPlayerById(lastMatchPlayers, player.id);
+      if (matchPlayer) {
+        player.matchesPlayed = player.matchesPlayed + matchPlayer.matchesPlayed;
+        player.matchesWon = player.matchesWon + matchPlayer.matchesWon;
+        player.setsWon = player.setsWon + matchPlayer.setsWon;
+      }
     });
   }
 
@@ -45,13 +87,37 @@ export class DataService {
   }
 
   /**
-   * @param name Name
-   * @description Adds player by emitting new data with behavior subject
+   * @returns Players table row observable
+   * @description Returns players table row behavior subject as observable
    */
-  public addPlayer(name: string): void {
-    const values = this.playersBehaviorSubject.getValue();
-    values.push({ name: name, setsWon: 0 });
-    this.playersBehaviorSubject.next([...values]);
+  public getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
+    return this.playersBehaviorSubject.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
+  }
+
+  /**
+   * @returns Players
+   * @description Returns players
+   */
+  public async getPlayers(): Promise<Player[]> {
+    return await firstValueFrom(this.getPlayersObs());
+  }
+
+  /**
+   * @returns Player
+   * @description Finds player by ID
+   */
+  public async getPlayerById(id: number): Promise<Player | undefined> {
+    return await firstValueFrom(
+      this.getPlayersObs().pipe(map((players) => MatchDataService.findPlayerById(players, id)))
+    );
+  }
+
+  /**
+   * @returns Player by name exist
+   * @description Checks if player by name already exists
+   */
+  public async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
+    return (await this.getPlayers()).some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
   /**
@@ -63,39 +129,50 @@ export class DataService {
   }
 
   /**
-   * @returns Matches observable
-   * @description Returns matches behavior subject as observable
+   * @returns Match table rows observable
+   * @description Returns match table rows behavior subject as observable
    */
-  public getMatchesTableRowObs(): Observable<MatchTableRow[]> {
-    return this.matchesBehaviorSubject.asObservable().pipe(
-      map((value) => {
-        return value.map((item) => {
-          let firstPlayerSetsWon = 0;
-          let secondPlayerSetsWon = 0;
-          item.sets.forEach((set) => {
-            if (set.firstPlayerScore > set.secondPlayerScore) {
-              firstPlayerSetsWon = ++firstPlayerSetsWon;
-            } else if (set.secondPlayerScore > set.firstPlayerScore) {
-              secondPlayerSetsWon = ++secondPlayerSetsWon;
-            }
-          });
-          return {
-            players: item.players.join(' vs. '),
-            score: firstPlayerSetsWon + ':' + secondPlayerSetsWon,
-            winner: firstPlayerSetsWon > secondPlayerSetsWon ? item.players[0] : item.players[1]
-          };
-        });
-      })
+  public getMatchTableRowsObs(): Observable<MatchTableRow[]> {
+    return this.matchesBehaviorSubject.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
+  }
+
+  /**
+   * @returns Matches
+   * @description Returns matches
+   */
+  public async getMatches(): Promise<Match[]> {
+    return await firstValueFrom(this.getMatchesObs());
+  }
+
+  /**
+   * @returns Match
+   * @description Finds match by ID
+   */
+  public async getMatchById(id: number): Promise<Match | undefined> {
+    return await firstValueFrom(
+      this.getMatchesObs().pipe(map((matches) => MatchDataService.findMatchById(matches, id)))
     );
   }
 
   /**
-   * @param match Match
+   * @param addPlayerFormData Form data
+   * @description Adds player by emitting new data with behavior subject
+   */
+  public addPlayer(addPlayerFormData: AddPlayerFormData): void {
+    const players = this.playersBehaviorSubject.getValue();
+    players.push(FormParseService.parsePlayerDataFromForm(addPlayerFormData));
+    this.playersBehaviorSubject.next([...players]);
+  }
+
+  /**
+   * @param addMatchFormData Form data
    * @description Adds match by emitting new data with behavior subject
    */
-  public addMatch(match: Match): void {
-    const values = this.matchesBehaviorSubject.getValue();
-    values.push(match);
-    this.matchesBehaviorSubject.next([...values]);
+  public addMatch(addMatchFormData: AddMatchFormData): void {
+    const matches = this.matchesBehaviorSubject.getValue();
+    const newMatch = FormParseService.parseMatchDataFromForm(players, addMatchFormData);
+    matches.push(newMatch);
+    this.matchesBehaviorSubject.next([...matches]);
+    this.updatePlayers(newMatch);
   }
 }

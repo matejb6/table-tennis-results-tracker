@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.0.0] - 2022-09-12
+### Added
+- Players and matches data connection
+- Match overview as dialog
+- Label transform pipes
+### Changed
+- Data models
+- Initial data
+- Hide ID column in table
+- View components methods
+- Dialog content margin
+- Player overview dialog layout
+- Nav buttons labels transform with pipes
+- Table columns labels transform with pipes
+- Package update
+
 ## [0.4.0] - 2022-08-29
 ### Added
 - Highlight active route nav button

@@ -9,6 +9,14 @@ The app was generated with [Angular CLI](https://github.com/angular/angular-cli)
 ## Content
 The app consists of two views: Players and Matches.
 Also, there is a Page Not Found view for unavailable routes.
+### Players view
+It consists of players table and button for adding a player.
+Player overview shows by clicking on player table row.
+### Matches view
+It consists of matches table and button for adding a match.
+Player overview shows by clicking on player table row.
+Add match form has players selection and sets entry.
+When new match is entered, both matches and players data updates.
 
 ## Requirements
 * node.js v14.0 and higher

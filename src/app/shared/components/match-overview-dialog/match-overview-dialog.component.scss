@@ -1,15 +1,19 @@
 :host {
   display: block;
-  width: 300px;
+  width: 500px;
+
+  .match-overview {
+    margin-bottom: 12px;
+  }
 
   p.info-line {
     span.label {
       display: inline-block;
-      width: 50%;
+      width: 25%;
     }
     span.value {
       display: inline-block;
-      max-width: 50%;
+      max-width: 75%;
     }
   }
 }

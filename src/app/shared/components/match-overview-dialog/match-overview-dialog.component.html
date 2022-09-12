@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Match overview</h1>
+<mat-dialog-content>
+  <app-match-overview
+    class="match-overview"
+    [players]="match.players"
+    [sets]="match.sets"
+    [winner]="match.winner"
+  ></app-match-overview>
+
+  <p class="info-line">
+    <span class="label"><strong>Score:</strong></span>
+    <span class="value">{{ getScore() }}</span>
+  </p>
+  <p class="info-line">
+    <span class="label"><strong>Date:</strong></span>
+    <span class="value">{{ match.date }}</span>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close type="button">Close</button>
+</mat-dialog-actions>
