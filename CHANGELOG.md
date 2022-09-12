@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+### Changed
+### Fixed
+
+## [1.0.0] - 2022-09-12
+### Added
 - Players and matches data connection
 - Match overview as dialog
 - Label transform pipes
@@ -18,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Player overview dialog layout
 - Nav buttons labels transform with pipes
 - Table columns labels transform with pipes
-### Fixed
+- Package update
 
 ## [0.4.0] - 2022-08-29
 ### Added
