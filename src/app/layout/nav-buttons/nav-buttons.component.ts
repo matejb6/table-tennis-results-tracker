@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 
-import { appRoutes } from 'src/app/app-routes';
+import { appRoutes } from './../../app-routes';
 
 @Component({
   selector: 'app-nav-buttons',
