@@ -3,7 +3,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { filter, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
-import { Player } from '@core/models/player';
 import { PlayerTableRow } from '@core/models/player-table-row';
 import {
   AddPlayerDialogComponent,
@@ -50,7 +49,7 @@ export class PlayersComponent implements OnInit {
   /**
    * @description On add player click, opens dialog and observes when dialog is closed
    */
-  public async onAddPlayerClick(): Promise<void> {
+  public onAddPlayerClick(): void {
     const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
       AddPlayerDialogComponent,
       AddPlayerFormData

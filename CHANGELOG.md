@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.1.0] - 2022-09-29
+### Changed
+- Nav buttons component routes import
+- Toolbar elements margins
+- Unused import and async from players component removed
+- VS Code settings removed
+- Package update
+- Readme
+
 ## [1.0.0] - 2022-09-12
 ### Added
 - Players and matches data connection
