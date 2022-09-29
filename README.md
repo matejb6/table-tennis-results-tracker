@@ -3,9 +3,6 @@
 ## About
 An Angular web app for tracking table tennis results.
 
-## App creation
-The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
-
 ## Content
 The app consists of two views: Players and Matches.
 Also, there is a Page Not Found view for unavailable routes.
@@ -18,9 +15,8 @@ Player overview shows by clicking on player table row.
 Add match form has players selection and sets entry.
 When new match is entered, both matches and players data updates.
 
-## Requirements
-* node.js v14.0 and higher
-* npm v6.0 and higher
+## App creation
+The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Additional packages
 * `Angular Router` added during new app setup with: `ng new`
@@ -42,14 +38,10 @@ When new match is entered, both matches and players data updates.
 * `test:coverage`: Tests Angular app with Karma in headless mode and code coverage
 * `prepare`: Prepare script to install Husky
 
-## Setup
-* In project root run `npm install` to install dependencies
-* Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
-
 ## GitHub Actions
-There are two workflows:
-* `CI` is used as general CI workflow
-* `Version` is used for creating new versions
+Defined workflows:
+* `CI` as a general CI workflow
+* `Version` for creating new versions
 
 For more details see `.github/workflows/`.
 
@@ -57,6 +49,14 @@ For more details see `.github/workflows/`.
 Pre commit hooks are used to check code with `Prettier` and `ESLint`.
 Before each commit, staged files are checked with defined scripts and committing of unchecked code will be prevented.
 To commit code successfully, check `Prettier` and `Lint` paragraphs of this file.
+
+## Requirements
+* node.js v14.0 and higher
+* npm v6.0 and higher
+
+## Setup
+* In project root run `npm install` to install dependencies
+* Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
 
 ## Start
 * In project root run `npm start` to start dev server
