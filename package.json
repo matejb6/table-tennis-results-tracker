@@ -1,10 +1,6 @@
 {
   "name": "table-tennis-results-tracker",
   "version": "1.1.0",
-  "author": {
-    "name": "Matej Buljan",
-    "email": "matejb6@icloud.com"
-  },
   "description": "An Angular web app for tracking table tennis results",
   "scripts": {
     "ng": "ng",
@@ -60,6 +56,13 @@
     "prettier": "^2.7.1",
     "typescript": "~4.7.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matejb6/table-tennis-results-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matejb6/table-tennis-results-tracker/issues"
+  },
   "keywords": [
     "matejb6",
     "Angular",
@@ -67,6 +70,11 @@
     "Results",
     "Assignment"
   ],
+  "author": {
+    "name": "Matej Buljan",
+    "email": "matejb6@icloud.com"
+  },
+  "license": "MIT",
   "engines": {
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
