@@ -6,9 +6,9 @@ export class SnackBarService {
   constructor(private matSnackBar: MatSnackBar) {}
 
   /**
+   * Opens simple snack bar with a message
    * @param message Message
    * @param duration Duration in milliseconds
-   * @description Opens simple snack bar with a message
    */
   public showSnackBar(message: string, duration?: number): void {
     this.matSnackBar.open(message, 'Close', { duration: duration || 3000 });

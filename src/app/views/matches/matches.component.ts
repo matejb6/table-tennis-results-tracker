@@ -31,15 +31,15 @@ export class MatchesComponent implements OnInit {
   }
 
   /**
+   * After closed observer
    * @param addMatchFormData Add match form data
-   * @description After closed observer
    */
   private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
     this.dataService.addMatch(addMatchFormData!);
   }
 
   /**
-   * @description On add match click, opens dialog and observes when dialog is closed
+   * On add match click, opens dialog and observes when dialog is closed
    */
   public async onAddMatchClick(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
@@ -57,8 +57,8 @@ export class MatchesComponent implements OnInit {
   }
 
   /**
+   * Opens match overview dialog on row click, shows snackbar if no match found
    * @param event Table row click event
-   * @description Opens match overview dialog on row click, shows snackbar if no match found
    */
   public async onRowClick(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);

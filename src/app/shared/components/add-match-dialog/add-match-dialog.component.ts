@@ -46,16 +46,16 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
+   * Player form controls
    * @returns Player controls
-   * @description Player form controls
    */
   public getPlayersControls(): AbstractControl[] {
     return (this.addMatchFormGroup.get('players') as FormArray).controls;
   }
 
   /**
+   * Option is disabled if already selected in another selection
    * @returns Option disabled
-   * @description Option is disabled if already selected in another selection
    */
   public isOptionDisabled(index: number, playerName: string): boolean {
     const oppositeControl = index ? this.getPlayersControls()[0] : this.getPlayersControls()[1];
@@ -63,16 +63,16 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
+   * Set form controls
    * @returns Set controls
-   * @description Set form controls
    */
   public getSetControls(): AbstractControl[] {
     return (this.addMatchFormGroup.get('sets') as FormArray).controls;
   }
 
   /**
+   * Add set button disabled if some sets are invalid of if 5 sets are reached
    * @returns Add set disabled
-   * @description Add set button disabled if some sets are invalid of if 5 sets are reached
    */
   public addSetDisabled(): boolean {
     return (
@@ -81,7 +81,7 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
-   * @description Adds set form group to sets form array
+   * Adds set form group to sets form array
    */
   public addSet(): void {
     (this.addMatchFormGroup.get('sets') as FormArray).push(
@@ -104,15 +104,15 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
+   * Remove set button disabled if one set is present
    * @returns Remove set disabled
-   * @description Remove set button disabled if one set is present
    */
   public removeSetDisabled(): boolean {
     return this.getSetControls().length < 2;
   }
 
   /**
-   * @description Removes set from set form array
+   * Removes set from set form array
    */
   public removeSet(): void {
     ((this.addMatchFormGroup.get('sets') as FormArray).value as GameSetFormData[]).pop();
@@ -121,7 +121,7 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
-   * @description Submits form, closes dialog and emits form values
+   * Submits form, closes dialog and emits form values
    */
   public onSubmit(): void {
     this.matDialogRef.close(this.addMatchFormGroup.value);

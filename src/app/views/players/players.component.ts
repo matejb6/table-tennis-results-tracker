@@ -32,8 +32,8 @@ export class PlayersComponent implements OnInit {
   }
 
   /**
+   * After closed observer
    * @param addPlayerFormData Add player form data
-   * @description After closed observer
    */
   private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
     const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name!);
@@ -47,7 +47,7 @@ export class PlayersComponent implements OnInit {
   }
 
   /**
-   * @description On add player click, opens dialog and observes when dialog is closed
+   * On add player click, opens dialog and observes when dialog is closed
    */
   public onAddPlayerClick(): void {
     const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
@@ -64,8 +64,8 @@ export class PlayersComponent implements OnInit {
   }
 
   /**
+   * Opens player overview dialog on row click, shows snackbar if no player found
    * @param event Table row click event
-   * @description Opens player overview dialog on row click, shows snackbar if no player found
    */
   public async onRowClick(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);

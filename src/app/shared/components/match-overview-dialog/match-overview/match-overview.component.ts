@@ -18,18 +18,18 @@ export class MatchOverviewComponent {
   constructor() {}
 
   /**
+   * Check if player is winner
    * @param player Player
    * @returns Player is winner check
-   * @description Check if player is winner
    */
   public isPlayerWinner(player: Player): boolean {
     return player.id === this.winner.id;
   }
 
   /**
+   * Checks and returns set game win index
    * @param set Set
    * @returns Set game win index
-   * @description Checks and returns set game win index
    */
   public getSetGameWinIndex(set: [number, number]): number {
     return set[0] > set[1] ? 0 : 1;
