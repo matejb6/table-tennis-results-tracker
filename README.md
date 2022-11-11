@@ -55,28 +55,28 @@ To commit code successfully, check `Prettier` and `Lint` paragraphs of this file
 * npm v6.0 and higher
 
 ## Setup
-* In project root run `npm install` to install dependencies
+* In root run `npm install` to install dependencies
 * Script `prepare` should run with `npm install` to install husky, if not, run `npm run prepare`
 
 ## Start
-* In project root run `npm start` to start dev server
+* In root run `npm start` to start dev server
 * Navigate to `http://localhost:4200/`
 * The app will automatically reload if you change any of the source files
 
 ## Build
-* In project root run `npm run build` to build the project
+* In root run `npm run build` to build the app
 
 ## Prettier
-* In project root run `npm run prettier:check` to check if files are formatted
-* In project root run `npm run prettier:write` to format files
+* In root run `npm run prettier:check` to check if files are formatted with [Prettier](https://prettier.io)
+* In root run `npm run prettier:write` to format files
 
 ## Lint
-* In project root run `npm run lint` to lint the project
+* In root run `npm run lint` to lint the app with [ESLint](https://eslint.org)
 
 ## Test
-* In project root run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io)
-* In project root run `npm run test:ci` to execute the unit tests in headless mode
-* In project root run `npm run test:coverage` to execute the unit tests in headless mode with coverage
+* In root run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io)
+* In root run `npm run test:ci` to execute the unit tests in headless mode
+* In root run `npm run test:coverage` to execute the unit tests in headless mode with coverage
 
 ## New version
 * Go to GitHub repo
