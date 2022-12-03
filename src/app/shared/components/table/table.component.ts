@@ -37,8 +37,8 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
-   * @param row Row clicked
    * Emits row click output on row click
+   * @param row Row clicked
    */
   public onRowClick(row: T): void {
     this.rowClick.emit(row);
