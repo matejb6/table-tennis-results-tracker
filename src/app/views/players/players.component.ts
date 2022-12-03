@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { filter, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
@@ -50,10 +49,9 @@ export class PlayersComponent implements OnInit {
    * On add player click, opens dialog and observes when dialog is closed
    */
   public onAddPlayerClick(): void {
-    const dialogRef = this.dialogService.openDialog(AddPlayerDialogComponent) as MatDialogRef<
-      AddPlayerDialogComponent,
-      AddPlayerFormData
-    >;
+    const dialogRef = this.dialogService.openDialog<AddPlayerDialogComponent, AddPlayerFormData, undefined>(
+      AddPlayerDialogComponent
+    );
 
     dialogRef
       .afterClosed()

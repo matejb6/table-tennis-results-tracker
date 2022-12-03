@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
 import { MatchTableRow } from '@core/models/match-table-row';
+import { Player } from '@core/models/player';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import {
@@ -43,10 +43,10 @@ export class MatchesComponent implements OnInit {
    */
   public async onAddMatchClick(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
-    const dialogRef = this.dialogService.openDialog(AddMatchDialogComponent, players) as MatDialogRef<
+    const dialogRef = this.dialogService.openDialog<AddMatchDialogComponent, AddMatchFormData, Player[]>(
       AddMatchDialogComponent,
-      AddMatchFormData
-    >;
+      players
+    );
 
     dialogRef
       .afterClosed()
