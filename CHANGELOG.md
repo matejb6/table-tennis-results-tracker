@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.1.1] - 2023-04-27
+### Added
+- License
+### Changed
+- Package scripts, dependencies and info
+- Code and comments refactored
+- Readme
+
 ## [1.1.0] - 2022-09-29
 ### Changed
 - Nav buttons component routes import
