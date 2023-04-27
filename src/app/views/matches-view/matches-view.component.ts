@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
 import { MatchTableRow } from '@core/models/match-table-row';
+import { Player } from '@core/models/player';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import {
@@ -14,10 +14,10 @@ import { MatchOverviewDialogComponent } from '@shared/components/match-overview-
 
 @Component({
   selector: 'app-matches',
-  templateUrl: './matches.component.html',
-  styleUrls: ['./matches.component.scss']
+  templateUrl: './matches-view.component.html',
+  styleUrls: ['./matches-view.component.scss']
 })
-export class MatchesComponent implements OnInit {
+export class MatchesViewComponent implements OnInit {
   public $matchTableRows: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   constructor(
@@ -31,22 +31,22 @@ export class MatchesComponent implements OnInit {
   }
 
   /**
+   * After closed observer
    * @param addMatchFormData Add match form data
-   * @description After closed observer
    */
   private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
     this.dataService.addMatch(addMatchFormData!);
   }
 
   /**
-   * @description On add match click, opens dialog and observes when dialog is closed
+   * On add match click, opens dialog and observes when dialog is closed
    */
   public async onAddMatchClick(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
-    const dialogRef = this.dialogService.openDialog(AddMatchDialogComponent, players) as MatDialogRef<
+    const dialogRef = this.dialogService.openDialog<AddMatchDialogComponent, AddMatchFormData, Player[]>(
       AddMatchDialogComponent,
-      AddMatchFormData
-    >;
+      players
+    );
 
     dialogRef
       .afterClosed()
@@ -57,8 +57,8 @@ export class MatchesComponent implements OnInit {
   }
 
   /**
+   * Opens match overview dialog on row click, shows snackbar if no match found
    * @param event Table row click event
-   * @description Opens match overview dialog on row click, shows snackbar if no match found
    */
   public async onRowClick(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);

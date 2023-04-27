@@ -9,17 +9,17 @@ import { PlayerTableRow } from '@core/models/player-table-row';
 })
 export class MatchDataService {
   /**
+   * Generated unique ID as a date time stamp
    * @returns Generated ID
-   * @description Generated unique ID as a date time stamp
    */
   public static generateId(): number {
     return new Date().getTime();
   }
 
   /**
+   * Calculates match score from sets
    * @param sets Sets
    * @returns Match score
-   * @description Calculates match score from sets
    */
   public static getMatchScore(sets: [number, number][]): [number, number] {
     let scoreA: number = 0;
@@ -35,50 +35,50 @@ export class MatchDataService {
   }
 
   /**
+   * Calculates match winner
    * @param score Score
    * @param players Players
    * @returns Winner
-   * @description Calculates match winner
    */
   public static getMatchWinner(score: [number, number], players: Player[]): Player {
     return score[0] > score[1] ? players[0] : players[1];
   }
 
   /**
+   * Finds player by name
    * @param players Players
    * @param name Name
    * @returns Player
-   * @description Finds player by name
    */
   public static findPlayerByName(players: Player[], name: string | null): Player | undefined {
     return players.find((player) => player.name === name);
   }
 
   /**
+   * Finds player by ID
    * @param players Players
    * @param id ID
    * @returns Player
-   * @description Finds player by ID
    */
   public static findPlayerById(players: Player[], id: number | null): Player | undefined {
     return players.find((player) => player.id === id);
   }
 
   /**
+   * Finds match by ID
    * @param matches Matches
    * @param id ID
    * @returns Player
-   * @description Finds match by ID
    */
   public static findMatchById(matches: Match[], id: number | null): Match | undefined {
     return matches.find((match) => match.id === id);
   }
 
   /**
+   * Calculates how many sets player won in a match
    * @param player Player
    * @param match Match
    * @returns Player sets won
-   * @description Calculates how many sets player won in a match
    */
   public static getPlayerSetsWon(player: Player, match: Match): number {
     const playerIndex = match.players.indexOf(player);
@@ -89,19 +89,19 @@ export class MatchDataService {
   }
 
   /**
+   * Sort players compare function, sorts players by sets won from higher to lower
    * @param a Player A
    * @param b Player B
    * @returns Players by sets won comparison
-   * @description Sort players compare function, sorts players by sets won from higher to lower
    */
   public static playerTableRowsBySetsWon(a: PlayerTableRow, b: PlayerTableRow): number {
     return b.setsWon - a.setsWon;
   }
 
   /**
+   * Parses match players data into players data
    * @param match Match
    * @returns Players
-   * @description Parses match players data into players data
    */
   public static getMatchPlayersData(match: Match): Player[] {
     return match.players.map((matchPlayer) => {

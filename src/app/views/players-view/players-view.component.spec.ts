@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PlayersModule } from './players.module';
-import { PlayersComponent } from './players.component';
+import { PlayersViewModule } from './players-view.module';
+import { PlayersViewComponent } from './players-view.component';
 
-describe('PlayersComponent', () => {
-  let fixture: ComponentFixture<PlayersComponent>;
-  let component: PlayersComponent;
+describe('PlayersViewComponent', () => {
+  let fixture: ComponentFixture<PlayersViewComponent>;
+  let component: PlayersViewComponent;
   let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, PlayersModule]
+      imports: [BrowserAnimationsModule, PlayersViewModule]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PlayersComponent);
+    fixture = TestBed.createComponent(PlayersViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     nativeElem = fixture.nativeElement;

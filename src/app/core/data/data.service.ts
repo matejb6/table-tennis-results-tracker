@@ -21,9 +21,9 @@ export class DataService {
   constructor() {}
 
   /**
+   * Maps players data into player table rows data
    * @param players Players
    * @returns Players table row
-   * @description Maps players data into player table rows data
    */
   private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
     return players
@@ -47,9 +47,9 @@ export class DataService {
   }
 
   /**
+   * Maps matches data into match table rows data
    * @param matches Matches
    * @returns Matches table row
-   * @description Maps matches data into match table rows data
    */
   private mapMatchTableRows(matches: Match[]): MatchTableRow[] {
     return matches.map((match) => {
@@ -63,8 +63,8 @@ export class DataService {
   }
 
   /**
+   * Update players with last match, creates new match players data which are added to existing players
    * @param match Match
-   * @description Update players with last match, creates new match players data which are added to existing players
    */
   private updatePlayers(match: Match): void {
     const lastMatchPlayers: Player[] = MatchDataService.getMatchPlayersData(match);
@@ -79,32 +79,32 @@ export class DataService {
   }
 
   /**
+   * Returns players behavior subject as observable
    * @returns Players observable
-   * @description Returns players behavior subject as observable
    */
   public getPlayersObs(): Observable<Player[]> {
     return this.playersBehaviorSubject.asObservable();
   }
 
   /**
+   * Returns players table row behavior subject as observable
    * @returns Players table row observable
-   * @description Returns players table row behavior subject as observable
    */
   public getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
     return this.playersBehaviorSubject.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
   }
 
   /**
+   * Returns players
    * @returns Players
-   * @description Returns players
    */
   public async getPlayers(): Promise<Player[]> {
     return await firstValueFrom(this.getPlayersObs());
   }
 
   /**
+   * Finds player by ID
    * @returns Player
-   * @description Finds player by ID
    */
   public async getPlayerById(id: number): Promise<Player | undefined> {
     return await firstValueFrom(
@@ -113,40 +113,40 @@ export class DataService {
   }
 
   /**
+   * Checks if player by name already exists
    * @returns Player by name exist
-   * @description Checks if player by name already exists
    */
   public async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
     return (await this.getPlayers()).some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
   /**
+   * Returns matches behavior subject as observable
    * @returns Matches observable
-   * @description Returns matches behavior subject as observable
    */
   public getMatchesObs(): Observable<Match[]> {
     return this.matchesBehaviorSubject.asObservable();
   }
 
   /**
+   * Returns match table rows behavior subject as observable
    * @returns Match table rows observable
-   * @description Returns match table rows behavior subject as observable
    */
   public getMatchTableRowsObs(): Observable<MatchTableRow[]> {
     return this.matchesBehaviorSubject.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
   }
 
   /**
+   * Returns matches
    * @returns Matches
-   * @description Returns matches
    */
   public async getMatches(): Promise<Match[]> {
     return await firstValueFrom(this.getMatchesObs());
   }
 
   /**
+   * Finds match by ID
    * @returns Match
-   * @description Finds match by ID
    */
   public async getMatchById(id: number): Promise<Match | undefined> {
     return await firstValueFrom(
@@ -155,8 +155,8 @@ export class DataService {
   }
 
   /**
+   * Adds player by emitting new data with behavior subject
    * @param addPlayerFormData Form data
-   * @description Adds player by emitting new data with behavior subject
    */
   public addPlayer(addPlayerFormData: AddPlayerFormData): void {
     const players = this.playersBehaviorSubject.getValue();
@@ -165,8 +165,8 @@ export class DataService {
   }
 
   /**
+   * Adds match by emitting new data with behavior subject
    * @param addMatchFormData Form data
-   * @description Adds match by emitting new data with behavior subject
    */
   public addMatch(addMatchFormData: AddMatchFormData): void {
     const matches = this.matchesBehaviorSubject.getValue();

@@ -21,16 +21,16 @@ export class NavButtonsComponent implements OnInit {
   }
 
   /**
+   * Parses routes from object to an array of strings
    * @returns Routes as an array of strings
-   * @description Parses routes from object to an array of strings
    */
   private getRoutesFromObject(): string[] {
     return Object.values(appRoutes);
   }
 
   /**
+   * Modifies router events observable to observe only navigation start event and URL
    * @returns Route change observable
-   * @description Modifies router events observable to observe only navigation start event and URL
    */
   private getRouteChangeUrlObservable(): Observable<string> {
     return this.router.events.pipe(

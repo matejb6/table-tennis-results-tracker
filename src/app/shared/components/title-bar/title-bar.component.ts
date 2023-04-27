@@ -16,7 +16,7 @@ export class TitleBarComponent {
   constructor() {}
 
   /**
-   * @description Emits button click output on button click
+   * Emits button click output on button click
    */
   public onButtonClick(): void {
     this.buttonClick.emit();

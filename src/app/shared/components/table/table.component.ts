@@ -20,14 +20,14 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
-   * @description Inits columns based on provided data source and shows no data label in header if data source is empty
+   * Inits columns based on provided data source and shows no data label in header if data source is empty
    */
   private initColumns(): void {
-    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0]) : ['No data'];
+    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0] as Object) : ['No data'];
   }
 
   /**
-   * @description Removes ID column from table if table data exists
+   * Removes ID column from table if table data exists
    */
   private removeColumnId(): void {
     if (this.columns.length && this.columns[0] !== 'No data') {
@@ -37,8 +37,8 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
+   * Emits row click output on row click
    * @param row Row clicked
-   * @description Emits row click output on row click
    */
   public onRowClick(row: T): void {
     this.rowClick.emit(row);

@@ -20,7 +20,7 @@ export class AddPlayerDialogComponent {
   constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>) {}
 
   /**
-   * @description Submits form, closes dialog and emits form data
+   * Submits form, closes dialog and emits form data
    */
   public onSubmit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);

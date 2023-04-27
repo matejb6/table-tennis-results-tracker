@@ -11,9 +11,9 @@ import { MatchDataService } from './match-data.service';
 })
 export class FormParseService {
   /**
+   * Takes player form data and parses it into player data for app usage
    * @param addPlayerFormData Add player form data
    * @returns Player data
-   * @description Takes player form data and parses it into player data for app usage
    */
   public static parsePlayerDataFromForm(addPlayerFormData: AddPlayerFormData): Player {
     return {
@@ -26,9 +26,9 @@ export class FormParseService {
   }
 
   /**
+   * Takes match form data and parses it into match data for app usage
    * @param addMatchFormData Add match form data
    * @returns Match data
-   * @description Takes match form data and parses it into match data for app usage
    */
   public static parseMatchDataFromForm(players: Player[], addMatchFormData: AddMatchFormData): Match {
     const id = MatchDataService.generateId();
