@@ -7,7 +7,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 describe('MatchOverviewDialogComponent', () => {
   let fixture: ComponentFixture<MatchOverviewDialogComponent>;
   let component: MatchOverviewDialogComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,7 +17,6 @@ describe('MatchOverviewDialogComponent', () => {
     fixture = TestBed.createComponent(MatchOverviewDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent {
-  public toolbarTitle: string = 'Table Tennis Results Tracker';
+  public toolbarTitle = 'Table Tennis Results Tracker';
 }

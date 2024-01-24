@@ -12,8 +12,6 @@ export class TableComponent<T> implements OnInit {
   public rowClick: EventEmitter<T> = new EventEmitter<T>();
   public columns: string[] = [];
 
-  constructor() {}
-
   ngOnInit() {
     this.initColumns();
     this.removeColumnId();
@@ -23,7 +21,7 @@ export class TableComponent<T> implements OnInit {
    * Inits columns based on provided data source and shows no data label in header if data source is empty
    */
   private initColumns(): void {
-    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0] as Object) : ['No data'];
+    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0] as object) : ['No data'];
   }
 
   /**

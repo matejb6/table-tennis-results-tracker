@@ -7,7 +7,6 @@ import { PlayersViewComponent } from './players-view.component';
 describe('PlayersViewComponent', () => {
   let fixture: ComponentFixture<PlayersViewComponent>;
   let component: PlayersViewComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,7 +16,6 @@ describe('PlayersViewComponent', () => {
     fixture = TestBed.createComponent(PlayersViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {
