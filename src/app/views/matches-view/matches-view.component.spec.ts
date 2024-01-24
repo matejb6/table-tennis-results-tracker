@@ -7,7 +7,6 @@ import { MatchesViewComponent } from './matches-view.component';
 describe('MatchesViewComponent', () => {
   let fixture: ComponentFixture<MatchesViewComponent>;
   let component: MatchesViewComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,7 +16,6 @@ describe('MatchesViewComponent', () => {
     fixture = TestBed.createComponent(MatchesViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

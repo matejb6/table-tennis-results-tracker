@@ -7,13 +7,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class TitleBarComponent {
   @Input()
-  public title: string = '';
+  public title = '';
   @Input()
-  public buttonLabel: string = '';
+  public buttonLabel = '';
   @Output()
   public buttonClick: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor() {}
 
   /**
    * Emits button click output on button click

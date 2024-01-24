@@ -6,7 +6,6 @@ import { TitleBarComponent } from './title-bar.component';
 describe('TitleBarComponent', () => {
   let fixture: ComponentFixture<TitleBarComponent>;
   let component: TitleBarComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +15,6 @@ describe('TitleBarComponent', () => {
     fixture = TestBed.createComponent(TitleBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

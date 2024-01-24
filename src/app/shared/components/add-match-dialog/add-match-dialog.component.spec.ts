@@ -8,7 +8,6 @@ import { AddMatchDialogComponent } from './add-match-dialog.component';
 describe('AddMatchDialogComponent', () => {
   let fixture: ComponentFixture<AddMatchDialogComponent>;
   let component: AddMatchDialogComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,7 +21,6 @@ describe('AddMatchDialogComponent', () => {
     fixture = TestBed.createComponent(AddMatchDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

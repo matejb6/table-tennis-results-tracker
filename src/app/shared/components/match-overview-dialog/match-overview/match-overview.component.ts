@@ -15,8 +15,6 @@ export class MatchOverviewComponent {
   @Input()
   public winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
 
-  constructor() {}
-
   /**
    * Check if player is winner
    * @param player Player
