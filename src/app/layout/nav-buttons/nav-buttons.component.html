@@ -1,6 +1,6 @@
 <a
   mat-button
-  [class.mat-raised-button]="($routeChangeUrl | async)?.includes(route)"
+  [class.mat-mdc-raised-button]="($routeChangeUrl | async)?.includes(route)"
   [routerLink]="[route]"
   *ngFor="let route of routes"
   >{{ route | firstLetterUppercase }}</a

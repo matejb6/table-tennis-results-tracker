@@ -4,7 +4,7 @@
 An Angular web app for tracking table tennis results.
 
 ## Content
-The app consists of two views: Players and Matches.
+This app consists of two views: Players and Matches.
 Also, there is a Page Not Found view for unavailable routes.
 ### Players view
 It consists of players table and button for adding a player.
@@ -16,7 +16,7 @@ Add match form has players selection and sets entry.
 When new match is entered, both matches and players data updates.
 
 ## App creation
-The app was generated with [Angular CLI](https://github.com/angular/angular-cli).
+This app was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ## Package
 ### Scripts
@@ -62,7 +62,7 @@ Defined workflows:
 For more details see `.github/workflows/`.
 
 ## Requirements
-* node.js v14.15.0
+* node.js v14.20.0
 
 ## Setup
 * In root run `npm install` to install dependencies
@@ -84,6 +84,7 @@ For more details see `.github/workflows/`.
 * In root run `npm run lint` to lint the app with [ESLint](https://eslint.org)
 
 ## Test
+* Add `Karma config` by running the following command: `ng generate config karma`
 * In root run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io)
 * In root run `npm run test:ci` to execute the unit tests in headless mode
 * In root run `npm run test:coverage` to execute the unit tests in headless mode with coverage

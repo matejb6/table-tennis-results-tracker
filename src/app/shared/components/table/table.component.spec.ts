@@ -6,7 +6,6 @@ import { TableComponent } from './table.component';
 describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent<any>>;
   let component: TableComponent<any>;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +15,6 @@ describe('TableComponent', () => {
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

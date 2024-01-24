@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.2.0] - 2024-01-24
+### Added
+- VS Code files
+### Changed
+- Angular update from 14 to 15
+- Package dependencies
+- Deprecated files removed
+- Karma config
+- Readme
+- Code according to ESLint update
+- Unused style definition removed
+
 ## [1.1.1] - 2023-04-27
 ### Added
 - License

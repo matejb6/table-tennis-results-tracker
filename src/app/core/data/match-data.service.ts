@@ -22,8 +22,8 @@ export class MatchDataService {
    * @returns Match score
    */
   public static getMatchScore(sets: [number, number][]): [number, number] {
-    let scoreA: number = 0;
-    let scoreB: number = 0;
+    let scoreA = 0;
+    let scoreB = 0;
     sets.forEach((set) => {
       if (set[0] > set[1]) {
         scoreA = ++scoreA;

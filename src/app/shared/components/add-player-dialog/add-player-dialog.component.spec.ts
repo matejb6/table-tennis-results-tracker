@@ -8,7 +8,6 @@ import { AddPlayerDialogComponent } from './add-player-dialog.component';
 describe('AddPlayerDialogComponent', () => {
   let fixture: ComponentFixture<AddPlayerDialogComponent>;
   let component: AddPlayerDialogComponent;
-  let nativeElem: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,7 +18,6 @@ describe('AddPlayerDialogComponent', () => {
     fixture = TestBed.createComponent(AddPlayerDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    nativeElem = fixture.nativeElement;
   });
 
   it('should create', () => {

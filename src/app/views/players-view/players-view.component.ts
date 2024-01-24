@@ -35,7 +35,7 @@ export class PlayersViewComponent implements OnInit {
    * @param addPlayerFormData Add player form data
    */
   private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
-    const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name!);
+    const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name || '');
 
     if (!newPlayerExists) {
       this.dataService.addPlayer(addPlayerFormData!);

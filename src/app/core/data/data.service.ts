@@ -18,8 +18,6 @@ export class DataService {
   private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(players);
   private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(matches);
 
-  constructor() {}
-
   /**
    * Maps players data into player table rows data
    * @param players Players
