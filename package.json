@@ -10,9 +10,9 @@
     "prettier:check": "prettier --check ./src",
     "prettier:write": "prettier --write ./src",
     "lint": "ng lint",
-    "test": "ng test --browsers=Chrome",
-    "test:ci": "ng test --browsers=ChromeHeadless --reporters=spec --no-watch",
-    "test:coverage": "ng test --browsers=ChromeHeadless --reporters=spec --no-watch --code-coverage",
+    "test": "ng test",
+    "test:ci": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
+    "test:coverage": "ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage",
     "prepare": "husky install"
   },
   "private": true,
