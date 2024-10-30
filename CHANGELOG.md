@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.3.0] - 2024-10-30
+### Added
+### Changed
+- Angular update from 15 to 16
+- Package dependencies
+- GitHub Actions workflows
+- Theme style
+- Initial data moved to root folder
+### Fixed
+- Lint files
+
 ## [1.2.0] - 2024-01-24
 ### Added
 - VS Code files
