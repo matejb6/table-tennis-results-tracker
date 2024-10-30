@@ -1,5 +1,7 @@
 // App theme definition, app wide look and feel
 
-div.view-wrapper {
+app-matches,
+app-players {
+  display: block;
   margin: 48px 15% 24px 15%;
 }
