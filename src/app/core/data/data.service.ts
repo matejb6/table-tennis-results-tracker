@@ -9,14 +9,14 @@ import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-play
 import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
 import { MatchDataService } from './match-data.service';
 import { FormParseService } from './form-parse.service';
-import { matches, players } from './initial-data';
+import { MATCHES, PLAYERS } from '../../../../data/initial-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(players);
-  private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(matches);
+  private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(PLAYERS);
+  private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(MATCHES);
 
   /**
    * Maps players data into player table rows data
@@ -168,7 +168,7 @@ export class DataService {
    */
   public addMatch(addMatchFormData: AddMatchFormData): void {
     const matches = this.matchesBehaviorSubject.getValue();
-    const newMatch = FormParseService.parseMatchDataFromForm(players, addMatchFormData);
+    const newMatch = FormParseService.parseMatchDataFromForm(PLAYERS, addMatchFormData);
     matches.push(newMatch);
     this.matchesBehaviorSubject.next([...matches]);
     this.updatePlayers(newMatch);

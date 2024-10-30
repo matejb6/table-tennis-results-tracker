@@ -4,8 +4,8 @@ import { TableModule } from './table.module';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
-  let fixture: ComponentFixture<TableComponent<any>>;
-  let component: TableComponent<any>;
+  let fixture: ComponentFixture<TableComponent<unknown>>;
+  let component: TableComponent<unknown>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
