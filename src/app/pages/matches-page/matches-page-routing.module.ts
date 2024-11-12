@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { PageNotFoundViewComponent } from './page-not-found-view.component';
+import { MatchesPageComponent } from './matches-page.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: PageNotFoundViewComponent
+        component: MatchesPageComponent
       }
     ])
   ],
   exports: [RouterModule]
 })
-export class PageNotFoundViewRoutingModule {}
+export class MatchesPageRoutingModule {}

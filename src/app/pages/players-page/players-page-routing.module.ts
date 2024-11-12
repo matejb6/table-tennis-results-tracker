@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { MatchesViewComponent } from './matches-view.component';
+import { PlayersPageComponent } from './players-page.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: MatchesViewComponent
+        component: PlayersPageComponent
       }
     ])
   ],
   exports: [RouterModule]
 })
-export class MatchesViewRoutingModule {}
+export class PlayersPageRoutingModule {}
