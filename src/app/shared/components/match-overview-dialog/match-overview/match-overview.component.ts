@@ -5,7 +5,7 @@ import { Player } from '@core/models/player';
 @Component({
   selector: 'app-match-overview',
   templateUrl: './match-overview.component.html',
-  styleUrls: ['./match-overview.component.scss']
+  styleUrl: './match-overview.component.scss'
 })
 export class MatchOverviewComponent {
   @Input()

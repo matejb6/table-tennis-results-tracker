@@ -6,7 +6,7 @@ import { Match } from '@core/models/match';
 @Component({
   selector: 'app-match-overview-dialog',
   templateUrl: './match-overview-dialog.component.html',
-  styleUrls: ['./match-overview-dialog.component.scss']
+  styleUrl: './match-overview-dialog.component.scss'
 })
 export class MatchOverviewDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public match: Match) {}

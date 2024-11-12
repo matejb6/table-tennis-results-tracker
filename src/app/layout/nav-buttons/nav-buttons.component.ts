@@ -7,7 +7,7 @@ import { appRoutes } from './../../app-routes';
 @Component({
   selector: 'app-nav-buttons',
   templateUrl: './nav-buttons.component.html',
-  styleUrls: ['./nav-buttons.component.scss']
+  styleUrl: './nav-buttons.component.scss'
 })
 export class NavButtonsComponent implements OnInit {
   public routes: string[] = [];
