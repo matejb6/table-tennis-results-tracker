@@ -14,12 +14,12 @@ export const routes: Routes = [
   {
     path: appRoutes.players,
     title: 'TTRT • Players',
-    loadChildren: () => import('./views/players-view/players-view.module').then((m) => m.PlayersViewModule)
+    loadChildren: () => import('./pages/players-page/players-page.module').then((m) => m.PlayersPageModule)
   },
   {
     path: appRoutes.matches,
     title: 'TTRT • Matches',
-    loadChildren: () => import('./views/matches-view/matches-view.module').then((m) => m.MatchesViewModule)
+    loadChildren: () => import('./pages/matches-page/matches-page.module').then((m) => m.MatchesPageModule)
   },
   {
     path: '',
@@ -28,8 +28,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    title: 'TTRT • Page Not Found',
-    loadChildren: () =>
-      import('./views/page-not-found-view/page-not-found-view.module').then((m) => m.PageNotFoundViewModule)
+    title: 'TTRT • Not Found',
+    loadChildren: () => import('./pages/not-found-page/not-found-page.module').then((m) => m.NotFoundPageModule)
   }
 ];

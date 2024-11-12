@@ -13,11 +13,11 @@ import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
 
 @Component({
-  selector: 'app-players',
-  templateUrl: './players-view.component.html',
-  styleUrl: './players-view.component.scss'
+  selector: 'app-players-page',
+  templateUrl: './players-page.component.html',
+  styleUrl: './players-page.component.scss'
 })
-export class PlayersViewComponent implements OnInit {
+export class PlayersPageComponent implements OnInit {
   public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   constructor(

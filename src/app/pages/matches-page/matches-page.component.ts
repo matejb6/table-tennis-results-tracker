@@ -13,11 +13,11 @@ import {
 import { MatchOverviewDialogComponent } from '@shared/components/match-overview-dialog/match-overview-dialog.component';
 
 @Component({
-  selector: 'app-matches',
-  templateUrl: './matches-view.component.html',
-  styleUrl: './matches-view.component.scss'
+  selector: 'app-matches-page',
+  templateUrl: './matches-page.component.html',
+  styleUrl: './matches-page.component.scss'
 })
-export class MatchesViewComponent implements OnInit {
+export class MatchesPageComponent implements OnInit {
   public $matchTableRows: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   constructor(
