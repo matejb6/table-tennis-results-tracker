@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { filter, map, Observable } from 'rxjs';
 
-import { appRoutes } from './../../app-routes';
+import { appRoutes } from './../../app.routes';
 
 @Component({
   selector: 'app-nav-buttons',
   templateUrl: './nav-buttons.component.html',
-  styleUrls: ['./nav-buttons.component.scss']
+  styleUrl: './nav-buttons.component.scss'
 })
 export class NavButtonsComponent implements OnInit {
   public routes: string[] = [];

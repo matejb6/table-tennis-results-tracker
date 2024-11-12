@@ -15,7 +15,7 @@ import { PlayerOverviewDialogComponent } from '@shared/components/player-overvie
 @Component({
   selector: 'app-players',
   templateUrl: './players-view.component.html',
-  styleUrls: ['./players-view.component.scss']
+  styleUrl: './players-view.component.scss'
 })
 export class PlayersViewComponent implements OnInit {
   public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();

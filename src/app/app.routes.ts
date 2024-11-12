@@ -1,9 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 
-import { appRoutes } from './app-routes';
+export const appRoutes: AppRoutes = {
+  players: 'players',
+  matches: 'matches'
+};
 
-const routes: Routes = [
+export interface AppRoutes {
+  players: string;
+  matches: string;
+}
+
+export const routes: Routes = [
   {
     path: appRoutes.players,
     title: 'TTRT • Players',
@@ -26,9 +33,3 @@ const routes: Routes = [
       import('./views/page-not-found-view/page-not-found-view.module').then((m) => m.PageNotFoundViewModule)
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}

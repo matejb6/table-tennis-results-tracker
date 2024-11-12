@@ -32,10 +32,9 @@ This app was generated with [Angular CLI](https://github.com/angular/angular-cli
 * `prepare`: Prepare script to install Husky
 
 ### Additional packages
-* `Angular Router` added during new app setup with: `ng new`
 * `Angular Material` added with: `ng add @angular/material`
 * `ESLint` added with: `ng add @angular-eslint/schematics`
-* `Husky` added with: `npm install husky --save-dev`
+* `Husky` added with: `npx husky init`
 * `Prettier` added with: `npm install prettier --save-dev`
 
 ## Commit hooks
@@ -62,7 +61,7 @@ Defined workflows:
 For more details see `.github/workflows/`.
 
 ## Requirements
-* node.js v14.20.0
+* node.js ^18.13.0 || ^20.9.0
 
 ## Setup
 * In root run `npm install` to install dependencies
