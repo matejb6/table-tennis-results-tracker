@@ -5,11 +5,11 @@ import { Player } from '@core/models/player';
 import { Match } from '@core/models/match';
 import { PlayerTableRow } from '@core/models/player-table-row';
 import { MatchTableRow } from '@core/models/match-table-row';
+import { MATCHES, PLAYERS } from '@data/initial-data';
 import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
 import { MatchDataService } from './match-data.service';
 import { FormParseService } from './form-parse.service';
-import { MATCHES, PLAYERS } from '../../../../data/initial-data';
 
 @Injectable({
   providedIn: 'root'
