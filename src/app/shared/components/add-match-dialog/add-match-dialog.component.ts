@@ -8,7 +8,7 @@ import { CustomValidators } from './custom-validators';
 @Component({
   selector: 'app-add-match-dialog',
   templateUrl: './add-match-dialog.component.html',
-  styleUrls: ['./add-match-dialog.component.scss']
+  styleUrl: './add-match-dialog.component.scss'
 })
 export class AddMatchDialogComponent implements OnInit {
   public playerNames: string[] = [];

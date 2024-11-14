@@ -13,11 +13,11 @@ import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
 
 @Component({
-  selector: 'app-players',
-  templateUrl: './players-view.component.html',
-  styleUrls: ['./players-view.component.scss']
+  selector: 'app-players-page',
+  templateUrl: './players-page.component.html',
+  styleUrl: './players-page.component.scss'
 })
-export class PlayersViewComponent implements OnInit {
+export class PlayersPageComponent implements OnInit {
   public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   constructor(
@@ -35,13 +35,15 @@ export class PlayersViewComponent implements OnInit {
    * @param addPlayerFormData Add player form data
    */
   private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
-    const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name || '');
+    if (addPlayerFormData) {
+      const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData.name || '');
 
-    if (!newPlayerExists) {
-      this.dataService.addPlayer(addPlayerFormData!);
-      this.snackBarService.showSnackBar('Player added');
-    } else {
-      this.snackBarService.showSnackBar('Player already exists');
+      if (newPlayerExists) {
+        this.snackBarService.showSnackBar('Player already exists');
+      } else {
+        this.dataService.addPlayer(addPlayerFormData);
+        this.snackBarService.showSnackBar('Player added');
+      }
     }
   }
 

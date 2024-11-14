@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatchesViewModule } from './matches-view.module';
-import { MatchesViewComponent } from './matches-view.component';
+import { PlayersPageModule } from './players-page.module';
+import { PlayersPageComponent } from './players-page.component';
 
-describe('MatchesViewComponent', () => {
-  let fixture: ComponentFixture<MatchesViewComponent>;
-  let component: MatchesViewComponent;
+describe('PlayersPageComponent', () => {
+  let fixture: ComponentFixture<PlayersPageComponent>;
+  let component: PlayersPageComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatchesViewModule]
+      imports: [BrowserAnimationsModule, PlayersPageModule]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MatchesViewComponent);
+    fixture = TestBed.createComponent(PlayersPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
