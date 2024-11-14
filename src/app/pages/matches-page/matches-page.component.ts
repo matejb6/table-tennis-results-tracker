@@ -35,7 +35,7 @@ export class MatchesPageComponent implements OnInit {
    * @param addMatchFormData Add match form data
    */
   private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
-    this.dataService.addMatch(addMatchFormData!);
+    addMatchFormData && this.dataService.addMatch(addMatchFormData);
   }
 
   /**

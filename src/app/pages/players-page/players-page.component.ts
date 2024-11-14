@@ -35,13 +35,15 @@ export class PlayersPageComponent implements OnInit {
    * @param addPlayerFormData Add player form data
    */
   private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
-    const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData?.name || '');
+    if (addPlayerFormData) {
+      const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData.name || '');
 
-    if (!newPlayerExists) {
-      this.dataService.addPlayer(addPlayerFormData!);
-      this.snackBarService.showSnackBar('Player added');
-    } else {
-      this.snackBarService.showSnackBar('Player already exists');
+      if (newPlayerExists) {
+        this.snackBarService.showSnackBar('Player already exists');
+      } else {
+        this.dataService.addPlayer(addPlayerFormData);
+        this.snackBarService.showSnackBar('Player added');
+      }
     }
   }
 
