@@ -18,7 +18,7 @@ import { MatchOverviewDialogComponent } from '@shared/components/match-overview-
   styleUrl: './matches-page.component.scss'
 })
 export class MatchesPageComponent implements OnInit {
-  public $matchTableRows: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
+  public matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   constructor(
     private dataService: DataService,
@@ -27,7 +27,7 @@ export class MatchesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.$matchTableRows = this.dataService.getMatchTableRowsObs();
+    this.matchTableRows$ = this.dataService.getMatchTableRowsObs();
   }
 
   /**

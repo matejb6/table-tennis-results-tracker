@@ -11,13 +11,13 @@ import { appRoutes } from './../../app.routes';
 })
 export class NavButtonsComponent implements OnInit {
   public routes: string[] = [];
-  public $routeChangeUrl: Observable<string> = new Observable<string>();
+  public routeChangeUrl$: Observable<string> = new Observable<string>();
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.routes = this.getRoutesFromObject();
-    this.$routeChangeUrl = this.getRouteChangeUrlObservable();
+    this.routeChangeUrl$ = this.getRouteChangeUrlObservable();
   }
 
   /**

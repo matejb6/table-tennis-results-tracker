@@ -18,7 +18,7 @@ import { PlayerOverviewDialogComponent } from '@shared/components/player-overvie
   styleUrl: './players-page.component.scss'
 })
 export class PlayersPageComponent implements OnInit {
-  public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
+  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   constructor(
     private dataService: DataService,
@@ -27,7 +27,7 @@ export class PlayersPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.$playerTableRows = this.dataService.getPlayerTableRowsObs();
+    this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
   }
 
   /**
