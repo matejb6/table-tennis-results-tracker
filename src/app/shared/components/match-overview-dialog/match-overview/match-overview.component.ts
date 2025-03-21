@@ -8,12 +8,9 @@ import { Player } from '@core/models/player';
   styleUrl: './match-overview.component.scss'
 })
 export class MatchOverviewComponent {
-  @Input()
-  public players: Player[] = [];
-  @Input()
-  public sets: [number, number][] = [];
-  @Input()
-  public winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
+  @Input() players: Player[] = [];
+  @Input() sets: [number, number][] = [];
+  @Input() winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
 
   /**
    * Check if player is winner

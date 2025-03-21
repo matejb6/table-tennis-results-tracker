@@ -6,10 +6,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T> implements OnInit {
-  @Input()
-  public dataSource: T[] = [];
-  @Output()
-  public rowClick: EventEmitter<T> = new EventEmitter<T>();
+  @Input() dataSource: T[] = [];
+  @Output() rowClick: EventEmitter<T> = new EventEmitter<T>();
   public columns: string[] = [];
 
   ngOnInit() {
