@@ -15,8 +15,8 @@ import { FormParseService } from './form-parse.service';
   providedIn: 'root'
 })
 export class DataService {
-  private playersBehaviorSubject: BehaviorSubject<Player[]> = new BehaviorSubject<Player[]>(PLAYERS);
-  private matchesBehaviorSubject: BehaviorSubject<Match[]> = new BehaviorSubject<Match[]>(MATCHES);
+  private players$ = new BehaviorSubject<Player[]>(PLAYERS);
+  private matches$ = new BehaviorSubject<Match[]>(MATCHES);
 
   /**
    * Maps players data into player table rows data
@@ -28,20 +28,12 @@ export class DataService {
       .map((player, index) => {
         return {
           id: player.id,
-          position: index,
-          name: player.name,
-          setsWon: player.setsWon
-        };
-      })
-      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this))
-      .map((player, index) => {
-        return {
-          id: player.id,
           position: index + 1,
           name: player.name,
           setsWon: player.setsWon
         };
-      });
+      })
+      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this));
   }
 
   /**
@@ -66,7 +58,7 @@ export class DataService {
    */
   private updatePlayers(match: Match): void {
     const lastMatchPlayers: Player[] = MatchDataService.getMatchPlayersData(match);
-    this.playersBehaviorSubject.getValue().forEach((player) => {
+    this.players$.getValue().forEach((player) => {
       const matchPlayer = MatchDataService.findPlayerById(lastMatchPlayers, player.id);
       if (matchPlayer) {
         player.matchesPlayed = player.matchesPlayed + matchPlayer.matchesPlayed;
@@ -81,7 +73,7 @@ export class DataService {
    * @returns Players observable
    */
   public getPlayersObs(): Observable<Player[]> {
-    return this.playersBehaviorSubject.asObservable();
+    return this.players$.asObservable();
   }
 
   /**
@@ -89,7 +81,7 @@ export class DataService {
    * @returns Players table row observable
    */
   public getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
-    return this.playersBehaviorSubject.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
+    return this.players$.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
   }
 
   /**
@@ -123,7 +115,7 @@ export class DataService {
    * @returns Matches observable
    */
   public getMatchesObs(): Observable<Match[]> {
-    return this.matchesBehaviorSubject.asObservable();
+    return this.matches$.asObservable();
   }
 
   /**
@@ -131,7 +123,7 @@ export class DataService {
    * @returns Match table rows observable
    */
   public getMatchTableRowsObs(): Observable<MatchTableRow[]> {
-    return this.matchesBehaviorSubject.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
+    return this.matches$.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
   }
 
   /**
@@ -157,9 +149,9 @@ export class DataService {
    * @param addPlayerFormData Form data
    */
   public addPlayer(addPlayerFormData: AddPlayerFormData): void {
-    const players = this.playersBehaviorSubject.getValue();
+    const players = this.players$.getValue();
     players.push(FormParseService.parsePlayerDataFromForm(addPlayerFormData));
-    this.playersBehaviorSubject.next([...players]);
+    this.players$.next([...players]);
   }
 
   /**
@@ -167,10 +159,10 @@ export class DataService {
    * @param addMatchFormData Form data
    */
   public addMatch(addMatchFormData: AddMatchFormData): void {
-    const matches = this.matchesBehaviorSubject.getValue();
+    const matches = this.matches$.getValue();
     const newMatch = FormParseService.parseMatchDataFromForm(PLAYERS, addMatchFormData);
     matches.push(newMatch);
-    this.matchesBehaviorSubject.next([...matches]);
+    this.matches$.next([...matches]);
     this.updatePlayers(newMatch);
   }
 }
