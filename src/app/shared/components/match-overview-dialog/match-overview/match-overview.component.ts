@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Player } from '@core/models/player';
+import { Player } from '@core/interfaces/player';
 
 @Component({
   selector: 'app-match-overview',

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Match } from '@core/models/match';
-import { Player } from '@core/models/player';
-import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
-import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-player-dialog.component';
+import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
+import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
+import { Match } from '@core/interfaces/match';
+import { Player } from '@core/interfaces/player';
 import { MatchDataService } from './match-data.service';
 
 @Injectable({

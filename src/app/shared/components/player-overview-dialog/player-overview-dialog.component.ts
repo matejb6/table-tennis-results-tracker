@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Player } from '@core/models/player';
+import { Player } from '@core/interfaces/player';
 
 @Component({
   selector: 'app-player-overview-dialog',

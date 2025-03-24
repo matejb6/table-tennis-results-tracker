@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Match } from '@core/models/match';
+import { Match } from '@core/interfaces/match';
 
 @Component({
   selector: 'app-match-overview-dialog',

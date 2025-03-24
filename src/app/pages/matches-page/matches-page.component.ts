@@ -2,14 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
-import { MatchTableRow } from '@core/models/match-table-row';
-import { Player } from '@core/models/player';
+import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
+import { MatchTableRow } from '@core/interfaces/match-table-row';
+import { Player } from '@core/interfaces/player';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
-import {
-  AddMatchDialogComponent,
-  AddMatchFormData
-} from '@shared/components/add-match-dialog/add-match-dialog.component';
+import { AddMatchDialogComponent } from '@shared/components/add-match-dialog/add-match-dialog.component';
 import { MatchOverviewDialogComponent } from '@shared/components/match-overview-dialog/match-overview-dialog.component';
 
 @Component({

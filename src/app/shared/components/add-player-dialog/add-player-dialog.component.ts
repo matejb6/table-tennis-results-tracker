@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
+import { AddPlayerForm } from '@core/interfaces/add-player-form';
+import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
+
 @Component({
   selector: 'app-add-player-dialog',
   templateUrl: './add-player-dialog.component.html',
@@ -25,12 +28,4 @@ export class AddPlayerDialogComponent {
   public submit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
-}
-
-export interface AddPlayerForm {
-  name: FormControl<string | null>;
-}
-
-export interface AddPlayerFormData {
-  name: string | null;
 }

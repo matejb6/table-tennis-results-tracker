@@ -2,7 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { Player } from '@core/models/player';
+import { AddMatchForm } from '@core/interfaces/add-match-form';
+import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
+import { GameSetForm } from '@core/interfaces/game-set-form';
+import { GameSetFormData } from '@core/interfaces/game-set-form-data';
+import { Player } from '@core/interfaces/player';
 import { CustomValidators } from './custom-validators';
 
 @Component({
@@ -126,24 +130,4 @@ export class AddMatchDialogComponent implements OnInit {
   public submit(): void {
     this.matDialogRef.close(this.addMatchFormGroup.value);
   }
-}
-
-export interface GameSetForm {
-  firstPlayerScore: FormControl<number | null>;
-  secondPlayerScore: FormControl<number | null>;
-}
-
-export interface GameSetFormData {
-  firstPlayerScore: number | null;
-  secondPlayerScore: number | null;
-}
-
-export interface AddMatchForm {
-  players: FormArray<FormControl<string | null>>;
-  sets: FormArray<FormGroup<GameSetForm>>;
-}
-
-export interface AddMatchFormData {
-  players: (string | null)[];
-  sets: Partial<GameSetFormData>[];
 }

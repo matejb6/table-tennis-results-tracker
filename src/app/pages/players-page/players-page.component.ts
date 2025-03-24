@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
 import { DataService } from '@core/data/data.service';
-import { PlayerTableRow } from '@core/models/player-table-row';
-import {
-  AddPlayerDialogComponent,
-  AddPlayerFormData
-} from '@shared/components/add-player-dialog/add-player-dialog.component';
+import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
+import { PlayerTableRow } from '@core/interfaces/player-table-row';
+import { AddPlayerDialogComponent } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 // eslint-disable-next-line max-len
