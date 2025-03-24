@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ToolbarModule } from './toolbar.module';
 import { ToolbarComponent } from './toolbar.component';
-import { ToolbarComponentQuery } from './toolbar.component.query.spec';
+import { getToolbar, getToolbarIcon, getToolbarTitle } from './toolbar.component.query.spec';
 
 describe('ToolbarComponent', () => {
   let fixture: ComponentFixture<ToolbarComponent>;
@@ -26,18 +26,18 @@ describe('ToolbarComponent', () => {
   });
 
   it('should render toolbar', () => {
-    expect(ToolbarComponentQuery.getToolbar(nativeElem)).toBeTruthy();
+    expect(getToolbar(nativeElem)).toBeTruthy();
   });
 
   it('should render toolbar icon', () => {
-    expect(ToolbarComponentQuery.getToolbarIcon(nativeElem)).toBeTruthy();
+    expect(getToolbarIcon(nativeElem)).toBeTruthy();
   });
 
   it('should render toolbar title', () => {
-    expect(ToolbarComponentQuery.getToolbarTitle(nativeElem)).toBeTruthy();
+    expect(getToolbarTitle(nativeElem)).toBeTruthy();
   });
 
   it('should have toolbar title', () => {
-    expect(ToolbarComponentQuery.getToolbarTitle(nativeElem)?.innerText).toContain('Table Tennis Results Tracker');
+    expect(getToolbarTitle(nativeElem)?.innerText).toContain('Table Tennis Results Tracker');
   });
 });

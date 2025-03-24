@@ -1,13 +1,11 @@
-export class ToolbarComponentQuery {
-  public static getToolbar(parentElem: HTMLElement): HTMLElement | null {
-    return parentElem.querySelector('mat-toolbar');
-  }
+export const getToolbar = (parentElem: HTMLElement): HTMLElement | null => {
+  return parentElem.querySelector('mat-toolbar');
+};
 
-  public static getToolbarIcon(parentElem: HTMLElement): HTMLElement | null | undefined {
-    return ToolbarComponentQuery.getToolbar(parentElem)?.querySelector('mat-icon.mat-icon');
-  }
+export const getToolbarIcon = (parentElem: HTMLElement): HTMLElement | null | undefined => {
+  return getToolbar(parentElem)?.querySelector('mat-icon.mat-icon');
+};
 
-  public static getToolbarTitle(parentElem: HTMLElement): HTMLElement | null | undefined {
-    return parentElem.querySelector('span');
-  }
-}
+export const getToolbarTitle = (parentElem: HTMLElement): HTMLElement | null | undefined => {
+  return parentElem.querySelector('span');
+};
