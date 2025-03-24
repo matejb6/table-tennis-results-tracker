@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { Player } from '@core/interfaces/player';
@@ -5,6 +6,8 @@ import { Set } from '@core/types/set';
 
 @Component({
   selector: 'app-match-overview',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './match-overview.component.html',
   styleUrl: './match-overview.component.scss'
 })

@@ -1,7 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @Component({
   selector: 'app-table',
+  standalone: true,
+  imports: [CommonModule, MatTableModule, PipesModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

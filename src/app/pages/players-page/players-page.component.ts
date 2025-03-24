@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
@@ -9,9 +10,14 @@ import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 // eslint-disable-next-line max-len
 import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
+import { TableComponent } from '@shared/components/table/table.component';
+import { TitleBarComponent } from '@shared/components/title-bar/title-bar.component';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-players-page',
+  standalone: true,
+  imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './players-page.component.html',
   styleUrl: './players-page.component.scss'
 })

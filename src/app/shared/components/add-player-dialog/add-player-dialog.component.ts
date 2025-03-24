@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 
 import { AddPlayerForm } from '@core/interfaces/add-player-form';
 import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
 
 @Component({
   selector: 'app-add-player-dialog',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
   templateUrl: './add-player-dialog.component.html',
   styleUrl: './add-player-dialog.component.scss'
 })

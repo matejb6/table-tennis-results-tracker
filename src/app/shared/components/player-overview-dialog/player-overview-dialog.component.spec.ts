@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayerOverviewDialogModule } from './player-overview-dialog.module';
 import { PlayerOverviewDialogComponent } from './player-overview-dialog.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,7 +9,7 @@ describe('PlayerOverviewDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayerOverviewDialogModule],
+      imports: [PlayerOverviewDialogComponent],
       providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }]
     }).compileComponents();
 

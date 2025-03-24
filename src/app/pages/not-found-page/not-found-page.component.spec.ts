@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NotFoundPageModule } from './not-found-page.module';
 import { NotFoundPageComponent } from './not-found-page.component';
 import { getMessage } from './not-found-page.component.query.spec';
 
@@ -12,7 +11,7 @@ describe('NotFoundPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, NotFoundPageModule]
+      imports: [BrowserAnimationsModule, NotFoundPageComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NotFoundPageComponent);

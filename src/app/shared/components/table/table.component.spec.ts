@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableModule } from './table.module';
 import { TableComponent } from './table.component';
 
 describe('TableComponent', () => {
@@ -9,7 +8,7 @@ describe('TableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TableModule]
+      imports: [TableComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);

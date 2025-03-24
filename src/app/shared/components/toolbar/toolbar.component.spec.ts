@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
-import { ToolbarModule } from './toolbar.module';
 import { ToolbarComponent } from './toolbar.component';
 import { getToolbar, getToolbarIcon, getToolbarTitle } from './toolbar.component.query.spec';
 import { routes } from '../../../app.routes';
@@ -13,7 +12,7 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarModule],
+      imports: [ToolbarComponent],
       providers: [provideRouter(routes)]
     }).compileComponents();
 

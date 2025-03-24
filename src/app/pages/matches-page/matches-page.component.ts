@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
@@ -9,9 +10,14 @@ import { DialogService } from '@shared/services/dialog/dialog.service';
 import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
 import { AddMatchDialogComponent } from '@shared/components/add-match-dialog/add-match-dialog.component';
 import { MatchOverviewDialogComponent } from '@shared/components/match-overview-dialog/match-overview-dialog.component';
+import { TableComponent } from '@shared/components/table/table.component';
+import { TitleBarComponent } from '@shared/components/title-bar/title-bar.component';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-matches-page',
+  standalone: true,
+  imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './matches-page.component.html',
   styleUrl: './matches-page.component.scss'
 })

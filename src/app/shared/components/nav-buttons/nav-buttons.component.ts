@@ -1,11 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
 
 import { appRoutes } from '../../../app.routes';
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @Component({
   selector: 'app-nav-buttons',
+  standalone: true,
+  imports: [CommonModule, MatButtonModule, RouterModule, PipesModule],
   templateUrl: './nav-buttons.component.html',
   styleUrl: './nav-buttons.component.scss'
 })
