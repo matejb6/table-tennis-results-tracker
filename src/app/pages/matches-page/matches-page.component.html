@@ -1,2 +1,2 @@
-<app-title-bar title="Matches" buttonLabel="Add match" (buttonClick)="addMatch()"></app-title-bar>
-<app-table [dataSource]="(matchTableRows$ | async) || []" (rowClick)="clickRow($event)"></app-table>
+<app-title-bar title="Matches" buttonLabel="Add match" (buttonClick)="addMatch()" />
+<app-table [dataSource]="(matchTableRows$ | async) || []" (rowClick)="clickRow($event)" />

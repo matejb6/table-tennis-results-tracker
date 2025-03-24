@@ -1,2 +1,2 @@
-<app-title-bar title="Players" buttonLabel="Add player" (buttonClick)="addPlayer()"></app-title-bar>
-<app-table [dataSource]="(playerTableRows$ | async) || []" (rowClick)="clickRow($event)"></app-table>
+<app-title-bar title="Players" buttonLabel="Add player" (buttonClick)="addPlayer()" />
+<app-table [dataSource]="(playerTableRows$ | async) || []" (rowClick)="clickRow($event)" />
