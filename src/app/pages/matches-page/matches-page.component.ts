@@ -41,9 +41,9 @@ export class MatchesPageComponent implements OnInit {
   }
 
   /**
-   * On add match click, opens dialog and observes when dialog is closed
+   * Opens dialog for adding a match and observes when dialog is closed
    */
-  public async onAddMatchClick(): Promise<void> {
+  public async addMatch(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog<AddMatchDialogComponent, AddMatchFormData, Player[]>(
       AddMatchDialogComponent,
@@ -59,10 +59,10 @@ export class MatchesPageComponent implements OnInit {
   }
 
   /**
-   * Opens match overview dialog on row click, shows snackbar if no match found
+   * Opens match overview dialog when row clicked, shows snackbar if no match found
    * @param event Table row click event
    */
-  public async onRowClick(event: MatchTableRow): Promise<void> {
+  public async clickRow(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);
     if (match) {
       this.dialogService.openDialog(MatchOverviewDialogComponent, match);

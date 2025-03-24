@@ -22,7 +22,7 @@ export class AddPlayerDialogComponent {
   /**
    * Submits form, closes dialog and emits form data
    */
-  public onSubmit(): void {
+  public submit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
 }

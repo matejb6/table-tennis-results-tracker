@@ -123,7 +123,7 @@ export class AddMatchDialogComponent implements OnInit {
   /**
    * Submits form, closes dialog and emits form values
    */
-  public onSubmit(): void {
+  public submit(): void {
     this.matDialogRef.close(this.addMatchFormGroup.value);
   }
 }

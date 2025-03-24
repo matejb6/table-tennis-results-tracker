@@ -33,10 +33,10 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
-   * Emits row click output on row click
+   * Emits row click output when row clicked
    * @param row Row clicked
    */
-  public onRowClick(row: T): void {
+  public clickRow(row: T): void {
     this.rowClick.emit(row);
   }
 }

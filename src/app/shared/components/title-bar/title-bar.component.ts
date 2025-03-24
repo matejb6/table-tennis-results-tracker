@@ -11,9 +11,9 @@ export class TitleBarComponent {
   @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
 
   /**
-   * Emits button click output on button click
+   * Emits button click output when button clicked
    */
-  public onButtonClick(): void {
+  public clickButton(): void {
     this.buttonClick.emit();
   }
 }

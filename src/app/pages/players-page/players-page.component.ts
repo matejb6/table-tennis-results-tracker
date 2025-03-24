@@ -48,9 +48,9 @@ export class PlayersPageComponent implements OnInit {
   }
 
   /**
-   * On add player click, opens dialog and observes when dialog is closed
+   * Opens dialog for adding a player and observes when dialog is closed
    */
-  public onAddPlayerClick(): void {
+  public addPlayer(): void {
     const dialogRef = this.dialogService.openDialog<AddPlayerDialogComponent, AddPlayerFormData, undefined>(
       AddPlayerDialogComponent
     );
@@ -64,10 +64,10 @@ export class PlayersPageComponent implements OnInit {
   }
 
   /**
-   * Opens player overview dialog on row click, shows snackbar if no player found
+   * Opens player overview dialog when row clicked, shows snackbar if no player found
    * @param event Table row click event
    */
-  public async onRowClick(event: PlayerTableRow): Promise<void> {
+  public async clickRow(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);
     if (player) {
       this.dialogService.openDialog(PlayerOverviewDialogComponent, player);
