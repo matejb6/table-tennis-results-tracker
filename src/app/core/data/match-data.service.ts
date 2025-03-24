@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Match } from '@core/interfaces/match';
-import { Player } from '@core/interfaces/player';
-import { PlayerTableRow } from '@core/interfaces/player-table-row';
-import { Set } from '@core/types/set';
+import { Match, Player, PlayerTableRow } from '../interfaces';
+import { Set } from '../types';
 
 @Injectable({
   providedIn: 'root'

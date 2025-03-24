@@ -1,5 +1,4 @@
-import { Match } from '@core/interfaces/match';
-import { Player } from '@core/interfaces/player';
+import { Match, Player } from '@core/interfaces';
 
 export const PLAYERS: Player[] = [
   { id: 1660986000000, name: 'Antun', matchesPlayed: 1, matchesWon: 0, setsWon: 1 },

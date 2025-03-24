@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { CoreModule } from '@core/core.module';
-import { ToolbarComponent } from '@shared/components/toolbar/toolbar.component';
+import { ToolbarComponent } from '@shared/components';
 
 @Component({
   selector: 'app-root',

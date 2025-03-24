@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 
-import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
-import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
-import { Player } from '@core/interfaces/player';
-import { Match } from '@core/interfaces/match';
-import { PlayerTableRow } from '@core/interfaces/player-table-row';
-import { MatchTableRow } from '@core/interfaces/match-table-row';
 import { MATCHES, PLAYERS } from '@data/initial-data';
 import { MatchDataService } from './match-data.service';
 import { FormParseService } from './form-parse.service';
+import { AddPlayerFormData, AddMatchFormData, Player, Match, PlayerTableRow, MatchTableRow } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -7,11 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AddMatchForm } from '@core/interfaces/add-match-form';
-import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
-import { GameSetForm } from '@core/interfaces/game-set-form';
-import { GameSetFormData } from '@core/interfaces/game-set-form-data';
-import { Player } from '@core/interfaces/player';
+import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@core/interfaces';
 import { CustomValidators } from './custom-validators';
 
 @Component({

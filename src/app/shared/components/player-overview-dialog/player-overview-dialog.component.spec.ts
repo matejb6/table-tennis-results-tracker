@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PlayerOverviewDialogComponent } from './player-overview-dialog.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('PlayerOverviewDialogComponent', () => {
   let fixture: ComponentFixture<PlayerOverviewDialogComponent>;

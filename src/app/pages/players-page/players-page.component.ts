@@ -2,16 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
-import { DataService } from '@core/data/data.service';
-import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
-import { PlayerTableRow } from '@core/interfaces/player-table-row';
-import { AddPlayerDialogComponent } from '@shared/components/add-player-dialog/add-player-dialog.component';
-import { DialogService } from '@shared/services/dialog/dialog.service';
-import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
-// eslint-disable-next-line max-len
-import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
-import { TableComponent } from '@shared/components/table/table.component';
-import { TitleBarComponent } from '@shared/components/title-bar/title-bar.component';
+import { DataService } from '@core/data';
+import { AddPlayerFormData, PlayerTableRow } from '@core/interfaces';
+import {
+  AddPlayerDialogComponent,
+  PlayerOverviewDialogComponent,
+  TableComponent,
+  TitleBarComponent
+} from '@shared/components';
+import { DialogService, SnackBarService } from '@shared/services';
 import { SharedModule } from '@shared/shared.module';
 
 @Component({

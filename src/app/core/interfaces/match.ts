@@ -1,5 +1,5 @@
-import { Set } from '../types/set';
 import { Player } from './player';
+import { Set } from '../types/set';
 
 export interface Match {
   id: number;

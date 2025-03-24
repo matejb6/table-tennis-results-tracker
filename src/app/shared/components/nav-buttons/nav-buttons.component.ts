@@ -4,8 +4,8 @@ import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
 
-import { appRoutes } from '../../../app.routes';
 import { PipesModule } from '@shared/pipes/pipes.module';
+import { appRoutes } from '../../../app.routes';
 
 @Component({
   selector: 'app-nav-buttons',

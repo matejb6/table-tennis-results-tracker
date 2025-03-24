@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { AddPlayerFormData } from '@core/interfaces/add-player-form-data';
-import { AddMatchFormData } from '@core/interfaces/add-match-form-data';
-import { Match } from '@core/interfaces/match';
-import { Player } from '@core/interfaces/player';
-import { Set } from '@core/types/set';
 import { MatchDataService } from './match-data.service';
+import { AddPlayerFormData, AddMatchFormData, Match, Player } from '../interfaces';
+import { Set } from '../types';
 
 @Injectable({
   providedIn: 'root'
