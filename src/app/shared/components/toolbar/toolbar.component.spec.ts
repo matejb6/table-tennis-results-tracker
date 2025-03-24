@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 import { ToolbarModule } from './toolbar.module';
 import { ToolbarComponent } from './toolbar.component';
 import { getToolbar, getToolbarIcon, getToolbarTitle } from './toolbar.component.query.spec';
+import { routes } from '../../../app.routes';
 
 describe('ToolbarComponent', () => {
   let fixture: ComponentFixture<ToolbarComponent>;
@@ -12,7 +13,8 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToolbarModule, RouterTestingModule]
+      imports: [ToolbarModule],
+      providers: [provideRouter(routes)]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);
