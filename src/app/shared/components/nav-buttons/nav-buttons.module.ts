@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 
-import { SharedModule } from '@shared/shared.module';
 import { NavButtonsComponent } from './nav-buttons.component';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, RouterModule, SharedModule],
+  imports: [CommonModule, MatButtonModule, RouterModule, PipesModule],
   exports: [NavButtonsComponent],
   declarations: [NavButtonsComponent],
   providers: []
