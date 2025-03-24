@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Player } from '@core/interfaces/player';
+import { Set } from '@core/types/set';
 
 @Component({
   selector: 'app-match-overview',
@@ -9,7 +10,7 @@ import { Player } from '@core/interfaces/player';
 })
 export class MatchOverviewComponent {
   @Input() players: Player[] = [];
-  @Input() sets: [number, number][] = [];
+  @Input() sets: Set[] = [];
   @Input() winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
 
   /**
@@ -26,7 +27,7 @@ export class MatchOverviewComponent {
    * @param set Set
    * @returns Set game win index
    */
-  public getSetGameWinIndex(set: [number, number]): number {
+  public getSetGameWinIndex(set: Set): number {
     return set[0] > set[1] ? 0 : 1;
   }
 }
