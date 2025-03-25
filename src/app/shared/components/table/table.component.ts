@@ -1,15 +1,19 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+
+import { PipesModule } from '@shared/pipes/pipes.module';
 
 @Component({
   selector: 'app-table',
+  standalone: true,
+  imports: [CommonModule, MatTableModule, PipesModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T> implements OnInit {
-  @Input()
-  public dataSource: T[] = [];
-  @Output()
-  public rowClick: EventEmitter<T> = new EventEmitter<T>();
+  @Input() dataSource: T[] = [];
+  @Output() rowClick: EventEmitter<T> = new EventEmitter<T>();
   public columns: string[] = [];
 
   ngOnInit() {
@@ -35,10 +39,10 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
-   * Emits row click output on row click
+   * Emits row click output when row clicked
    * @param row Row clicked
    */
-  public onRowClick(row: T): void {
+  public clickRow(row: T): void {
     this.rowClick.emit(row);
   }
 }

@@ -1,9 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+
+import { AddPlayerForm, AddPlayerFormData } from '@core/interfaces';
 
 @Component({
   selector: 'app-add-player-dialog',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
   templateUrl: './add-player-dialog.component.html',
   styleUrl: './add-player-dialog.component.scss'
 })
@@ -22,15 +30,7 @@ export class AddPlayerDialogComponent {
   /**
    * Submits form, closes dialog and emits form data
    */
-  public onSubmit(): void {
+  public submit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
-}
-
-export interface AddPlayerForm {
-  name: FormControl<string | null>;
-}
-
-export interface AddPlayerFormData {
-  name: string | null;
 }

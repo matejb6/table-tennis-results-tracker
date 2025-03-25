@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatchOverviewModule } from './match-overview.module';
 import { MatchOverviewComponent } from './match-overview.component';
 
 describe('MatchOverviewDialogComponent', () => {
@@ -9,7 +8,7 @@ describe('MatchOverviewDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchOverviewModule]
+      imports: [MatchOverviewComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchOverviewComponent);

@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MatchOverviewDialogModule } from './match-overview-dialog.module';
-import { MatchOverviewDialogComponent } from './match-overview-dialog.component';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { MatchOverviewDialogComponent } from './match-overview-dialog.component';
 
 describe('MatchOverviewDialogComponent', () => {
   let fixture: ComponentFixture<MatchOverviewDialogComponent>;
@@ -10,7 +9,7 @@ describe('MatchOverviewDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchOverviewDialogModule],
+      imports: [MatchOverviewDialogComponent],
       providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }]
     }).compileComponents();
 

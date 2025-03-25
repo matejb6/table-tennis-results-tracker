@@ -1,11 +1,13 @@
-<form [formGroup]="addPlayerFormGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="addPlayerFormGroup" (ngSubmit)="submit()">
   <h1 mat-dialog-title>Add player</h1>
   <mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
       <input matInput type="text" name="name" formControlName="name" />
       <mat-hint>New player name</mat-hint>
-      <mat-error *ngIf="addPlayerFormGroup.invalid"> Please enter a valid name </mat-error>
+      @if (addPlayerFormGroup.invalid) {
+        <mat-error>Please enter a valid name</mat-error>
+      }
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

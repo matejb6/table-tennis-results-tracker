@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatchesPageModule } from './matches-page.module';
 import { MatchesPageComponent } from './matches-page.component';
 
 describe('MatchesPageComponent', () => {
@@ -10,7 +9,7 @@ describe('MatchesPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatchesPageModule]
+      imports: [BrowserAnimationsModule, MatchesPageComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchesPageComponent);

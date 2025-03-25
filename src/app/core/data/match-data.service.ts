@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Match } from '@core/models/match';
-import { Player } from '@core/models/player';
-import { PlayerTableRow } from '@core/models/player-table-row';
+import { Match, Player, PlayerTableRow } from '../interfaces';
+import { Set } from '../types';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class MatchDataService {
    * @param sets Sets
    * @returns Match score
    */
-  public static getMatchScore(sets: [number, number][]): [number, number] {
+  public static getMatchScore(sets: Set[]): Set {
     let scoreA = 0;
     let scoreB = 0;
     sets.forEach((set) => {
@@ -40,7 +39,7 @@ export class MatchDataService {
    * @param players Players
    * @returns Winner
    */
-  public static getMatchWinner(score: [number, number], players: Player[]): Player {
+  public static getMatchWinner(score: Set, players: Player[]): Player {
     return score[0] > score[1] ? players[0] : players[1];
   }
 

@@ -1,10 +1,11 @@
 import { Player } from './player';
+import { Set } from '../types/set';
 
 export interface Match {
   id: number;
   players: Player[];
-  sets: [number, number][];
-  score: [number, number];
+  sets: Set[];
+  score: Set;
   winner: Player;
   date: string;
 }

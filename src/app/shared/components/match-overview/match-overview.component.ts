@@ -1,19 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { Player } from '@core/models/player';
+import { Player } from '@core/interfaces';
+import { Set } from '@core/types';
 
 @Component({
   selector: 'app-match-overview',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './match-overview.component.html',
   styleUrl: './match-overview.component.scss'
 })
 export class MatchOverviewComponent {
-  @Input()
-  public players: Player[] = [];
-  @Input()
-  public sets: [number, number][] = [];
-  @Input()
-  public winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
+  @Input() players: Player[] = [];
+  @Input() sets: Set[] = [];
+  @Input() winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
 
   /**
    * Check if player is winner
@@ -29,7 +30,7 @@ export class MatchOverviewComponent {
    * @param set Set
    * @returns Set game win index
    */
-  public getSetGameWinIndex(set: [number, number]): number {
+  public getSetGameWinIndex(set: Set): number {
     return set[0] > set[1] ? 0 : 1;
   }
 }

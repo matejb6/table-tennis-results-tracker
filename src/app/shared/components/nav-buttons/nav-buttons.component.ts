@@ -1,23 +1,28 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
 
-import { appRoutes } from './../../app.routes';
+import { PipesModule } from '@shared/pipes/pipes.module';
+import { appRoutes } from '../../../app.routes';
 
 @Component({
   selector: 'app-nav-buttons',
+  standalone: true,
+  imports: [CommonModule, MatButtonModule, RouterModule, PipesModule],
   templateUrl: './nav-buttons.component.html',
   styleUrl: './nav-buttons.component.scss'
 })
 export class NavButtonsComponent implements OnInit {
   public routes: string[] = [];
-  public $routeChangeUrl: Observable<string> = new Observable<string>();
+  public routeChangeUrl$: Observable<string> = new Observable<string>();
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.routes = this.getRoutesFromObject();
-    this.$routeChangeUrl = this.getRouteChangeUrlObservable();
+    this.routeChangeUrl$ = this.getRouteChangeUrlObservable();
   }
 
   /**

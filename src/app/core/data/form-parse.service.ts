@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Match } from '@core/models/match';
-import { Player } from '@core/models/player';
-import { AddMatchFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
-import { AddPlayerFormData } from '@shared/components/add-player-dialog/add-player-dialog.component';
 import { MatchDataService } from './match-data.service';
+import { AddPlayerFormData, AddMatchFormData, Match, Player } from '../interfaces';
+import { Set } from '../types';
 
 @Injectable({
   providedIn: 'root'
@@ -35,10 +33,7 @@ export class FormParseService {
     const playersByName: Player[] = addMatchFormData.players.map(
       (player) => MatchDataService.findPlayerByName(players, player)!
     );
-    const sets: [number, number][] = addMatchFormData.sets.map((item) => [
-      item.firstPlayerScore!,
-      item.secondPlayerScore!
-    ]);
+    const sets: Set[] = addMatchFormData.sets.map((item) => [item.firstPlayerScore!, item.secondPlayerScore!]);
     const score = MatchDataService.getMatchScore(sets);
     const winner: Player = MatchDataService.getMatchWinner(score, playersByName);
     const date = new Date(id).toUTCString();
