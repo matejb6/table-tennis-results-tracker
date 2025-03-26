@@ -19,16 +19,15 @@ export class DataService {
    * @returns Players table row
    */
   private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
-    return players
-      .map((player, index) => {
-        return {
-          id: player.id,
-          position: index + 1,
-          name: player.name,
-          setsWon: player.setsWon
-        };
-      })
-      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this));
+    // create new sorting and/or mapping service
+    return players.sort(MatchDataService.playerTableRowsBySetsWon.bind(this)).map((player, index) => {
+      return {
+        id: player.id,
+        position: index + 1,
+        name: player.name,
+        setsWon: player.setsWon
+      };
+    });
   }
 
   /**
