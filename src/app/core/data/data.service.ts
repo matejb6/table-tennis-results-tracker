@@ -19,16 +19,12 @@ export class DataService {
    * @returns Players table row
    */
   private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
-    return players
-      .map((player, index) => {
-        return {
-          id: player.id,
-          position: index + 1,
-          name: player.name,
-          setsWon: player.setsWon
-        };
-      })
-      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this));
+    return players.sort(MatchDataService.playerTableRowsBySetsWon.bind(this)).map((player, index) => ({
+      id: player.id,
+      position: index + 1,
+      name: player.name,
+      setsWon: player.setsWon
+    }));
   }
 
   /**
@@ -37,14 +33,12 @@ export class DataService {
    * @returns Matches table row
    */
   private mapMatchTableRows(matches: Match[]): MatchTableRow[] {
-    return matches.map((match) => {
-      return {
-        id: match.id,
-        players: match.players.map((player) => player.name).join(' vs. '),
-        score: `${match.score[0]}:${match.score[1]}`,
-        winner: match.winner.name
-      };
-    });
+    return matches.map((match) => ({
+      id: match.id,
+      players: match.players.map((player) => player.name).join(' vs. '),
+      score: `${match.score[0]}:${match.score[1]}`,
+      winner: match.winner.name
+    }));
   }
 
   /**

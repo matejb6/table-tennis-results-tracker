@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Match, Player, PlayerTableRow } from '../interfaces';
+import { Match, Player } from '../interfaces';
 import { Set } from '../types';
 
 @Injectable({
@@ -93,7 +93,7 @@ export class MatchDataService {
    * @param b Player B
    * @returns Players by sets won comparison
    */
-  public static playerTableRowsBySetsWon(a: PlayerTableRow, b: PlayerTableRow): number {
+  public static playerTableRowsBySetsWon(a: Player, b: Player): number {
     return b.setsWon - a.setsWon;
   }
 
@@ -103,14 +103,12 @@ export class MatchDataService {
    * @returns Players
    */
   public static getMatchPlayersData(match: Match): Player[] {
-    return match.players.map((matchPlayer) => {
-      return {
-        id: matchPlayer.id,
-        name: matchPlayer.name,
-        matchesPlayed: 1,
-        matchesWon: match.winner.id === matchPlayer.id ? 1 : 0,
-        setsWon: MatchDataService.getPlayerSetsWon(matchPlayer, match)
-      };
-    });
+    return match.players.map((matchPlayer) => ({
+      id: matchPlayer.id,
+      name: matchPlayer.name,
+      matchesPlayed: 1,
+      matchesWon: match.winner.id === matchPlayer.id ? 1 : 0,
+      setsWon: MatchDataService.getPlayerSetsWon(matchPlayer, match)
+    }));
   }
 }
