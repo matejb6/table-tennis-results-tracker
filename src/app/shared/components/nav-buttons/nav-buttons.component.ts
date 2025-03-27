@@ -15,22 +15,15 @@ import { appRoutes } from '../../../app.routes';
   styleUrl: './nav-buttons.component.scss'
 })
 export class NavButtonsComponent implements OnInit {
-  public routes: string[] = [];
+  public get routes(): string[] {
+    return Object.values(appRoutes);
+  }
   public routeChangeUrl$: Observable<string> = new Observable<string>();
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.routes = this.getRoutesFromObject();
     this.routeChangeUrl$ = this.getRouteChangeUrlObservable();
-  }
-
-  /**
-   * Parses routes from object to an array of strings
-   * @returns Routes as an array of strings
-   */
-  private getRoutesFromObject(): string[] {
-    return Object.values(appRoutes);
   }
 
   /**

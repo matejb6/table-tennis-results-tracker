@@ -51,6 +51,14 @@ export class AddMatchDialogComponent implements OnInit {
     )
   });
 
+  public get playersControls(): AbstractControl[] {
+    return (this.addMatchFormGroup.get('players') as FormArray).controls;
+  }
+
+  public get setControls(): AbstractControl[] {
+    return (this.addMatchFormGroup.get('sets') as FormArray).controls;
+  }
+
   constructor(
     private matDialogRef: MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>,
     @Inject(MAT_DIALOG_DATA) public players: Player[]
@@ -61,28 +69,12 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   /**
-   * Player form controls
-   * @returns Player controls
-   */
-  public getPlayersControls(): AbstractControl[] {
-    return (this.addMatchFormGroup.get('players') as FormArray).controls;
-  }
-
-  /**
    * Option is disabled if already selected in another selection
    * @returns Option disabled
    */
   public isOptionDisabled(index: number, playerName: string): boolean {
-    const oppositeControl = index ? this.getPlayersControls()[0] : this.getPlayersControls()[1];
+    const oppositeControl = index ? this.playersControls[0] : this.playersControls[1];
     return oppositeControl.value === playerName;
-  }
-
-  /**
-   * Set form controls
-   * @returns Set controls
-   */
-  public getSetControls(): AbstractControl[] {
-    return (this.addMatchFormGroup.get('sets') as FormArray).controls;
   }
 
   /**
@@ -90,9 +82,7 @@ export class AddMatchDialogComponent implements OnInit {
    * @returns Add set disabled
    */
   public addSetDisabled(): boolean {
-    return (
-      this.getSetControls().some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid
-    );
+    return this.setControls.some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid;
   }
 
   /**
@@ -123,7 +113,7 @@ export class AddMatchDialogComponent implements OnInit {
    * @returns Remove set disabled
    */
   public removeSetDisabled(): boolean {
-    return this.getSetControls().length < 2;
+    return this.setControls.length < 2;
   }
 
   /**
@@ -131,7 +121,7 @@ export class AddMatchDialogComponent implements OnInit {
    */
   public removeSet(): void {
     ((this.addMatchFormGroup.get('sets') as FormArray).value as GameSetFormData[]).pop();
-    this.getSetControls().pop();
+    this.setControls.pop();
     this.addMatchFormGroup.get('sets')?.updateValueAndValidity();
   }
 

@@ -3,7 +3,7 @@
   <mat-dialog-content>
     <div class="content-wrapper">
       <div class="players-selection" formArrayName="players">
-        @for (playersControl of getPlayersControls(); track $index; let i = $index) {
+        @for (playersControl of playersControls; track $index; let i = $index) {
           <mat-form-field appearance="fill">
             <mat-label>{{ 'Choose player' }}</mat-label>
             <mat-select [formControlName]="i">
@@ -17,7 +17,7 @@
         }
       </div>
       <div class="sets">
-        @for (set of getSetControls(); track $index; let i = $index) {
+        @for (set of setControls; track $index; let i = $index) {
           <div class="set" formArrayName="sets">
             <div [formGroupName]="i">
               <mat-form-field appearance="fill" class="game">

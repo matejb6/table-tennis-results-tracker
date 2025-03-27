@@ -33,4 +33,13 @@ export class MatchOverviewComponent {
   public getSetGameWinIndex(set: Set): number {
     return set[0] > set[1] ? 0 : 1;
   }
+
+  /**
+   * Returns CSS .bold class if condition is met
+   * @param isBold Condition
+   * @returns CSS class
+   */
+  public getClassBold(isBold: boolean): string {
+    return isBold ? 'bold' : '';
+  }
 }
