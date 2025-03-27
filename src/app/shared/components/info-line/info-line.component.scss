@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  margin: 0 0 12px;
+
+  span.label {
+    display: inline-block;
+    width: 50%;
+  }
+  span.value {
+    display: inline-block;
+    max-width: 50%;
+  }
+}
