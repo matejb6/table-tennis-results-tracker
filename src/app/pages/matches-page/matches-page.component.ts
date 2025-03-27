@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
-import { DataService } from '@core/data';
+import { DataService } from '@core/services';
 import { AddMatchFormData, MatchTableRow, Player } from '@core/interfaces';
 import {
   AddMatchDialogComponent,

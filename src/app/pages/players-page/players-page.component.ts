@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
-import { DataService } from '@core/data';
+import { DataService } from '@core/services';
 import { AddPlayerFormData, PlayerTableRow } from '@core/interfaces';
 import {
   AddPlayerDialogComponent,
