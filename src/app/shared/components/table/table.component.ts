@@ -2,12 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
-import { PipesModule } from '@shared/pipes/pipes.module';
+import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, PipesModule],
+  imports: [CommonModule, MatTableModule, CamelCaseSplitPipe, FirstLetterUppercasePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })

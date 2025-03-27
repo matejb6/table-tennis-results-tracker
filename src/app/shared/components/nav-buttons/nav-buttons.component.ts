@@ -4,13 +4,13 @@ import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
 
-import { PipesModule } from '@shared/pipes/pipes.module';
+import { FirstLetterUppercasePipe } from '../../pipes';
 import { appRoutes } from '../../../app.routes';
 
 @Component({
   selector: 'app-nav-buttons',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterModule, PipesModule],
+  imports: [CommonModule, MatButtonModule, RouterModule, FirstLetterUppercasePipe],
   templateUrl: './nav-buttons.component.html',
   styleUrl: './nav-buttons.component.scss'
 })
