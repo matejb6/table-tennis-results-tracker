@@ -3,11 +3,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 import { Player } from '@core/interfaces';
+import { InfoLineComponent } from '../info-line/info-line.component';
 
 @Component({
   selector: 'app-player-overview-dialog',
   standalone: true,
-  imports: [MatButtonModule, MatDialogModule],
+  imports: [MatButtonModule, MatDialogModule, InfoLineComponent],
   templateUrl: './player-overview-dialog.component.html',
   styleUrl: './player-overview-dialog.component.scss'
 })
