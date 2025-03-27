@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { CamelCaseSplitPipe } from './camel-case-split/camel-case-split.pipe';
-import { FirstLetterUppercasePipe } from './first-letter-uppercase/first-letter-uppercase.pipe';
+import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../pipes';
 
 @NgModule({
   imports: [],
