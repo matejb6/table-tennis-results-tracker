@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-import { GameSetFormData } from '@core/interfaces/game-set-form-data';
+import { GameSetFormData } from '@app/core/interfaces/game-set-form-data';
 
 export class CustomValidators {
   /**

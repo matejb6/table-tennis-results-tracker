@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
-import { DataService } from '@core/services';
-import { AddPlayerFormData, PlayerTableRow } from '@core/interfaces';
+import { DataService } from '@app/core/services';
+import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
 import {
   AddPlayerDialogComponent,
   PlayerOverviewDialogComponent,
   TableComponent,
   TitleBarComponent
-} from '@shared/components';
-import { DialogService, SnackBarService } from '@shared/services';
-import { SharedModule } from '@shared/shared.module';
+} from '@app/shared/components';
+import { DialogService, SnackBarService } from '@app/shared/services';
+import { SharedModule } from '@app/shared/shared.module';
 
 @Component({
   selector: 'app-players-page',

@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@core/interfaces';
+import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@app/core/interfaces';
 import { CustomValidators } from './custom-validators';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
-import { Player } from '@core/interfaces';
+import { Player } from '@app/core/interfaces';
 import { InfoLineComponent } from '../info-line/info-line.component';
 
 @Component({

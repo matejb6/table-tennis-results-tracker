@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 
-import { AddPlayerForm, AddPlayerFormData } from '@core/interfaces';
+import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
 
 @Component({
   selector: 'app-add-player-dialog',

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { Player } from '@core/interfaces';
-import { Set } from '@core/types';
+import { Player } from '@app/core/interfaces';
+import { Set } from '@app/core/types';
 
 @Component({
   selector: 'app-match-overview',

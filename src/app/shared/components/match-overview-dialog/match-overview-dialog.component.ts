@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
-import { Match } from '@core/interfaces';
+import { Match } from '@app/core/interfaces';
 import { MatchOverviewComponent } from '../match-overview/match-overview.component';
 
 @Component({
