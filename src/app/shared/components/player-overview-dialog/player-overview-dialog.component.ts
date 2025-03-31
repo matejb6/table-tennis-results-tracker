@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject, InjectionToken } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
@@ -13,5 +13,5 @@ import { InfoLineComponent } from '../info-line/info-line.component';
   styleUrl: './player-overview-dialog.component.scss'
 })
 export class PlayerOverviewDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public player: Player) {}
+  public player = inject(MAT_DIALOG_DATA as InjectionToken<Player>);
 }

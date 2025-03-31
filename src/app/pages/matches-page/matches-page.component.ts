@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@app/core/services';
@@ -21,13 +21,11 @@ import { SharedModule } from '@app/shared/shared.module';
   styleUrl: './matches-page.component.scss'
 })
 export class MatchesPageComponent implements OnInit {
-  public matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
+  private dataService = inject(DataService);
+  private dialogService = inject(DialogService);
+  private snackBarService = inject(SnackBarService);
 
-  constructor(
-    private dataService: DataService,
-    private dialogService: DialogService,
-    private snackBarService: SnackBarService
-  ) {}
+  public matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   ngOnInit() {
     this.matchTableRows$ = this.dataService.getMatchTableRowsObs();

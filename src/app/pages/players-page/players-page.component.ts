@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
 import { DataService } from '@app/core/services';
@@ -21,13 +21,11 @@ import { SharedModule } from '@app/shared/shared.module';
   styleUrl: './players-page.component.scss'
 })
 export class PlayersPageComponent implements OnInit {
-  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
+  private dataService = inject(DataService);
+  private dialogService = inject(DialogService);
+  private snackBarService = inject(SnackBarService);
 
-  constructor(
-    private dataService: DataService,
-    private dialogService: DialogService,
-    private snackBarService: SnackBarService
-  ) {}
+  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   ngOnInit() {
     this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();

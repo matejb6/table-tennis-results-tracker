@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
@@ -15,12 +15,12 @@ import { appRoutes } from '../../../app.routes';
   styleUrl: './nav-buttons.component.scss'
 })
 export class NavButtonsComponent implements OnInit {
+  private router = inject(Router);
+
   public get routes(): string[] {
     return Object.values(appRoutes);
   }
   public routeChangeUrl$: Observable<string> = new Observable<string>();
-
-  constructor(private router: Router) {}
 
   ngOnInit() {
     this.routeChangeUrl$ = this.getRouteChangeUrlObservable();

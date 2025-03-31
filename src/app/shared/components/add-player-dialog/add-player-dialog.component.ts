@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +16,8 @@ import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
   styleUrl: './add-player-dialog.component.scss'
 })
 export class AddPlayerDialogComponent {
+  private matDialogRef = inject(MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>);
+
   public addPlayerFormGroup: FormGroup<AddPlayerForm> = new FormGroup<AddPlayerForm>({
     name: new FormControl('', [
       Validators.required,
@@ -24,8 +26,6 @@ export class AddPlayerDialogComponent {
       Validators.pattern('^[a-zA-Z]+$')
     ])
   });
-
-  constructor(private matDialogRef: MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>) {}
 
   /**
    * Submits form, closes dialog and emits form data
