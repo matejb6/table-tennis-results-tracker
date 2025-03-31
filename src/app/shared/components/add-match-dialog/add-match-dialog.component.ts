@@ -59,6 +59,14 @@ export class AddMatchDialogComponent implements OnInit {
     return (this.addMatchFormGroup.get('sets') as FormArray).controls;
   }
 
+  public get addSetDisabled(): boolean {
+    return this.setControls.some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid;
+  }
+
+  public get removeSetDisabled(): boolean {
+    return this.setControls.length < 2;
+  }
+
   constructor(
     private matDialogRef: MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>,
     @Inject(MAT_DIALOG_DATA) public players: Player[]
@@ -75,14 +83,6 @@ export class AddMatchDialogComponent implements OnInit {
   public isOptionDisabled(index: number, playerName: string): boolean {
     const oppositeControl = index ? this.playersControls[0] : this.playersControls[1];
     return oppositeControl.value === playerName;
-  }
-
-  /**
-   * Add set button disabled if some sets are invalid of if 5 sets are reached
-   * @returns Add set disabled
-   */
-  public addSetDisabled(): boolean {
-    return this.setControls.some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid;
   }
 
   /**
@@ -106,14 +106,6 @@ export class AddMatchDialogComponent implements OnInit {
         [CustomValidators.setGems.bind(this)]
       )
     );
-  }
-
-  /**
-   * Remove set button disabled if one set is present
-   * @returns Remove set disabled
-   */
-  public removeSetDisabled(): boolean {
-    return this.setControls.length < 2;
   }
 
   /**
