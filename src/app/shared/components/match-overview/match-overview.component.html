@@ -1,12 +1,12 @@
 <div class="players">
-  @for (player of players; track $index) {
+  @for (player of players(); track $index) {
     <p [ngClass]="getClassBold(isPlayerWinner(player))">
       {{ player.name }}
     </p>
   }
 </div>
 <div class="sets">
-  @for (set of sets; track $index) {
+  @for (set of sets(); track $index) {
     <div class="set">
       @for (game of set; track $index; let i = $index) {
         <p [ngClass]="getClassBold(getSetGameWinIndex(set) === i)">

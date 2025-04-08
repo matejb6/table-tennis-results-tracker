@@ -15,8 +15,8 @@ describe('InfoLineComponent', () => {
 
     fixture = TestBed.createComponent(InfoLineComponent);
     component = fixture.componentInstance;
-    component.label = 'Label';
-    component.value = 3;
+    fixture.componentRef.setInput('label', 'Label');
+    fixture.componentRef.setInput('value', 3);
     fixture.detectChanges();
     nativeElem = fixture.nativeElement;
   });

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-info-line',
@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './info-line.component.scss'
 })
 export class InfoLineComponent {
-  @Input() label = '';
-  @Input() value: string | number = '';
+  public readonly label = input<string>('');
+  public readonly value = input<string | number>('');
 }

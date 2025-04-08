@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { Player } from '@app/core/interfaces';
 import { Set } from '@app/core/types';
@@ -12,9 +12,9 @@ import { Set } from '@app/core/types';
   styleUrl: './match-overview.component.scss'
 })
 export class MatchOverviewComponent {
-  @Input() players: Player[] = [];
-  @Input() sets: Set[] = [];
-  @Input() winner: Player = { id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 };
+  public readonly players = input<Player[]>([]);
+  public readonly sets = input<Set[]>([]);
+  public readonly winner = input<Player>({ id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 });
 
   /**
    * Check if player is winner
@@ -22,7 +22,7 @@ export class MatchOverviewComponent {
    * @returns Player is winner check
    */
   public isPlayerWinner(player: Player): boolean {
-    return player.id === this.winner.id;
+    return player.id === this.winner().id;
   }
 
   /**

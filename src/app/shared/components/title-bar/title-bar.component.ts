@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -9,9 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './title-bar.component.scss'
 })
 export class TitleBarComponent {
-  @Input() title = '';
-  @Input() buttonLabel = '';
-  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
+  public readonly title = input<string>('');
+  public readonly buttonLabel = input<string>('');
+  public readonly buttonClick = output<void>();
 
   /**
    * Emits button click output when button clicked
