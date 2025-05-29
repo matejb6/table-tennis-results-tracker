@@ -1,5 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { GameSetFormData } from '@shared/components/add-match-dialog/add-match-dialog.component';
+
+import { GameSetFormData } from '@app/core/interfaces/game-set-form-data';
 
 export class CustomValidators {
   /**

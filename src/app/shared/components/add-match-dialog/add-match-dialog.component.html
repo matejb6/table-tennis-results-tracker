@@ -1,36 +1,42 @@
-<form [formGroup]="addMatchFormGroup" (ngSubmit)="onSubmit()">
+<form [formGroup]="addMatchFormGroup" (ngSubmit)="submit()">
   <h1 mat-dialog-title>Add match</h1>
   <mat-dialog-content>
     <div class="content-wrapper">
       <div class="players-selection" formArrayName="players">
-        <mat-form-field appearance="fill" *ngFor="let playersControl of getPlayersControls(); let i = index">
-          <mat-label>{{ 'Choose player' }}</mat-label>
-          <mat-select [formControlName]="i">
-            <mat-option *ngFor="let name of playerNames" [value]="name" [disabled]="isOptionDisabled(i, name)">
-              {{ name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        @for (playersControl of playersControls; track $index; let i = $index) {
+          <mat-form-field appearance="fill">
+            <mat-label>{{ 'Choose player' }}</mat-label>
+            <mat-select [formControlName]="i">
+              @for (name of playerNames; track $index) {
+                <mat-option [value]="name" [disabled]="isOptionDisabled(i, name)">
+                  {{ name }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }
       </div>
       <div class="sets">
-        <div class="set" formArrayName="sets" *ngFor="let set of getSetControls(); let i = index">
-          <div [formGroupName]="i">
-            <mat-form-field appearance="fill" class="game">
-              <mat-label>Points</mat-label>
-              <input matInput type="number" name="firstPlayerScore" formControlName="firstPlayerScore" />
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="game">
-              <mat-label>Points</mat-label>
-              <input matInput type="number" name="secondPlayerScore" formControlName="secondPlayerScore" />
-            </mat-form-field>
+        @for (set of setControls; track $index; let i = $index) {
+          <div class="set" formArrayName="sets">
+            <div [formGroupName]="i">
+              <mat-form-field appearance="fill" class="game">
+                <mat-label>Points</mat-label>
+                <input matInput type="number" name="firstPlayerScore" formControlName="firstPlayerScore" />
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="game">
+                <mat-label>Points</mat-label>
+                <input matInput type="number" name="secondPlayerScore" formControlName="secondPlayerScore" />
+              </mat-form-field>
+            </div>
           </div>
-        </div>
+        }
       </div>
       <div class="set-buttons">
-        <button mat-icon-button type="button" [disabled]="addSetDisabled()" (click)="addSet()">
+        <button mat-icon-button type="button" [disabled]="addSetDisabled" (click)="addSet()">
           <mat-icon>add</mat-icon>
         </button>
-        <button mat-icon-button type="button" [disabled]="removeSetDisabled()" (click)="removeSet()">
+        <button mat-icon-button type="button" [disabled]="removeSetDisabled" (click)="removeSet()">
           <mat-icon>remove</mat-icon>
         </button>
       </div>

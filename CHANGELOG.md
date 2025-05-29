@@ -9,6 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.5.0] - 2025-05-29
+### Added
+- Tests for Not Found Page
+- Pre commit branch name check
+- index.ts files to simplify imports
+- info-line component
+### Changed
+- Angular update from 17 to 18
+- Package dependencies
+- ESLint config
+- Components and pages migrated to standalone components
+- Code updates according to latest style guides
+- Code updated and refactored
+- Tests query from classes to functions
+- GitHub Actions Workflow job name
+- tsconfig paths
+- Prettier scripts renamed to format
+- Class methods to getters
+- Migrate to inject()
+- Migrate inputs and outputs to signals
+### Fixed
+- Game set input field wider
+- Players table order
+- Lint html files
+
 ## [1.4.0] - 2024-11-14
 ### Changed
 - Angular update from 16 to 17

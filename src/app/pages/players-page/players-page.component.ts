@@ -1,33 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
-import { DataService } from '@core/data/data.service';
-import { PlayerTableRow } from '@core/models/player-table-row';
+import { DataService } from '@app/core/services';
+import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
 import {
   AddPlayerDialogComponent,
-  AddPlayerFormData
-} from '@shared/components/add-player-dialog/add-player-dialog.component';
-import { DialogService } from '@shared/services/dialog/dialog.service';
-import { SnackBarService } from '@shared/services/snack-bar/snack-bar.service';
-// eslint-disable-next-line max-len
-import { PlayerOverviewDialogComponent } from '@shared/components/player-overview-dialog/player-overview-dialog.component';
+  PlayerOverviewDialogComponent,
+  TableComponent,
+  TitleBarComponent
+} from '@app/shared/components';
+import { DialogService, SnackBarService } from '@app/shared/services';
+import { SharedModule } from '@app/shared/shared.module';
 
 @Component({
   selector: 'app-players-page',
+  standalone: true,
+  imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './players-page.component.html',
   styleUrl: './players-page.component.scss'
 })
 export class PlayersPageComponent implements OnInit {
-  public $playerTableRows: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
+  private dataService = inject(DataService);
+  private dialogService = inject(DialogService);
+  private snackBarService = inject(SnackBarService);
 
-  constructor(
-    private dataService: DataService,
-    private dialogService: DialogService,
-    private snackBarService: SnackBarService
-  ) {}
+  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   ngOnInit() {
-    this.$playerTableRows = this.dataService.getPlayerTableRowsObs();
+    this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
   }
 
   /**
@@ -48,9 +49,9 @@ export class PlayersPageComponent implements OnInit {
   }
 
   /**
-   * On add player click, opens dialog and observes when dialog is closed
+   * Opens dialog for adding a player and observes when dialog is closed
    */
-  public onAddPlayerClick(): void {
+  public addPlayer(): void {
     const dialogRef = this.dialogService.openDialog<AddPlayerDialogComponent, AddPlayerFormData, undefined>(
       AddPlayerDialogComponent
     );
@@ -64,10 +65,10 @@ export class PlayersPageComponent implements OnInit {
   }
 
   /**
-   * Opens player overview dialog on row click, shows snackbar if no player found
+   * Opens player overview dialog when row clicked, shows snackbar if no player found
    * @param event Table row click event
    */
-  public async onRowClick(event: PlayerTableRow): Promise<void> {
+  public async clickRow(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);
     if (player) {
       this.dialogService.openDialog(PlayerOverviewDialogComponent, player);

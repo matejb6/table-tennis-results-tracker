@@ -1,15 +1,20 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, output } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+
+import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
 
 @Component({
   selector: 'app-table',
+  standalone: true,
+  imports: [CommonModule, MatTableModule, CamelCaseSplitPipe, FirstLetterUppercasePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T> implements OnInit {
-  @Input()
-  public dataSource: T[] = [];
-  @Output()
-  public rowClick: EventEmitter<T> = new EventEmitter<T>();
+  // TODO Migrate input to signal input and resolve table rows rendering issue
+  @Input() dataSource: T[] = [];
+  public readonly rowClick = output<T>();
   public columns: string[] = [];
 
   ngOnInit() {
@@ -35,10 +40,10 @@ export class TableComponent<T> implements OnInit {
   }
 
   /**
-   * Emits row click output on row click
+   * Emits row click output when row clicked
    * @param row Row clicked
    */
-  public onRowClick(row: T): void {
+  public clickRow(row: T): void {
     this.rowClick.emit(row);
   }
 }
