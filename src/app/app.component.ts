@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { CoreModule } from '@core/core.module';
-import { ToolbarComponent } from '@shared/components';
+import { CoreModule } from '@app/core/core.module';
+import { ToolbarComponent } from '@app/shared/components';
 
 @Component({
   selector: 'app-root',

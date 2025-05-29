@@ -1,19 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
-import { PipesModule } from '@shared/pipes/pipes.module';
+import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, PipesModule],
+  imports: [CommonModule, MatTableModule, CamelCaseSplitPipe, FirstLetterUppercasePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T> implements OnInit {
+  // TODO Migrate input to signal input and resolve table rows rendering issue
   @Input() dataSource: T[] = [];
-  @Output() rowClick: EventEmitter<T> = new EventEmitter<T>();
+  public readonly rowClick = output<T>();
   public columns: string[] = [];
 
   ngOnInit() {

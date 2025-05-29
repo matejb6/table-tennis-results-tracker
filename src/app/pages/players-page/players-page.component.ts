@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { filter, Observable } from 'rxjs';
 
-import { DataService } from '@core/data';
-import { AddPlayerFormData, PlayerTableRow } from '@core/interfaces';
+import { DataService } from '@app/core/services';
+import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
 import {
   AddPlayerDialogComponent,
   PlayerOverviewDialogComponent,
   TableComponent,
   TitleBarComponent
-} from '@shared/components';
-import { DialogService, SnackBarService } from '@shared/services';
-import { SharedModule } from '@shared/shared.module';
+} from '@app/shared/components';
+import { DialogService, SnackBarService } from '@app/shared/services';
+import { SharedModule } from '@app/shared/shared.module';
 
 @Component({
   selector: 'app-players-page',
@@ -21,13 +21,11 @@ import { SharedModule } from '@shared/shared.module';
   styleUrl: './players-page.component.scss'
 })
 export class PlayersPageComponent implements OnInit {
-  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
+  private dataService = inject(DataService);
+  private dialogService = inject(DialogService);
+  private snackBarService = inject(SnackBarService);
 
-  constructor(
-    private dataService: DataService,
-    private dialogService: DialogService,
-    private snackBarService: SnackBarService
-  ) {}
+  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   ngOnInit() {
     this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();

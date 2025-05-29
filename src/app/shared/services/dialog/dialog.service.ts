@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ComponentType } from '@angular/cdk/overlay';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Injectable()
 export class DialogService {
-  constructor(private dialog: MatDialog) {}
+  private dialog = inject(MatDialog);
 
   /**
    * Opens dialog with component and injects data,
