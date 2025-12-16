@@ -32,6 +32,7 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      // "sort-imports": ["error"],
       "quotes": ["error", "single"],
       "indent": ["error", 2],
       "max-len": ["error", 120],
