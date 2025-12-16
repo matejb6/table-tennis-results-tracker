@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@app/core/interfaces';
-import { CustomValidators } from './custom-validators';
+import { CustomValidators } from '../../validators';
 
 @Component({
   selector: 'app-add-match-dialog',
@@ -47,10 +47,10 @@ export class AddMatchDialogComponent implements OnInit {
               Validators.maxLength(2)
             ])
           },
-          [CustomValidators.setGems.bind(this)]
+          CustomValidators.setGems
         )
       ],
-      [CustomValidators.matchSets.bind(this)]
+      CustomValidators.matchSets
     )
   });
 
@@ -101,7 +101,7 @@ export class AddMatchDialogComponent implements OnInit {
             Validators.maxLength(2)
           ])
         },
-        [CustomValidators.setGems.bind(this)]
+        CustomValidators.setGems
       )
     );
   }
