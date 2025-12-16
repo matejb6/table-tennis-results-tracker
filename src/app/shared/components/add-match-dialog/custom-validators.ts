@@ -6,7 +6,7 @@ export class CustomValidators {
   /**
    * Validator for match sets, valid if at least one player reaches 3 sets won
    */
-  public static matchSets(control: AbstractControl<GameSetFormData[]>): ValidationErrors | null {
+  static matchSets(control: AbstractControl<GameSetFormData[]>): ValidationErrors | null {
     const sets = control.value;
     let firstPlayerSetsWon = 0;
     let secondPlayerSetsWon = 0;
@@ -27,7 +27,7 @@ export class CustomValidators {
    * Validator for set gems,
    * valid if gem is won by 11 points and more than 1 point difference or by 12 or more points and 2 points difference
    */
-  public static setGems(control: AbstractControl<GameSetFormData>): ValidationErrors | null {
+  static setGems(control: AbstractControl<GameSetFormData>): ValidationErrors | null {
     const firstPlayerScore: number = control.value.firstPlayerScore!;
     const secondPlayerScore: number = control.value.secondPlayerScore!;
     let valid = false;

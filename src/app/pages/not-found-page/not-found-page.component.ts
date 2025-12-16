@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './not-found-page.component.scss'
 })
 export class NotFoundPageComponent {
-  public readonly message: string = 'Oops, URL you try to access is not available!';
+  readonly message: string = 'Oops, URL you try to access is not available!';
 }

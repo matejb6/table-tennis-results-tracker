@@ -13,5 +13,5 @@ import { NavButtonsComponent } from '../nav-buttons/nav-buttons.component';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  public toolbarTitle = 'Table Tennis Results Tracker';
+  toolbarTitle = 'Table Tennis Results Tracker';
 }

@@ -12,16 +12,16 @@ import { Set } from '@app/core/types';
   styleUrl: './match-overview.component.scss'
 })
 export class MatchOverviewComponent {
-  public readonly players = input<Player[]>([]);
-  public readonly sets = input<Set[]>([]);
-  public readonly winner = input<Player>({ id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 });
+  readonly players = input<Player[]>([]);
+  readonly sets = input<Set[]>([]);
+  readonly winner = input<Player>({ id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 });
 
   /**
    * Check if player is winner
    * @param player Player
    * @returns Player is winner check
    */
-  public isPlayerWinner(player: Player): boolean {
+  isPlayerWinner(player: Player): boolean {
     return player.id === this.winner().id;
   }
 
@@ -30,7 +30,7 @@ export class MatchOverviewComponent {
    * @param set Set
    * @returns Set game win index
    */
-  public getSetGameWinIndex(set: Set): number {
+  getSetGameWinIndex(set: Set): number {
     return set[0] > set[1] ? 0 : 1;
   }
 
@@ -39,7 +39,7 @@ export class MatchOverviewComponent {
    * @param isBold Condition
    * @returns CSS class
    */
-  public getClassBold(isBold: boolean): string {
+  getClassBold(isBold: boolean): string {
     return isBold ? 'bold' : '';
   }
 }

@@ -11,7 +11,7 @@ export class MatchDataService {
    * Generated unique ID as a date time stamp
    * @returns Generated ID
    */
-  public static generateId(): number {
+  static generateId(): number {
     return new Date().getTime();
   }
 
@@ -20,7 +20,7 @@ export class MatchDataService {
    * @param sets Sets
    * @returns Match score
    */
-  public static getMatchScore(sets: Set[]): Set {
+  static getMatchScore(sets: Set[]): Set {
     let scoreA = 0;
     let scoreB = 0;
     sets.forEach((set) => {
@@ -39,7 +39,7 @@ export class MatchDataService {
    * @param players Players
    * @returns Winner
    */
-  public static getMatchWinner(score: Set, players: Player[]): Player {
+  static getMatchWinner(score: Set, players: Player[]): Player {
     return score[0] > score[1] ? players[0] : players[1];
   }
 
@@ -49,7 +49,7 @@ export class MatchDataService {
    * @param name Name
    * @returns Player
    */
-  public static findPlayerByName(players: Player[], name: string | null): Player | undefined {
+  static findPlayerByName(players: Player[], name: string | null): Player | undefined {
     return players.find((player) => player.name === name);
   }
 
@@ -59,7 +59,7 @@ export class MatchDataService {
    * @param id ID
    * @returns Player
    */
-  public static findPlayerById(players: Player[], id: number | null): Player | undefined {
+  static findPlayerById(players: Player[], id: number | null): Player | undefined {
     return players.find((player) => player.id === id);
   }
 
@@ -69,7 +69,7 @@ export class MatchDataService {
    * @param id ID
    * @returns Player
    */
-  public static findMatchById(matches: Match[], id: number | null): Match | undefined {
+  static findMatchById(matches: Match[], id: number | null): Match | undefined {
     return matches.find((match) => match.id === id);
   }
 
@@ -79,7 +79,7 @@ export class MatchDataService {
    * @param match Match
    * @returns Player sets won
    */
-  public static getPlayerSetsWon(player: Player, match: Match): number {
+  static getPlayerSetsWon(player: Player, match: Match): number {
     const playerIndex = match.players.indexOf(player);
     const opponentIndex = playerIndex === 0 ? 1 : 0;
     return match.sets
@@ -93,7 +93,7 @@ export class MatchDataService {
    * @param b Player B
    * @returns Players by sets won comparison
    */
-  public static playerTableRowsBySetsWon(a: Player, b: Player): number {
+  static playerTableRowsBySetsWon(a: Player, b: Player): number {
     return b.setsWon - a.setsWon;
   }
 
@@ -102,7 +102,7 @@ export class MatchDataService {
    * @param match Match
    * @returns Players
    */
-  public static getMatchPlayersData(match: Match): Player[] {
+  static getMatchPlayersData(match: Match): Player[] {
     return match.players.map((matchPlayer) => ({
       id: matchPlayer.id,
       name: matchPlayer.name,

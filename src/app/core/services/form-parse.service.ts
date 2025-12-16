@@ -13,7 +13,7 @@ export class FormParseService {
    * @param addPlayerFormData Add player form data
    * @returns Player data
    */
-  public static parsePlayerDataFromForm(addPlayerFormData: AddPlayerFormData): Player {
+  static parsePlayerDataFromForm(addPlayerFormData: AddPlayerFormData): Player {
     return {
       id: MatchDataService.generateId(),
       name: addPlayerFormData.name!,
@@ -28,7 +28,7 @@ export class FormParseService {
    * @param addMatchFormData Add match form data
    * @returns Match data
    */
-  public static parseMatchDataFromForm(players: Player[], addMatchFormData: AddMatchFormData): Match {
+  static parseMatchDataFromForm(players: Player[], addMatchFormData: AddMatchFormData): Match {
     const id = MatchDataService.generateId();
     const playersByName: Player[] = addMatchFormData.players.map(
       (player) => MatchDataService.findPlayerByName(players, player)!

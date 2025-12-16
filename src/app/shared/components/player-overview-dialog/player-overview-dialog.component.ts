@@ -13,5 +13,5 @@ import { InfoLineComponent } from '../info-line/info-line.component';
   styleUrl: './player-overview-dialog.component.scss'
 })
 export class PlayerOverviewDialogComponent {
-  public player = inject(MAT_DIALOG_DATA as InjectionToken<Player>);
+  player = inject(MAT_DIALOG_DATA as InjectionToken<Player>);
 }
