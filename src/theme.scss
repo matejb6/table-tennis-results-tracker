@@ -18,4 +18,9 @@ app-players-page {
       container-background-color: lightblue
     )
   );
+  @include mat.dialog-overrides(
+    (
+      container-max-width: 900px
+    )
+  );
 }
