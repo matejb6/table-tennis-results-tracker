@@ -30,8 +30,9 @@ export class AddMatchDialogComponent implements OnInit {
   players = inject(MAT_DIALOG_DATA as InjectionToken<Player[]>);
 
   playerNames: string[] = [];
-  addMatchFormGroup: FormGroup<AddMatchForm> = new FormGroup<AddMatchForm>({
-    players: new FormArray([new FormControl('', [Validators.required]), new FormControl('', [Validators.required])]),
+  addMatchFormGroup = new FormGroup<AddMatchForm>({
+    firstPlayer: new FormControl('', [Validators.required]),
+    secondPlayer: new FormControl('', [Validators.required]),
     sets: new FormArray(
       [
         new FormGroup<GameSetForm>(
@@ -54,10 +55,6 @@ export class AddMatchDialogComponent implements OnInit {
     )
   });
 
-  get playersControls(): AbstractControl[] {
-    return (this.addMatchFormGroup.get('players') as FormArray).controls;
-  }
-
   get setControls(): AbstractControl[] {
     return (this.addMatchFormGroup.get('sets') as FormArray).controls;
   }
@@ -78,9 +75,10 @@ export class AddMatchDialogComponent implements OnInit {
    * Option is disabled if already selected in another selection
    * @returns Option disabled
    */
-  isOptionDisabled(index: number, playerName: string): boolean {
-    const oppositeControl = index ? this.playersControls[0] : this.playersControls[1];
-    return oppositeControl.value === playerName;
+  isOptionDisabled(formGroupControl: string, option: string): boolean {
+    return formGroupControl === 'firstPlayer'
+      ? this.addMatchFormGroup.get('secondPlayer')?.value === option
+      : this.addMatchFormGroup.get('firstPlayer')?.value === option;
   }
 
   /**

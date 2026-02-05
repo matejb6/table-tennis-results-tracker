@@ -2,7 +2,7 @@
   display: block;
   width: 650px;
 
-  div.content-wrapper {
+  mat-dialog-content {
     display: flex;
 
     div.players-selection {
@@ -30,7 +30,7 @@
       }
     }
 
-    div.set-buttons {
+    div.set-controls {
       display: flex;
       flex-direction: column;
       justify-content: space-around;

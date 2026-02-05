@@ -30,13 +30,14 @@ export class FormParseService {
    */
   static parseMatchDataFromForm(players: Player[], addMatchFormData: AddMatchFormData): Match {
     const id = MatchDataService.generateId();
-    const playersByName: Player[] = addMatchFormData.players.map(
-      (player) => MatchDataService.findPlayerByName(players, player)!
-    );
+    const gamePlayers: Player[] = [
+      MatchDataService.findPlayerByName(players, addMatchFormData.firstPlayer)!,
+      MatchDataService.findPlayerByName(players, addMatchFormData.secondPlayer)!
+    ];
     const sets: Set[] = addMatchFormData.sets.map((item) => [item.firstPlayerScore!, item.secondPlayerScore!]);
     const score = MatchDataService.getMatchScore(sets);
-    const winner: Player = MatchDataService.getMatchWinner(score, playersByName);
+    const winner: Player = MatchDataService.getMatchWinner(score, gamePlayers);
     const date = new Date(id).toUTCString();
-    return { id: id, players: playersByName, sets: sets, score: score, winner: winner, date: date };
+    return { id: id, players: gamePlayers, sets: sets, score: score, winner: winner, date: date };
   }
 }
