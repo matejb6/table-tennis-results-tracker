@@ -9,14 +9,14 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './title-bar.component.scss'
 })
 export class TitleBarComponent {
-  public readonly title = input<string>('');
-  public readonly buttonLabel = input<string>('');
-  public readonly buttonClick = output<void>();
+  readonly title = input<string>('');
+  readonly buttonLabel = input<string>('');
+  readonly buttonClick = output<void>();
 
   /**
    * Emits button click output when button clicked
    */
-  public clickButton(): void {
+  clickButton(): void {
     this.buttonClick.emit();
   }
 }

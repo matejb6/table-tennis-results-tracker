@@ -13,7 +13,7 @@ export class DialogService {
    * @param data Data to inject
    * @returns Dialog reference
    */
-  public openDialog<T, U, V>(component: ComponentType<T>, data?: V): MatDialogRef<T, U> {
+  openDialog<T, U, V>(component: ComponentType<T>, data?: V): MatDialogRef<T, U> {
     return this.dialog.open(component, {
       data: data
     });

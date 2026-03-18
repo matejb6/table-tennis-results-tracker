@@ -13,9 +13,9 @@ import { MatchOverviewComponent } from '../match-overview/match-overview.compone
   styleUrl: './match-overview-dialog.component.scss'
 })
 export class MatchOverviewDialogComponent {
-  public match = inject(MAT_DIALOG_DATA as InjectionToken<Match>);
+  match = inject(MAT_DIALOG_DATA as InjectionToken<Match>);
 
-  public get score(): string {
+  get score(): string {
     return this.match.score?.join(':');
   }
 }

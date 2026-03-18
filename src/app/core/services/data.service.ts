@@ -61,7 +61,7 @@ export class DataService {
    * Returns players behavior subject as observable
    * @returns Players observable
    */
-  public getPlayersObs(): Observable<Player[]> {
+  getPlayersObs(): Observable<Player[]> {
     return this.players$.asObservable();
   }
 
@@ -69,7 +69,7 @@ export class DataService {
    * Returns players table row behavior subject as observable
    * @returns Players table row observable
    */
-  public getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
+  getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
     return this.players$.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
   }
 
@@ -77,7 +77,7 @@ export class DataService {
    * Returns players
    * @returns Players
    */
-  public async getPlayers(): Promise<Player[]> {
+  async getPlayers(): Promise<Player[]> {
     return await firstValueFrom(this.getPlayersObs());
   }
 
@@ -85,7 +85,7 @@ export class DataService {
    * Finds player by ID
    * @returns Player
    */
-  public async getPlayerById(id: number): Promise<Player | undefined> {
+  async getPlayerById(id: number): Promise<Player | undefined> {
     return await firstValueFrom(
       this.getPlayersObs().pipe(map((players) => MatchDataService.findPlayerById(players, id)))
     );
@@ -95,7 +95,7 @@ export class DataService {
    * Checks if player by name already exists
    * @returns Player by name exist
    */
-  public async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
+  async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
     return (await this.getPlayers()).some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 
@@ -103,7 +103,7 @@ export class DataService {
    * Returns matches behavior subject as observable
    * @returns Matches observable
    */
-  public getMatchesObs(): Observable<Match[]> {
+  getMatchesObs(): Observable<Match[]> {
     return this.matches$.asObservable();
   }
 
@@ -111,7 +111,7 @@ export class DataService {
    * Returns match table rows behavior subject as observable
    * @returns Match table rows observable
    */
-  public getMatchTableRowsObs(): Observable<MatchTableRow[]> {
+  getMatchTableRowsObs(): Observable<MatchTableRow[]> {
     return this.matches$.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
   }
 
@@ -119,7 +119,7 @@ export class DataService {
    * Returns matches
    * @returns Matches
    */
-  public async getMatches(): Promise<Match[]> {
+  async getMatches(): Promise<Match[]> {
     return await firstValueFrom(this.getMatchesObs());
   }
 
@@ -127,7 +127,7 @@ export class DataService {
    * Finds match by ID
    * @returns Match
    */
-  public async getMatchById(id: number): Promise<Match | undefined> {
+  async getMatchById(id: number): Promise<Match | undefined> {
     return await firstValueFrom(
       this.getMatchesObs().pipe(map((matches) => MatchDataService.findMatchById(matches, id)))
     );
@@ -137,7 +137,7 @@ export class DataService {
    * Adds player by emitting new data with behavior subject
    * @param addPlayerFormData Form data
    */
-  public addPlayer(addPlayerFormData: AddPlayerFormData): void {
+  addPlayer(addPlayerFormData: AddPlayerFormData): void {
     const players = this.players$.getValue();
     players.push(FormParseService.parsePlayerDataFromForm(addPlayerFormData));
     this.players$.next([...players]);
@@ -147,7 +147,7 @@ export class DataService {
    * Adds match by emitting new data with behavior subject
    * @param addMatchFormData Form data
    */
-  public addMatch(addMatchFormData: AddMatchFormData): void {
+  addMatch(addMatchFormData: AddMatchFormData): void {
     const matches = this.matches$.getValue();
     const newMatch = FormParseService.parseMatchDataFromForm(PLAYERS, addMatchFormData);
     matches.push(newMatch);
