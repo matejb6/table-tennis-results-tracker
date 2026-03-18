@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 ### Fixed
 
+## [1.6.0] - 2026-03-18
+### Added
+### Changed
+- Angular update to v19
+- Migrate to inject()
+- Migrate inputs and outputs to signals
+- Toolbar style
+- Removed "public" access modifier from class fields
+- Code updates
+- Add match form refactored
+### Fixed
+- Add match dialog size
+
 ## [1.5.0] - 2025-05-29
 ### Added
 - Tests for Not Found Page
