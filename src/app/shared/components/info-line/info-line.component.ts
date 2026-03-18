@@ -8,6 +8,6 @@ import { Component, input } from '@angular/core';
   styleUrl: './info-line.component.scss'
 })
 export class InfoLineComponent {
-  public readonly label = input<string>('');
-  public readonly value = input<string | number>('');
+  readonly label = input<string>('');
+  readonly value = input<string | number>('');
 }

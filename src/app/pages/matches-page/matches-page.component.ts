@@ -25,7 +25,7 @@ export class MatchesPageComponent implements OnInit {
   private dialogService = inject(DialogService);
   private snackBarService = inject(SnackBarService);
 
-  public matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
+  matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   ngOnInit() {
     this.matchTableRows$ = this.dataService.getMatchTableRowsObs();
@@ -44,7 +44,7 @@ export class MatchesPageComponent implements OnInit {
   /**
    * Opens dialog for adding a match and observes when dialog is closed
    */
-  public async addMatch(): Promise<void> {
+  async addMatch(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog<AddMatchDialogComponent, AddMatchFormData, Player[]>(
       AddMatchDialogComponent,
@@ -63,7 +63,7 @@ export class MatchesPageComponent implements OnInit {
    * Opens match overview dialog when row clicked, shows snackbar if no match found
    * @param event Table row click event
    */
-  public async clickRow(event: MatchTableRow): Promise<void> {
+  async clickRow(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);
     if (match) {
       this.dialogService.openDialog(MatchOverviewDialogComponent, match);

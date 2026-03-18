@@ -25,7 +25,7 @@ export class PlayersPageComponent implements OnInit {
   private dialogService = inject(DialogService);
   private snackBarService = inject(SnackBarService);
 
-  public playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
+  playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   ngOnInit() {
     this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
@@ -51,7 +51,7 @@ export class PlayersPageComponent implements OnInit {
   /**
    * Opens dialog for adding a player and observes when dialog is closed
    */
-  public addPlayer(): void {
+  addPlayer(): void {
     const dialogRef = this.dialogService.openDialog<AddPlayerDialogComponent, AddPlayerFormData, undefined>(
       AddPlayerDialogComponent
     );
@@ -68,7 +68,7 @@ export class PlayersPageComponent implements OnInit {
    * Opens player overview dialog when row clicked, shows snackbar if no player found
    * @param event Table row click event
    */
-  public async clickRow(event: PlayerTableRow): Promise<void> {
+  async clickRow(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);
     if (player) {
       this.dialogService.openDialog(PlayerOverviewDialogComponent, player);

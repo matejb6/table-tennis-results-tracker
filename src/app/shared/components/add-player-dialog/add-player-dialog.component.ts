@@ -18,7 +18,7 @@ import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
 export class AddPlayerDialogComponent {
   private matDialogRef = inject(MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>);
 
-  public addPlayerFormGroup: FormGroup<AddPlayerForm> = new FormGroup<AddPlayerForm>({
+  addPlayerFormGroup: FormGroup<AddPlayerForm> = new FormGroup<AddPlayerForm>({
     name: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
@@ -30,7 +30,7 @@ export class AddPlayerDialogComponent {
   /**
    * Submits form, closes dialog and emits form data
    */
-  public submit(): void {
+  submit(): void {
     this.matDialogRef.close(this.addPlayerFormGroup.value);
   }
 }

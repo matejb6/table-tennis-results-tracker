@@ -17,10 +17,10 @@ import { appRoutes } from '../../../app.routes';
 export class NavButtonsComponent implements OnInit {
   private router = inject(Router);
 
-  public get routes(): string[] {
+  get routes(): string[] {
     return Object.values(appRoutes);
   }
-  public routeChangeUrl$: Observable<string> = new Observable<string>();
+  routeChangeUrl$: Observable<string> = new Observable<string>();
 
   ngOnInit() {
     this.routeChangeUrl$ = this.getRouteChangeUrlObservable();

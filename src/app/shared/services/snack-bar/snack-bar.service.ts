@@ -10,7 +10,7 @@ export class SnackBarService {
    * @param message Message
    * @param duration Duration in milliseconds
    */
-  public showSnackBar(message: string, duration?: number): void {
+  showSnackBar(message: string, duration?: number): void {
     this.matSnackBar.open(message, 'Close', { duration: duration || 3000 });
   }
 }

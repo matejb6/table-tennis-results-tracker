@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, InjectionToken, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
@@ -7,8 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData } from '@app/core/interfaces';
-import { CustomValidators } from './custom-validators';
+import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@app/core/interfaces';
+import { CustomValidators } from '../../validators';
 
 @Component({
   selector: 'app-add-match-dialog',
@@ -27,11 +27,12 @@ import { CustomValidators } from './custom-validators';
 })
 export class AddMatchDialogComponent implements OnInit {
   private matDialogRef = inject(MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>);
-  public players = inject(MAT_DIALOG_DATA);
+  players = inject(MAT_DIALOG_DATA as InjectionToken<Player[]>);
 
-  public playerNames: string[] = [];
-  public addMatchFormGroup: FormGroup<AddMatchForm> = new FormGroup<AddMatchForm>({
-    players: new FormArray([new FormControl('', [Validators.required]), new FormControl('', [Validators.required])]),
+  playerNames: string[] = [];
+  addMatchFormGroup = new FormGroup<AddMatchForm>({
+    firstPlayer: new FormControl('', [Validators.required]),
+    secondPlayer: new FormControl('', [Validators.required]),
     sets: new FormArray(
       [
         new FormGroup<GameSetForm>(
@@ -47,46 +48,43 @@ export class AddMatchDialogComponent implements OnInit {
               Validators.maxLength(2)
             ])
           },
-          [CustomValidators.setGems.bind(this)]
+          CustomValidators.setGems
         )
       ],
-      [CustomValidators.matchSets.bind(this)]
+      CustomValidators.matchSets
     )
   });
 
-  public get playersControls(): AbstractControl[] {
-    return (this.addMatchFormGroup.get('players') as FormArray).controls;
-  }
-
-  public get setControls(): AbstractControl[] {
+  get setControls(): AbstractControl[] {
     return (this.addMatchFormGroup.get('sets') as FormArray).controls;
   }
 
-  public get addSetDisabled(): boolean {
+  get addSetDisabled(): boolean {
     return this.setControls.some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid;
   }
 
-  public get removeSetDisabled(): boolean {
+  get removeSetDisabled(): boolean {
     return this.setControls.length < 2;
   }
 
   ngOnInit() {
-    this.playerNames = this.players instanceof Array ? this.players.map((item) => item.name) : [];
+    this.playerNames = this.players.map((item) => item.name);
   }
 
   /**
    * Option is disabled if already selected in another selection
    * @returns Option disabled
    */
-  public isOptionDisabled(index: number, playerName: string): boolean {
-    const oppositeControl = index ? this.playersControls[0] : this.playersControls[1];
-    return oppositeControl.value === playerName;
+  isOptionDisabled(formGroupControl: string, option: string): boolean {
+    return formGroupControl === 'firstPlayer'
+      ? this.addMatchFormGroup.get('secondPlayer')?.value === option
+      : this.addMatchFormGroup.get('firstPlayer')?.value === option;
   }
 
   /**
    * Adds set form group to sets form array
    */
-  public addSet(): void {
+  addSet(): void {
     (this.addMatchFormGroup.get('sets') as FormArray).push(
       new FormGroup<GameSetForm>(
         {
@@ -101,7 +99,7 @@ export class AddMatchDialogComponent implements OnInit {
             Validators.maxLength(2)
           ])
         },
-        [CustomValidators.setGems.bind(this)]
+        CustomValidators.setGems
       )
     );
   }
@@ -109,7 +107,7 @@ export class AddMatchDialogComponent implements OnInit {
   /**
    * Removes set from set form array
    */
-  public removeSet(): void {
+  removeSet(): void {
     ((this.addMatchFormGroup.get('sets') as FormArray).value as GameSetFormData[]).pop();
     this.setControls.pop();
     this.addMatchFormGroup.get('sets')?.updateValueAndValidity();
@@ -118,7 +116,7 @@ export class AddMatchDialogComponent implements OnInit {
   /**
    * Submits form, closes dialog and emits form values
    */
-  public submit(): void {
+  submit(): void {
     this.matDialogRef.close(this.addMatchFormGroup.value);
   }
 }

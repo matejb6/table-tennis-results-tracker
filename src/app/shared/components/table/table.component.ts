@@ -14,8 +14,8 @@ import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
 export class TableComponent<T> implements OnInit {
   // TODO Migrate input to signal input and resolve table rows rendering issue
   @Input() dataSource: T[] = [];
-  public readonly rowClick = output<T>();
-  public columns: string[] = [];
+  readonly rowClick = output<T>();
+  columns: string[] = [];
 
   ngOnInit() {
     this.initColumns();
@@ -43,7 +43,7 @@ export class TableComponent<T> implements OnInit {
    * Emits row click output when row clicked
    * @param row Row clicked
    */
-  public clickRow(row: T): void {
+  clickRow(row: T): void {
     this.rowClick.emit(row);
   }
 }
