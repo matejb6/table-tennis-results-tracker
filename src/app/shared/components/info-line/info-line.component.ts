@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-info-line',
@@ -6,6 +6,7 @@ import { Component, input } from '@angular/core';
   imports: [],
   templateUrl: './info-line.component.html',
   styleUrl: './info-line.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoLineComponent {
   readonly label = input<string>('');

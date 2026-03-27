@@ -1,4 +1,4 @@
-import { Component, inject, InjectionToken } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
@@ -11,6 +11,7 @@ import { MatchOverviewComponent } from '../match-overview/match-overview.compone
   imports: [MatButtonModule, MatDialogModule, MatchOverviewComponent],
   templateUrl: './match-overview-dialog.component.html',
   styleUrl: './match-overview-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatchOverviewDialogComponent {
   match = inject(MAT_DIALOG_DATA as InjectionToken<Match>);

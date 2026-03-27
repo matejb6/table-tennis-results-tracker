@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, InjectionToken, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -37,6 +37,7 @@ import { CustomValidators } from '../../validators';
   ],
   templateUrl: './add-match-dialog.component.html',
   styleUrl: './add-match-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddMatchDialogComponent implements OnInit {
   private matDialogRef = inject(MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>);

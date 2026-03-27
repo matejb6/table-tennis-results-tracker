@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { filter, firstValueFrom, Observable } from 'rxjs';
 
 import { DataService } from '@app/core/services';
@@ -19,6 +19,7 @@ import { SharedModule } from '@app/shared/shared.module';
   imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './matches-page.component.html',
   styleUrl: './matches-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatchesPageComponent implements OnInit {
   private dataService = inject(DataService);

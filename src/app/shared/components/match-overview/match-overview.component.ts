@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Player } from '@app/core/interfaces';
 import { Set } from '@app/core/types';
@@ -10,6 +10,7 @@ import { Set } from '@app/core/types';
   imports: [CommonModule],
   templateUrl: './match-overview.component.html',
   styleUrl: './match-overview.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MatchOverviewComponent {
   readonly players = input<Player[]>([]);

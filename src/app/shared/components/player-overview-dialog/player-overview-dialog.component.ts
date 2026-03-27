@@ -1,4 +1,4 @@
-import { Component, inject, InjectionToken } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, InjectionToken } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
@@ -11,6 +11,7 @@ import { InfoLineComponent } from '../info-line/info-line.component';
   imports: [MatButtonModule, MatDialogModule, InfoLineComponent],
   templateUrl: './player-overview-dialog.component.html',
   styleUrl: './player-overview-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PlayerOverviewDialogComponent {
   player = inject(MAT_DIALOG_DATA as InjectionToken<Player>);

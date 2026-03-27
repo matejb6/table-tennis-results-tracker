@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,6 +14,7 @@ import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
   imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
   templateUrl: './add-player-dialog.component.html',
   styleUrl: './add-player-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddPlayerDialogComponent {
   private matDialogRef = inject(MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>);

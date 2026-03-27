@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnInit, output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
 import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
@@ -10,6 +10,7 @@ import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
   imports: [CommonModule, MatTableModule, CamelCaseSplitPipe, FirstLetterUppercasePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent<T> implements OnInit {
   readonly dataSource = input<T[]>([]);

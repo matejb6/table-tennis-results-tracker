@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { appRoutes } from '../../../app.routes';
   imports: [CommonModule, MatButtonModule, RouterModule, FirstLetterUppercasePipe],
   templateUrl: './nav-buttons.component.html',
   styleUrl: './nav-buttons.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavButtonsComponent implements OnInit {
   private router = inject(Router);

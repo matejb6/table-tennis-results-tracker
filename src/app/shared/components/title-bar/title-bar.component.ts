@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [MatButtonModule],
   templateUrl: './title-bar.component.html',
   styleUrl: './title-bar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleBarComponent {
   readonly title = input<string>('');
