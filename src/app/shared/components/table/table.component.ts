@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
 import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
@@ -12,8 +12,7 @@ import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T> implements OnInit {
-  // TODO Migrate input to signal input and resolve table rows rendering issue
-  @Input() dataSource: T[] = [];
+  readonly dataSource = input<T[]>([]);
   readonly rowClick = output<T>();
   columns: string[] = [];
 
@@ -26,7 +25,7 @@ export class TableComponent<T> implements OnInit {
    * Inits columns based on provided data source and shows no data label in header if data source is empty
    */
   private initColumns(): void {
-    this.columns = this.dataSource.length ? Object.keys(this.dataSource[0] as object) : ['No data'];
+    this.columns = this.dataSource().length ? Object.keys(this.dataSource()[0] as object) : ['No data'];
   }
 
   /**
