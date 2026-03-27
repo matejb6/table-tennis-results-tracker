@@ -6,6 +6,6 @@ import { ServicesModule } from './services/services.module';
   imports: [ServicesModule],
   exports: [ServicesModule],
   declarations: [],
-  providers: []
+  providers: [],
 })
 export class SharedModule {}

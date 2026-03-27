@@ -10,7 +10,7 @@ import { InfoLineComponent } from '../info-line/info-line.component';
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, InfoLineComponent],
   templateUrl: './player-overview-dialog.component.html',
-  styleUrl: './player-overview-dialog.component.scss'
+  styleUrl: './player-overview-dialog.component.scss',
 })
 export class PlayerOverviewDialogComponent {
   player = inject(MAT_DIALOG_DATA as InjectionToken<Player>);

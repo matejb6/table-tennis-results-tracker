@@ -5,7 +5,7 @@ import { AddPlayerFormData, AddMatchFormData, Match, Player } from '../interface
 import { Set } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FormParseService {
   /**
@@ -19,7 +19,7 @@ export class FormParseService {
       name: addPlayerFormData.name!,
       matchesPlayed: 0,
       matchesWon: 0,
-      setsWon: 0
+      setsWon: 0,
     };
   }
 
@@ -32,9 +32,12 @@ export class FormParseService {
     const id = MatchDataService.generateId();
     const gamePlayers: Player[] = [
       MatchDataService.findPlayerByName(players, addMatchFormData.firstPlayer)!,
-      MatchDataService.findPlayerByName(players, addMatchFormData.secondPlayer)!
+      MatchDataService.findPlayerByName(players, addMatchFormData.secondPlayer)!,
     ];
-    const sets: Set[] = addMatchFormData.sets.map((item) => [item.firstPlayerScore!, item.secondPlayerScore!]);
+    const sets: Set[] = addMatchFormData.sets.map((item) => [
+      item.firstPlayerScore!,
+      item.secondPlayerScore!,
+    ]);
     const score = MatchDataService.getMatchScore(sets);
     const winner: Player = MatchDataService.getMatchWinner(score, gamePlayers);
     const date = new Date(id).toUTCString();

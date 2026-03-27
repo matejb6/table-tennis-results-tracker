@@ -1,13 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, InjectionToken, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { AddMatchForm, AddMatchFormData, GameSetForm, GameSetFormData, Player } from '@app/core/interfaces';
+import {
+  AddMatchForm,
+  AddMatchFormData,
+  GameSetForm,
+  GameSetFormData,
+  Player,
+} from '@app/core/interfaces';
 import { CustomValidators } from '../../validators';
 
 @Component({
@@ -20,10 +33,10 @@ import { CustomValidators } from '../../validators';
     MatDialogModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   templateUrl: './add-match-dialog.component.html',
-  styleUrl: './add-match-dialog.component.scss'
+  styleUrl: './add-match-dialog.component.scss',
 })
 export class AddMatchDialogComponent implements OnInit {
   private matDialogRef = inject(MatDialogRef<AddMatchDialogComponent, Partial<AddMatchFormData>>);
@@ -40,19 +53,19 @@ export class AddMatchDialogComponent implements OnInit {
             firstPlayerScore: new FormControl(0, [
               Validators.required,
               Validators.pattern('^[0-9]+$'),
-              Validators.maxLength(2)
+              Validators.maxLength(2),
             ]),
             secondPlayerScore: new FormControl(0, [
               Validators.required,
               Validators.pattern('^[0-9]+$'),
-              Validators.maxLength(2)
-            ])
+              Validators.maxLength(2),
+            ]),
           },
-          CustomValidators.setGems
-        )
+          CustomValidators.setGems,
+        ),
       ],
-      CustomValidators.matchSets
-    )
+      CustomValidators.matchSets,
+    ),
   });
 
   get setControls(): AbstractControl[] {
@@ -60,7 +73,10 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   get addSetDisabled(): boolean {
-    return this.setControls.some((item) => item.invalid) || (this.addMatchFormGroup.get('sets') as FormArray).valid;
+    return (
+      this.setControls.some((item) => item.invalid) ||
+      (this.addMatchFormGroup.get('sets') as FormArray).valid
+    );
   }
 
   get removeSetDisabled(): boolean {
@@ -91,16 +107,16 @@ export class AddMatchDialogComponent implements OnInit {
           firstPlayerScore: new FormControl(0, [
             Validators.required,
             Validators.pattern('^[0-9]+$'),
-            Validators.maxLength(2)
+            Validators.maxLength(2),
           ]),
           secondPlayerScore: new FormControl(0, [
             Validators.required,
             Validators.pattern('^[0-9]+$'),
-            Validators.maxLength(2)
-          ])
+            Validators.maxLength(2),
+          ]),
         },
-        CustomValidators.setGems
-      )
+        CustomValidators.setGems,
+      ),
     );
   }
 

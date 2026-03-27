@@ -10,7 +10,7 @@ describe('DialogService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [DialogModule],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     });
     service = TestBed.inject(DialogService);
   });

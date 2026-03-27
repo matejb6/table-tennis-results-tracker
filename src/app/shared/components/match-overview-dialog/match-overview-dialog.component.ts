@@ -10,7 +10,7 @@ import { MatchOverviewComponent } from '../match-overview/match-overview.compone
   standalone: true,
   imports: [MatButtonModule, MatDialogModule, MatchOverviewComponent],
   templateUrl: './match-overview-dialog.component.html',
-  styleUrl: './match-overview-dialog.component.scss'
+  styleUrl: './match-overview-dialog.component.scss',
 })
 export class MatchOverviewDialogComponent {
   match = inject(MAT_DIALOG_DATA as InjectionToken<Match>);

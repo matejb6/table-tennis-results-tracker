@@ -14,7 +14,7 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ToolbarComponent],
-      providers: [provideZonelessChangeDetection(), provideRouter(routes)]
+      providers: [provideZonelessChangeDetection(), provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);

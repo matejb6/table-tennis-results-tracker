@@ -7,6 +7,6 @@ import { DialogService } from './dialog.service';
   imports: [MatDialogModule],
   exports: [],
   declarations: [],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class DialogModule {}

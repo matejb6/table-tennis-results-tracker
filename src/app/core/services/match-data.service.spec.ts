@@ -10,7 +10,7 @@ describe('MatchDataService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CoreModule],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     });
     service = TestBed.inject(MatchDataService);
   });

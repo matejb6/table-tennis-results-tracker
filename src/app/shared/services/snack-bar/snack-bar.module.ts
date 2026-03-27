@@ -7,6 +7,6 @@ import { SnackBarService } from './snack-bar.service';
   imports: [MatSnackBarModule],
   exports: [],
   declarations: [],
-  providers: [SnackBarService]
+  providers: [SnackBarService],
 })
 export class SnackBarModule {}

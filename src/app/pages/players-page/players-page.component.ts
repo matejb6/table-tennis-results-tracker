@@ -8,7 +8,7 @@ import {
   AddPlayerDialogComponent,
   PlayerOverviewDialogComponent,
   TableComponent,
-  TitleBarComponent
+  TitleBarComponent,
 } from '@app/shared/components';
 import { DialogService, SnackBarService } from '@app/shared/services';
 import { SharedModule } from '@app/shared/shared.module';
@@ -18,7 +18,7 @@ import { SharedModule } from '@app/shared/shared.module';
   standalone: true,
   imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './players-page.component.html',
-  styleUrl: './players-page.component.scss'
+  styleUrl: './players-page.component.scss',
 })
 export class PlayersPageComponent implements OnInit {
   private dataService = inject(DataService);
@@ -35,9 +35,13 @@ export class PlayersPageComponent implements OnInit {
    * After closed observer
    * @param addPlayerFormData Add player form data
    */
-  private async onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): Promise<void> {
+  private async onAfterClosedObserver(
+    addPlayerFormData: AddPlayerFormData | undefined,
+  ): Promise<void> {
     if (addPlayerFormData) {
-      const newPlayerExists = await this.dataService.doesPlayerByNameExist(addPlayerFormData.name || '');
+      const newPlayerExists = await this.dataService.doesPlayerByNameExist(
+        addPlayerFormData.name || '',
+      );
 
       if (newPlayerExists) {
         this.snackBarService.showSnackBar('Player already exists');
@@ -52,15 +56,17 @@ export class PlayersPageComponent implements OnInit {
    * Opens dialog for adding a player and observes when dialog is closed
    */
   addPlayer(): void {
-    const dialogRef = this.dialogService.openDialog<AddPlayerDialogComponent, AddPlayerFormData, undefined>(
-      AddPlayerDialogComponent
-    );
+    const dialogRef = this.dialogService.openDialog<
+      AddPlayerDialogComponent,
+      AddPlayerFormData,
+      undefined
+    >(AddPlayerDialogComponent);
 
     dialogRef
       .afterClosed()
       .pipe(filter((item) => !!item))
       .subscribe({
-        next: this.onAfterClosedObserver.bind(this)
+        next: this.onAfterClosedObserver.bind(this),
       });
   }
 

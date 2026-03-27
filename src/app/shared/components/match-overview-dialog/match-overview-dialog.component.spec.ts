@@ -12,7 +12,7 @@ describe('MatchOverviewDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatchOverviewDialogComponent],
-      providers: [provideZonelessChangeDetection(), { provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [provideZonelessChangeDetection(), { provide: MAT_DIALOG_DATA, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchOverviewDialogComponent);

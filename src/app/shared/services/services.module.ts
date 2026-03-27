@@ -7,6 +7,6 @@ import { SnackBarModule } from './snack-bar/snack-bar.module';
   imports: [DialogModule, SnackBarModule],
   exports: [],
   declarations: [],
-  providers: []
+  providers: [],
 })
 export class ServicesModule {}

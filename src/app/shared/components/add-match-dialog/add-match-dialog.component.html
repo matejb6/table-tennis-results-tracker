@@ -29,11 +29,21 @@
           <div [formGroupName]="i">
             <mat-form-field appearance="fill" class="game">
               <mat-label>Points</mat-label>
-              <input matInput type="number" name="firstPlayerScore" formControlName="firstPlayerScore" />
+              <input
+                matInput
+                type="number"
+                name="firstPlayerScore"
+                formControlName="firstPlayerScore"
+              />
             </mat-form-field>
             <mat-form-field appearance="fill" class="game">
               <mat-label>Points</mat-label>
-              <input matInput type="number" name="secondPlayerScore" formControlName="secondPlayerScore" />
+              <input
+                matInput
+                type="number"
+                name="secondPlayerScore"
+                formControlName="secondPlayerScore"
+              />
             </mat-form-field>
           </div>
         </div>
@@ -50,6 +60,8 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-raised-button mat-dialog-close type="button">Close</button>
-    <button mat-raised-button color="primary" [disabled]="addMatchFormGroup.invalid" type="submit">Add</button>
+    <button mat-raised-button color="primary" [disabled]="addMatchFormGroup.invalid" type="submit">
+      Add
+    </button>
   </mat-dialog-actions>
 </form>

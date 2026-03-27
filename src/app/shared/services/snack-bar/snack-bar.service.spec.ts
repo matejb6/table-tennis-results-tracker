@@ -10,7 +10,7 @@ describe('SnackBarService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SnackBarModule],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     });
     service = TestBed.inject(SnackBarService);
   });

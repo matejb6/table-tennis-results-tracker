@@ -11,7 +11,7 @@ describe('NavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), provideRouter(routes)]
+      providers: [provideZonelessChangeDetection(), provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavButtonsComponent);

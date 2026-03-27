@@ -12,7 +12,7 @@ describe('InfoLineComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [InfoLineComponent],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(InfoLineComponent);

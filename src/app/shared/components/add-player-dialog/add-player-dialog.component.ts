@@ -13,7 +13,7 @@ import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
   templateUrl: './add-player-dialog.component.html',
-  styleUrl: './add-player-dialog.component.scss'
+  styleUrl: './add-player-dialog.component.scss',
 })
 export class AddPlayerDialogComponent {
   private matDialogRef = inject(MatDialogRef<AddPlayerDialogComponent, Partial<AddPlayerFormData>>);
@@ -23,8 +23,8 @@ export class AddPlayerDialogComponent {
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(20),
-      Validators.pattern('^[a-zA-Z]+$')
-    ])
+      Validators.pattern('^[a-zA-Z]+$'),
+    ]),
   });
 
   /**

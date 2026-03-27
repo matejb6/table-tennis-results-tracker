@@ -8,7 +8,7 @@ import {
   AddMatchDialogComponent,
   MatchOverviewDialogComponent,
   TableComponent,
-  TitleBarComponent
+  TitleBarComponent,
 } from '@app/shared/components';
 import { DialogService, SnackBarService } from '@app/shared/services';
 import { SharedModule } from '@app/shared/shared.module';
@@ -18,7 +18,7 @@ import { SharedModule } from '@app/shared/shared.module';
   standalone: true,
   imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
   templateUrl: './matches-page.component.html',
-  styleUrl: './matches-page.component.scss'
+  styleUrl: './matches-page.component.scss',
 })
 export class MatchesPageComponent implements OnInit {
   private dataService = inject(DataService);
@@ -46,16 +46,17 @@ export class MatchesPageComponent implements OnInit {
    */
   async addMatch(): Promise<void> {
     const players = await firstValueFrom(this.dataService.getPlayersObs());
-    const dialogRef = this.dialogService.openDialog<AddMatchDialogComponent, AddMatchFormData, Player[]>(
+    const dialogRef = this.dialogService.openDialog<
       AddMatchDialogComponent,
-      players
-    );
+      AddMatchFormData,
+      Player[]
+    >(AddMatchDialogComponent, players);
 
     dialogRef
       .afterClosed()
       .pipe(filter((item) => !!item))
       .subscribe({
-        next: this.onAfterClosedObserver.bind(this)
+        next: this.onAfterClosedObserver.bind(this),
       });
   }
 

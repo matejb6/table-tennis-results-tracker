@@ -9,7 +9,7 @@ import { Set } from '@app/core/types';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './match-overview.component.html',
-  styleUrl: './match-overview.component.scss'
+  styleUrl: './match-overview.component.scss',
 })
 export class MatchOverviewComponent {
   readonly players = input<Player[]>([]);

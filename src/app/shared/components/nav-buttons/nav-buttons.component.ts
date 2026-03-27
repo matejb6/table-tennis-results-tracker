@@ -12,7 +12,7 @@ import { appRoutes } from '../../../app.routes';
   standalone: true,
   imports: [CommonModule, MatButtonModule, RouterModule, FirstLetterUppercasePipe],
   templateUrl: './nav-buttons.component.html',
-  styleUrl: './nav-buttons.component.scss'
+  styleUrl: './nav-buttons.component.scss',
 })
 export class NavButtonsComponent implements OnInit {
   private router = inject(Router);
@@ -34,7 +34,7 @@ export class NavButtonsComponent implements OnInit {
     return this.router.events.pipe(
       filter((value) => value instanceof NavigationStart),
       map((value) => (value as NavigationStart).url),
-      map((value) => (value === '/' ? `/${appRoutes.players}` : value))
+      map((value) => (value === '/' ? `/${appRoutes.players}` : value)),
     );
   }
 }

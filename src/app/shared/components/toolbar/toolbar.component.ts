@@ -10,7 +10,7 @@ import { NavButtonsComponent } from '../nav-buttons/nav-buttons.component';
   standalone: true,
   imports: [MatButtonModule, MatIconModule, MatToolbarModule, NavButtonsComponent],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.scss'
+  styleUrl: './toolbar.component.scss',
 })
 export class ToolbarComponent {
   toolbarTitle = 'Table Tennis Results Tracker';

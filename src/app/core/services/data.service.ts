@@ -4,10 +4,17 @@ import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
 import { MATCHES, PLAYERS } from '@data/initial-data';
 import { MatchDataService } from './match-data.service';
 import { FormParseService } from './form-parse.service';
-import { AddPlayerFormData, AddMatchFormData, Player, Match, PlayerTableRow, MatchTableRow } from '../interfaces';
+import {
+  AddPlayerFormData,
+  AddMatchFormData,
+  Player,
+  Match,
+  PlayerTableRow,
+  MatchTableRow,
+} from '../interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   private players$ = new BehaviorSubject<Player[]>(PLAYERS);
@@ -19,12 +26,14 @@ export class DataService {
    * @returns Players table row
    */
   private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
-    return players.sort(MatchDataService.playerTableRowsBySetsWon.bind(this)).map((player, index) => ({
-      id: player.id,
-      position: index + 1,
-      name: player.name,
-      setsWon: player.setsWon
-    }));
+    return players
+      .sort(MatchDataService.playerTableRowsBySetsWon.bind(this))
+      .map((player, index) => ({
+        id: player.id,
+        position: index + 1,
+        name: player.name,
+        setsWon: player.setsWon,
+      }));
   }
 
   /**
@@ -37,7 +46,7 @@ export class DataService {
       id: match.id,
       players: match.players.map((player) => player.name).join(' vs. '),
       score: `${match.score[0]}:${match.score[1]}`,
-      winner: match.winner.name
+      winner: match.winner.name,
     }));
   }
 
@@ -87,7 +96,7 @@ export class DataService {
    */
   async getPlayerById(id: number): Promise<Player | undefined> {
     return await firstValueFrom(
-      this.getPlayersObs().pipe(map((players) => MatchDataService.findPlayerById(players, id)))
+      this.getPlayersObs().pipe(map((players) => MatchDataService.findPlayerById(players, id))),
     );
   }
 
@@ -96,7 +105,9 @@ export class DataService {
    * @returns Player by name exist
    */
   async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
-    return (await this.getPlayers()).some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
+    return (await this.getPlayers()).some(
+      (item) => item.name.toLowerCase() === newPlayerName.toLowerCase(),
+    );
   }
 
   /**
@@ -129,7 +140,7 @@ export class DataService {
    */
   async getMatchById(id: number): Promise<Match | undefined> {
     return await firstValueFrom(
-      this.getMatchesObs().pipe(map((matches) => MatchDataService.findMatchById(matches, id)))
+      this.getMatchesObs().pipe(map((matches) => MatchDataService.findMatchById(matches, id))),
     );
   }
 

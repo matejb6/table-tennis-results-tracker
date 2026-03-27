@@ -4,7 +4,7 @@ import { Match, Player } from '../interfaces';
 import { Set } from '../types';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MatchDataService {
   /**
@@ -108,7 +108,7 @@ export class MatchDataService {
       name: matchPlayer.name,
       matchesPlayed: 1,
       matchesWon: match.winner.id === matchPlayer.id ? 1 : 0,
-      setsWon: MatchDataService.getPlayerSetsWon(matchPlayer, match)
+      setsWon: MatchDataService.getPlayerSetsWon(matchPlayer, match),
     }));
   }
 }

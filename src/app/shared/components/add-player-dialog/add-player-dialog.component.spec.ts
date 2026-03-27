@@ -11,7 +11,7 @@ describe('AddPlayerDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AddPlayerDialogComponent],
-      providers: [provideZonelessChangeDetection(), { provide: MatDialogRef, useValue: {} }]
+      providers: [provideZonelessChangeDetection(), { provide: MatDialogRef, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddPlayerDialogComponent);

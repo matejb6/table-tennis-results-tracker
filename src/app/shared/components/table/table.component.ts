@@ -9,7 +9,7 @@ import { CamelCaseSplitPipe, FirstLetterUppercasePipe } from '../../pipes';
   standalone: true,
   imports: [CommonModule, MatTableModule, CamelCaseSplitPipe, FirstLetterUppercasePipe],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss'
+  styleUrl: './table.component.scss',
 })
 export class TableComponent<T> implements OnInit {
   readonly dataSource = input<T[]>([]);
@@ -25,7 +25,9 @@ export class TableComponent<T> implements OnInit {
    * Inits columns based on provided data source and shows no data label in header if data source is empty
    */
   private initColumns(): void {
-    this.columns = this.dataSource().length ? Object.keys(this.dataSource()[0] as object) : ['No data'];
+    this.columns = this.dataSource().length
+      ? Object.keys(this.dataSource()[0] as object)
+      : ['No data'];
   }
 
   /**

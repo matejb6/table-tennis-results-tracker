@@ -14,8 +14,8 @@ describe('AddMatchDialogComponent', () => {
       providers: [
         provideZonelessChangeDetection(),
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: [] }
-      ]
+        { provide: MAT_DIALOG_DATA, useValue: [] },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddMatchDialogComponent);

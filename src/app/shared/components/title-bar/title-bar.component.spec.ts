@@ -10,7 +10,7 @@ describe('TitleBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TitleBarComponent],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TitleBarComponent);

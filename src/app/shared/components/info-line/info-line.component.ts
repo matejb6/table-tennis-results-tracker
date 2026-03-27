@@ -5,7 +5,7 @@ import { Component, input } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './info-line.component.html',
-  styleUrl: './info-line.component.scss'
+  styleUrl: './info-line.component.scss',
 })
 export class InfoLineComponent {
   readonly label = input<string>('');

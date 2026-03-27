@@ -10,7 +10,7 @@ describe('MatchesPageComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatchesPageComponent],
-      providers: [provideZonelessChangeDetection()]
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchesPageComponent);
