@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatchOverviewComponent } from './match-overview.component';
 
-describe('MatchOverviewDialogComponent', () => {
+describe('MatchOverviewComponent', () => {
   let fixture: ComponentFixture<MatchOverviewComponent>;
   let component: MatchOverviewComponent;
 
