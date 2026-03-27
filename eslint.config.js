@@ -1,10 +1,11 @@
 // @ts-check
 const eslint = require("@eslint/js");
+const { defineConfig } = require("eslint/config");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
 const eslintPluginPrettierRecommended = require("eslint-plugin-prettier/recommended");
 
-module.exports = tseslint.config(
+module.exports = defineConfig([
   {
     files: ["**/*.ts"],
     extends: [
@@ -32,7 +33,6 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
-      // "sort-imports": ["error"],
       "quotes": ["error", "single"],
       "indent": ["error", 2],
       "max-len": ["error", 120],
@@ -51,4 +51,4 @@ module.exports = tseslint.config(
     ],
     rules: {},
   }
-);
+]);

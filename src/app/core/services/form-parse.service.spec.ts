@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { CoreModule } from '../core.module';
@@ -8,7 +9,8 @@ describe('FormParseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule]
+      imports: [CoreModule],
+      providers: [provideZonelessChangeDetection()]
     });
     service = TestBed.inject(FormParseService);
   });

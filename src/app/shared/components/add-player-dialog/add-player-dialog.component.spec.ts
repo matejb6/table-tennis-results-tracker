@@ -1,5 +1,5 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { AddPlayerDialogComponent } from './add-player-dialog.component';
@@ -10,8 +10,8 @@ describe('AddPlayerDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, AddPlayerDialogComponent],
-      providers: [{ provide: MatDialogRef, useValue: {} }]
+      imports: [AddPlayerDialogComponent],
+      providers: [provideZonelessChangeDetection(), { provide: MatDialogRef, useValue: {} }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddPlayerDialogComponent);
