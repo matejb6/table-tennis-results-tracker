@@ -61,10 +61,10 @@ export class MatchesPageComponent implements OnInit {
   }
 
   /**
-   * Opens match overview dialog when row clicked, shows snackbar if no match found
+   * Opens match overview dialog, shows snackbar if no match found
    * @param event Table row click event
    */
-  async clickRow(event: MatchTableRow): Promise<void> {
+  async openMatchDialog(event: MatchTableRow): Promise<void> {
     const match = await this.dataService.getMatchById(event.id);
     if (match) {
       this.dialogService.openDialog(MatchOverviewDialogComponent, match);

@@ -71,10 +71,10 @@ export class PlayersPageComponent implements OnInit {
   }
 
   /**
-   * Opens player overview dialog when row clicked, shows snackbar if no player found
+   * Opens player overview dialog, shows snackbar if no player found
    * @param event Table row click event
    */
-  async clickRow(event: PlayerTableRow): Promise<void> {
+  async openPlayerDialog(event: PlayerTableRow): Promise<void> {
     const player = await this.dataService.getPlayerById(event.id);
     if (player) {
       this.dialogService.openDialog(PlayerOverviewDialogComponent, player);
