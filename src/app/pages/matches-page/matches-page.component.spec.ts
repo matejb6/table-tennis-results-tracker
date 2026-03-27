@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatchesPageComponent } from './matches-page.component';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('MatchesPageComponent', () => {
   let fixture: ComponentFixture<MatchesPageComponent>;
@@ -9,7 +9,8 @@ describe('MatchesPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, MatchesPageComponent]
+      imports: [MatchesPageComponent],
+      providers: [provideZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchesPageComponent);

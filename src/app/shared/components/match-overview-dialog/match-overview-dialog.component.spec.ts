@@ -1,8 +1,10 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatchOverviewDialogComponent } from './match-overview-dialog.component';
 
+// TODO Resolve test
 describe('MatchOverviewDialogComponent', () => {
   let fixture: ComponentFixture<MatchOverviewDialogComponent>;
   let component: MatchOverviewDialogComponent;
@@ -10,7 +12,7 @@ describe('MatchOverviewDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MatchOverviewDialogComponent],
-      providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [provideZonelessChangeDetection(), { provide: MAT_DIALOG_DATA, useValue: {} }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchOverviewDialogComponent);

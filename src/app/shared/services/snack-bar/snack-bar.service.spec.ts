@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { SnackBarModule } from './snack-bar.module';
@@ -8,7 +9,8 @@ describe('SnackBarService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [SnackBarModule]
+      imports: [SnackBarModule],
+      providers: [provideZonelessChangeDetection()]
     });
     service = TestBed.inject(SnackBarService);
   });

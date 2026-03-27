@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -10,7 +11,7 @@ describe('NavButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideRouter(routes)]
+      providers: [provideZonelessChangeDetection(), provideRouter(routes)]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavButtonsComponent);

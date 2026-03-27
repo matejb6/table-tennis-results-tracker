@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,7 +11,7 @@ describe('PlayerOverviewDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [PlayerOverviewDialogComponent],
-      providers: [{ provide: MAT_DIALOG_DATA, useValue: {} }]
+      providers: [provideZonelessChangeDetection(), { provide: MAT_DIALOG_DATA, useValue: {} }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlayerOverviewDialogComponent);

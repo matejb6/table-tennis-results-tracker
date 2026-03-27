@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatchOverviewComponent } from './match-overview.component';
@@ -8,7 +9,8 @@ describe('MatchOverviewDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatchOverviewComponent]
+      imports: [MatchOverviewComponent],
+      providers: [provideZonelessChangeDetection()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MatchOverviewComponent);

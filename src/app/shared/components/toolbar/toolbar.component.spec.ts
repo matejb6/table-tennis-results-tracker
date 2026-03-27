@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
@@ -13,7 +14,7 @@ describe('ToolbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ToolbarComponent],
-      providers: [provideRouter(routes)]
+      providers: [provideZonelessChangeDetection(), provideRouter(routes)]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarComponent);
