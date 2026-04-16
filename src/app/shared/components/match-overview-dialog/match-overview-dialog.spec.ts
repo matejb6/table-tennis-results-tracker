@@ -4,7 +4,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatchOverviewDialog } from './match-overview-dialog';
 
-// TODO Resolve test
 describe('MatchOverviewDialog', () => {
   let fixture: ComponentFixture<MatchOverviewDialog>;
   let component: MatchOverviewDialog;
