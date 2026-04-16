@@ -1,2 +1,2 @@
-export * from './dialog/dialog.service';
-export * from './snack-bar/snack-bar.service';
+export * from './dialog/dialog';
+export * from './snack-bar/snack-bar';
