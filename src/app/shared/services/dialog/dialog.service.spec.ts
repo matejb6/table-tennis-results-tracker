@@ -1,7 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { DialogModule } from './dialog.module';
 import { DialogService } from './dialog.service';
 
 describe('DialogService', () => {
@@ -9,8 +8,7 @@ describe('DialogService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DialogModule],
-      providers: [provideZonelessChangeDetection()],
+      providers: [DialogService, provideZonelessChangeDetection()],
     });
     service = TestBed.inject(DialogService);
   });

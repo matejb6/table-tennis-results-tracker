@@ -1,7 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { CoreModule } from '../core.module';
 import { DataService } from './data.service';
 
 describe('DataService', () => {
@@ -9,7 +8,6 @@ describe('DataService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule],
       providers: [provideZonelessChangeDetection()],
     });
     service = TestBed.inject(DataService);

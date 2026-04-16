@@ -11,12 +11,12 @@ import {
   TitleBarComponent,
 } from '@app/shared/components';
 import { DialogService, SnackBarService } from '@app/shared/services';
-import { SharedModule } from '@app/shared/shared.module';
 
 @Component({
   selector: 'app-matches-page',
   standalone: true,
-  imports: [CommonModule, SharedModule, TableComponent, TitleBarComponent],
+  imports: [CommonModule, TableComponent, TitleBarComponent],
+  providers: [DialogService, SnackBarService],
   templateUrl: './matches-page.component.html',
   styleUrl: './matches-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
