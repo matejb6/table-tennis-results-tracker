@@ -1,11 +1,7 @@
 import { CamelCaseSplitPipe } from './camel-case-split.pipe';
 
 describe('CamelCaseSplitPipe', () => {
-  let pipe: CamelCaseSplitPipe;
-
-  beforeEach(() => {
-    pipe = new CamelCaseSplitPipe();
-  });
+  const pipe = new CamelCaseSplitPipe();
 
   it('should be created', () => {
     expect(pipe).toBeTruthy();
