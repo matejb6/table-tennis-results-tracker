@@ -24,6 +24,13 @@ export class NavButtonsComponent implements OnInit {
   routeChangeUrl$: Observable<string> = new Observable<string>();
 
   ngOnInit() {
+    this.initRouteChangeUrlObservable();
+  }
+
+  /**
+   * Initializes route change URL observable
+   */
+  private initRouteChangeUrlObservable(): void {
     this.routeChangeUrl$ = this.getRouteChangeUrlObservable();
   }
 

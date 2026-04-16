@@ -29,6 +29,13 @@ export class PlayersPageComponent implements OnInit {
   playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
 
   ngOnInit() {
+    this.initPlayerTableRowsObservable();
+  }
+
+  /**
+   * Initializes player table rows observable
+   */
+  private initPlayerTableRowsObservable(): void {
     this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
   }
 

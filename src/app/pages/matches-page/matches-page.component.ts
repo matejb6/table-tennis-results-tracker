@@ -29,6 +29,13 @@ export class MatchesPageComponent implements OnInit {
   matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
 
   ngOnInit() {
+    this.initMatchTableRowsObservable();
+  }
+
+  /**
+   * Initializes match table rows observable
+   */
+  private initMatchTableRowsObservable(): void {
     this.matchTableRows$ = this.dataService.getMatchTableRowsObs();
   }
 

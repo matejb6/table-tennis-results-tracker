@@ -85,6 +85,13 @@ export class AddMatchDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initPlayerNames();
+  }
+
+  /**
+   * Initializes player names
+   */
+  private initPlayerNames(): void {
     this.playerNames = this.players.map((item) => item.name);
   }
 
