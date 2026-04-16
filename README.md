@@ -62,7 +62,7 @@ Defined workflows:
 For more details see `.github/workflows/`.
 
 ## Requirements
-* node.js ^18.19.1 || ^20.11.1 || ^22.0.0
+* node.js ^20.19.0 || ^22.12.0 || ^24.0.0
 
 ## Setup
 * In root run `npm install` to install dependencies
