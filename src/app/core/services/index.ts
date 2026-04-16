@@ -1,3 +1,3 @@
-export * from './data.service';
-export * from './form-parse.service';
-export * from './match-data.service';
+export * from './data';
+export * from './form-parse';
+export * from './match-data';

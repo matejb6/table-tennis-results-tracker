@@ -15,12 +15,12 @@ app-players-page {
 :root {
   @include mat.toolbar-overrides(
     (
-      container-background-color: lightblue
+      container-background-color: lightblue,
     )
   );
   @include mat.dialog-overrides(
     (
-      container-max-width: 900px
+      container-max-width: 900px,
     )
   );
 }
