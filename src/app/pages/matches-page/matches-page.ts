@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { filter, firstValueFrom, Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, firstValueFrom } from 'rxjs';
 
 import { Data } from '@app/core/services';
 import { AddMatchFormData, MatchTableRow, Player } from '@app/core/interfaces';
@@ -10,29 +10,18 @@ import { Dialog, SnackBar } from '@app/shared/services';
 @Component({
   selector: 'app-matches-page',
   standalone: true,
-  imports: [CommonModule, Table, TitleBar],
+  imports: [Table, TitleBar],
   providers: [Dialog, SnackBar],
   templateUrl: './matches-page.html',
   styleUrl: './matches-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatchesPage implements OnInit {
+export class MatchesPage {
   private dataService = inject(Data);
   private dialogService = inject(Dialog);
   private snackBarService = inject(SnackBar);
 
-  matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
-
-  ngOnInit() {
-    this.initMatchTableRowsObservable();
-  }
-
-  /**
-   * Initializes match table rows observable
-   */
-  private initMatchTableRowsObservable(): void {
-    this.matchTableRows$ = this.dataService.getMatchTableRowsObs();
-  }
+  matchTableRows = toSignal(this.dataService.getMatchTableRowsObs());
 
   /**
    * After closed observer

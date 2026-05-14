@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { filter, Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 import { Data } from '@app/core/services';
 import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
@@ -10,29 +10,18 @@ import { Dialog, SnackBar } from '@app/shared/services';
 @Component({
   selector: 'app-players-page',
   standalone: true,
-  imports: [CommonModule, Table, TitleBar],
+  imports: [Table, TitleBar],
   providers: [Dialog, SnackBar],
   templateUrl: './players-page.html',
   styleUrl: './players-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlayersPage implements OnInit {
+export class PlayersPage {
   private dataService = inject(Data);
   private dialogService = inject(Dialog);
   private snackBarService = inject(SnackBar);
 
-  playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
-
-  ngOnInit() {
-    this.initPlayerTableRowsObservable();
-  }
-
-  /**
-   * Initializes player table rows observable
-   */
-  private initPlayerTableRowsObservable(): void {
-    this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
-  }
+  playerTableRows = toSignal(this.dataService.getPlayerTableRowsObs());
 
   /**
    * After closed observer
