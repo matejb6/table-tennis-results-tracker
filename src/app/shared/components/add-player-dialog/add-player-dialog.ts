@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -11,7 +10,7 @@ import { AddPlayerForm, AddPlayerFormData } from '@app/core/interfaces';
 @Component({
   selector: 'app-add-player-dialog',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatDialogModule, MatInputModule],
   templateUrl: './add-player-dialog.html',
   styleUrl: './add-player-dialog.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

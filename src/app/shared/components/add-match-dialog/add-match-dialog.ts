@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, InjectionToken, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -27,7 +26,6 @@ import { CustomValidators } from '../../validators';
   selector: 'app-add-match-dialog',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
