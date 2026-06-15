@@ -1,145 +1,53 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom, map, Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 import { MATCHES, PLAYERS } from '@data/initial-data';
 import { MatchData } from './match-data';
 import { FormParse } from './form-parse';
-import {
-  AddPlayerFormData,
-  AddMatchFormData,
-  Player,
-  Match,
-  PlayerTableRow,
-  MatchTableRow,
-} from '../interfaces';
+import { AddPlayerFormData, AddMatchFormData, Player, Match } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Data {
-  private players$ = new BehaviorSubject<Player[]>(PLAYERS);
-  private matches$ = new BehaviorSubject<Match[]>(MATCHES);
-
-  /**
-   * Maps players data into player table rows data
-   * @param players Players
-   * @returns Players table row
-   */
-  private mapPlayerTableRows(players: Player[]): PlayerTableRow[] {
-    return players.sort(MatchData.playerTableRowsBySetsWon.bind(this)).map((player, index) => ({
-      id: player.id,
-      position: index + 1,
-      name: player.name,
-      setsWon: player.setsWon,
-    }));
-  }
-
-  /**
-   * Maps matches data into match table rows data
-   * @param matches Matches
-   * @returns Matches table row
-   */
-  private mapMatchTableRows(matches: Match[]): MatchTableRow[] {
-    return matches.map((match) => ({
-      id: match.id,
-      players: match.players.map((player) => player.name).join(' vs. '),
-      score: `${match.score[0]}:${match.score[1]}`,
-      winner: match.winner.name,
-    }));
-  }
+  players = signal<Player[]>(PLAYERS);
+  matches = signal<Match[]>(MATCHES);
 
   /**
    * Update players with last match, creates new match players data which are added to existing players
    * @param match Match
    */
-  private updatePlayers(match: Match): void {
+  private updatePlayersAfterMatch(match: Match): void {
     const lastMatchPlayers: Player[] = MatchData.getMatchPlayersData(match);
-    this.players$.getValue().forEach((player) => {
-      const matchPlayer = MatchData.findPlayerById(lastMatchPlayers, player.id);
-      if (matchPlayer) {
-        player.matchesPlayed = player.matchesPlayed + matchPlayer.matchesPlayed;
-        player.matchesWon = player.matchesWon + matchPlayer.matchesWon;
-        player.setsWon = player.setsWon + matchPlayer.setsWon;
-      }
+
+    this.players.update((players) => {
+      const updatedPlayers: Player[] = [];
+      players.forEach((player) => {
+        const matchPlayer = MatchData.findPlayerById(lastMatchPlayers, player.id);
+        if (matchPlayer) {
+          player.matchesPlayed += matchPlayer.matchesPlayed;
+          player.matchesWon += matchPlayer.matchesWon;
+          player.setsWon += matchPlayer.setsWon;
+        }
+        updatedPlayers.push(player);
+      });
+      return updatedPlayers;
     });
-  }
-
-  /**
-   * Returns players behavior subject as observable
-   * @returns Players observable
-   */
-  getPlayersObs(): Observable<Player[]> {
-    return this.players$.asObservable();
-  }
-
-  /**
-   * Returns players table row behavior subject as observable
-   * @returns Players table row observable
-   */
-  getPlayerTableRowsObs(): Observable<PlayerTableRow[]> {
-    return this.players$.asObservable().pipe(map(this.mapPlayerTableRows.bind(this)));
-  }
-
-  /**
-   * Returns players
-   * @returns Players
-   */
-  async getPlayers(): Promise<Player[]> {
-    return await firstValueFrom(this.getPlayersObs());
   }
 
   /**
    * Finds player by ID
    * @returns Player
    */
-  async getPlayerById(id: number): Promise<Player | undefined> {
-    return await firstValueFrom(
-      this.getPlayersObs().pipe(map((players) => MatchData.findPlayerById(players, id))),
-    );
-  }
-
-  /**
-   * Checks if player by name already exists
-   * @returns Player by name exist
-   */
-  async doesPlayerByNameExist(newPlayerName: string): Promise<boolean> {
-    return (await this.getPlayers()).some(
-      (item) => item.name.toLowerCase() === newPlayerName.toLowerCase(),
-    );
-  }
-
-  /**
-   * Returns matches behavior subject as observable
-   * @returns Matches observable
-   */
-  getMatchesObs(): Observable<Match[]> {
-    return this.matches$.asObservable();
-  }
-
-  /**
-   * Returns match table rows behavior subject as observable
-   * @returns Match table rows observable
-   */
-  getMatchTableRowsObs(): Observable<MatchTableRow[]> {
-    return this.matches$.asObservable().pipe(map(this.mapMatchTableRows.bind(this)));
-  }
-
-  /**
-   * Returns matches
-   * @returns Matches
-   */
-  async getMatches(): Promise<Match[]> {
-    return await firstValueFrom(this.getMatchesObs());
+  getPlayerById(id: number): Player | undefined {
+    return this.players().find((player) => player.id === id);
   }
 
   /**
    * Finds match by ID
    * @returns Match
    */
-  async getMatchById(id: number): Promise<Match | undefined> {
-    return await firstValueFrom(
-      this.getMatchesObs().pipe(map((matches) => MatchData.findMatchById(matches, id))),
-    );
+  getMatchById(id: number): Match | undefined {
+    return this.matches().find((match) => match.id === id);
   }
 
   /**
@@ -147,9 +55,8 @@ export class Data {
    * @param addPlayerFormData Form data
    */
   addPlayer(addPlayerFormData: AddPlayerFormData): void {
-    const players = this.players$.getValue();
-    players.push(FormParse.parsePlayerDataFromForm(addPlayerFormData));
-    this.players$.next([...players]);
+    const newPlayer = FormParse.parsePlayerDataFromForm(addPlayerFormData);
+    this.players.update((value) => [...value, newPlayer]);
   }
 
   /**
@@ -157,10 +64,16 @@ export class Data {
    * @param addMatchFormData Form data
    */
   addMatch(addMatchFormData: AddMatchFormData): void {
-    const matches = this.matches$.getValue();
-    const newMatch = FormParse.parseMatchDataFromForm(PLAYERS, addMatchFormData);
-    matches.push(newMatch);
-    this.matches$.next([...matches]);
-    this.updatePlayers(newMatch);
+    const newMatch = FormParse.parseMatchDataFromForm(this.players(), addMatchFormData);
+    this.matches.update((value) => [...value, newMatch]);
+    this.updatePlayersAfterMatch(newMatch);
+  }
+
+  /**
+   * Checks if player by name already exists
+   * @returns Player by name exist
+   */
+  doesPlayerByNameExist(newPlayerName: string): boolean {
+    return this.players().some((item) => item.name.toLowerCase() === newPlayerName.toLowerCase());
   }
 }

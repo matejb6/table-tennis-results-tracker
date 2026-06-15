@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { filter, firstValueFrom } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { filter } from 'rxjs';
 
 import { Data } from '@app/core/services';
 import { AddMatchFormData, MatchTableRow, Player } from '@app/core/interfaces';
@@ -21,7 +20,21 @@ export class MatchesPage {
   private dialogService = inject(Dialog);
   private snackBarService = inject(SnackBar);
 
-  matchTableRows = toSignal(this.dataService.getMatchTableRowsObs());
+  matchTableRows = signal<MatchTableRow[]>(this.mapMatchTableRows());
+
+  /**
+   * Maps matches data into match table rows data
+   * @param matches Matches
+   * @returns Matches table row
+   */
+  private mapMatchTableRows(): MatchTableRow[] {
+    return this.dataService.matches().map((match) => ({
+      id: match.id,
+      players: match.players.map((player) => player.name).join(' vs. '),
+      score: `${match.score[0]}:${match.score[1]}`,
+      winner: match.winner.name,
+    }));
+  }
 
   /**
    * After closed observer
@@ -30,6 +43,8 @@ export class MatchesPage {
   private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
     if (addMatchFormData) {
       this.dataService.addMatch(addMatchFormData);
+      this.matchTableRows.set(this.mapMatchTableRows());
+      this.snackBarService.showSnackBar('Match added');
     }
   }
 
@@ -37,10 +52,9 @@ export class MatchesPage {
    * Opens dialog for adding a match and observes when dialog is closed
    */
   async addMatch(): Promise<void> {
-    const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog<AddMatchDialog, AddMatchFormData, Player[]>(
       AddMatchDialog,
-      players,
+      this.dataService.players(),
     );
 
     dialogRef
@@ -55,8 +69,8 @@ export class MatchesPage {
    * Opens match overview dialog, shows snackbar if no match found
    * @param event Table row click event
    */
-  async openMatchDialog(event: MatchTableRow): Promise<void> {
-    const match = await this.dataService.getMatchById(event.id);
+  openMatchOverview(event: MatchTableRow): void {
+    const match = this.dataService.getMatchById(event.id);
     if (match) {
       this.dialogService.openDialog(MatchOverviewDialog, match);
     } else {

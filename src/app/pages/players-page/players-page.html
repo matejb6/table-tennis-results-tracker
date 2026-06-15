@@ -1,2 +1,2 @@
 <app-title-bar title="Players" buttonLabel="Add player" (buttonClick)="addPlayer()" />
-<app-table [dataSource]="playerTableRows() || []" (rowClick)="openPlayerDialog($event)" />
+<app-table [dataSource]="playerTableRows() || []" (rowClick)="openPlayerOverview($event)" />

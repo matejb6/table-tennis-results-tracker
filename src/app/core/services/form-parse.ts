@@ -25,6 +25,7 @@ export class FormParse {
 
   /**
    * Takes match form data and parses it into match data for app usage
+   * @param players Players
    * @param addMatchFormData Add match form data
    * @returns Match data
    */
