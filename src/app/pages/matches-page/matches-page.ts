@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { filter, firstValueFrom, Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { filter } from 'rxjs';
 
 import { Data } from '@app/core/services';
 import { AddMatchFormData, MatchTableRow, Player } from '@app/core/interfaces';
@@ -10,28 +9,31 @@ import { Dialog, SnackBar } from '@app/shared/services';
 @Component({
   selector: 'app-matches-page',
   standalone: true,
-  imports: [CommonModule, Table, TitleBar],
+  imports: [Table, TitleBar],
   providers: [Dialog, SnackBar],
   templateUrl: './matches-page.html',
   styleUrl: './matches-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MatchesPage implements OnInit {
+export class MatchesPage {
   private dataService = inject(Data);
   private dialogService = inject(Dialog);
   private snackBarService = inject(SnackBar);
 
-  matchTableRows$: Observable<MatchTableRow[]> = new Observable<MatchTableRow[]>();
-
-  ngOnInit() {
-    this.initMatchTableRowsObservable();
-  }
+  matchTableRows = signal<MatchTableRow[]>(this.mapMatchTableRows());
 
   /**
-   * Initializes match table rows observable
+   * Maps matches data into match table rows data
+   * @param matches Matches
+   * @returns Matches table row
    */
-  private initMatchTableRowsObservable(): void {
-    this.matchTableRows$ = this.dataService.getMatchTableRowsObs();
+  private mapMatchTableRows(): MatchTableRow[] {
+    return this.dataService.matches().map((match) => ({
+      id: match.id,
+      players: match.players.map((player) => player.name).join(' vs. '),
+      score: `${match.score[0]}:${match.score[1]}`,
+      winner: match.winner.name,
+    }));
   }
 
   /**
@@ -41,6 +43,8 @@ export class MatchesPage implements OnInit {
   private onAfterClosedObserver(addMatchFormData: AddMatchFormData | undefined): void {
     if (addMatchFormData) {
       this.dataService.addMatch(addMatchFormData);
+      this.matchTableRows.set(this.mapMatchTableRows());
+      this.snackBarService.showSnackBar('Match added');
     }
   }
 
@@ -48,10 +52,9 @@ export class MatchesPage implements OnInit {
    * Opens dialog for adding a match and observes when dialog is closed
    */
   async addMatch(): Promise<void> {
-    const players = await firstValueFrom(this.dataService.getPlayersObs());
     const dialogRef = this.dialogService.openDialog<AddMatchDialog, AddMatchFormData, Player[]>(
       AddMatchDialog,
-      players,
+      this.dataService.players(),
     );
 
     dialogRef
@@ -66,8 +69,8 @@ export class MatchesPage implements OnInit {
    * Opens match overview dialog, shows snackbar if no match found
    * @param event Table row click event
    */
-  async openMatchDialog(event: MatchTableRow): Promise<void> {
-    const match = await this.dataService.getMatchById(event.id);
+  openMatchOverview(event: MatchTableRow): void {
+    const match = this.dataService.getMatchById(event.id);
     if (match) {
       this.dialogService.openDialog(MatchOverviewDialog, match);
     } else {
