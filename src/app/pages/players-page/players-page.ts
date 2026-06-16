@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { filter } from 'rxjs';
 
-import { Data, MatchData } from '@app/core/services';
+import { Data } from '@app/core/services';
 import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
 import { AddPlayerDialog, PlayerOverviewDialog, Table, TitleBar } from '@app/shared/components';
 import { Dialog, SnackBar } from '@app/shared/services';
+import { comparePlayersBySetsWon } from '@app/core/utils';
 
 @Component({
   selector: 'app-players-page',
@@ -29,7 +30,7 @@ export class PlayersPage {
   private mapPlayersTableRows(): PlayerTableRow[] {
     return this.dataService
       .players()
-      .sort(MatchData.playerTableRowsBySetsWon.bind(this))
+      .sort(comparePlayersBySetsWon.bind(this))
       .map((player, index) => ({
         id: player.id,
         position: index + 1,

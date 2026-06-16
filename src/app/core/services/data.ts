@@ -1,9 +1,8 @@
 import { Injectable, signal } from '@angular/core';
 
 import { MATCHES, PLAYERS } from '@data/initial-data';
-import { MatchData } from './match-data';
-import { FormParse } from './form-parse';
 import { AddPlayerFormData, AddMatchFormData, Player, Match } from '../interfaces';
+import { getPlayerById, getPlayersFromMatch, parseMatchForm, parsePlayerForm } from '../utils';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +16,12 @@ export class Data {
    * @param match Match
    */
   private updatePlayersAfterMatch(match: Match): void {
-    const lastMatchPlayers: Player[] = MatchData.getMatchPlayersData(match);
+    const lastMatchPlayers: Player[] = getPlayersFromMatch(match);
 
     this.players.update((players) => {
       const updatedPlayers: Player[] = [];
       players.forEach((player) => {
-        const matchPlayer = MatchData.findPlayerById(lastMatchPlayers, player.id);
+        const matchPlayer = getPlayerById(lastMatchPlayers, player.id);
         if (matchPlayer) {
           player.matchesPlayed += matchPlayer.matchesPlayed;
           player.matchesWon += matchPlayer.matchesWon;
@@ -55,7 +54,7 @@ export class Data {
    * @param addPlayerFormData Form data
    */
   addPlayer(addPlayerFormData: AddPlayerFormData): void {
-    const newPlayer = FormParse.parsePlayerDataFromForm(addPlayerFormData);
+    const newPlayer = parsePlayerForm(addPlayerFormData);
     this.players.update((value) => [...value, newPlayer]);
   }
 
@@ -64,7 +63,7 @@ export class Data {
    * @param addMatchFormData Form data
    */
   addMatch(addMatchFormData: AddMatchFormData): void {
-    const newMatch = FormParse.parseMatchDataFromForm(this.players(), addMatchFormData);
+    const newMatch = parseMatchForm(this.players(), addMatchFormData);
     this.matches.update((value) => [...value, newMatch]);
     this.updatePlayersAfterMatch(newMatch);
   }
