@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit, output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 
@@ -7,7 +6,7 @@ import { CamelCaseSplit, FirstLetterUppercase } from '../../pipes';
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule, CamelCaseSplit, FirstLetterUppercase],
+  imports: [MatTableModule, CamelCaseSplit, FirstLetterUppercase],
   templateUrl: './table.html',
   styleUrl: './table.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,7 +1,7 @@
 @for (route of routes; track $index) {
   <a
     mat-button
-    [class.mat-mdc-raised-button]="(routeChangeUrl$ | async)?.includes(route)"
+    [class.mat-mdc-raised-button]="routeChangeUrl()?.includes(route)"
     [routerLink]="[route]"
     >{{ route | firstLetterUppercase }}</a
   >

@@ -1,55 +1,57 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { filter, Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { filter } from 'rxjs';
 
 import { Data } from '@app/core/services';
 import { AddPlayerFormData, PlayerTableRow } from '@app/core/interfaces';
 import { AddPlayerDialog, PlayerOverviewDialog, Table, TitleBar } from '@app/shared/components';
 import { Dialog, SnackBar } from '@app/shared/services';
+import { comparePlayersBySetsWon } from '@app/core/utils';
 
 @Component({
   selector: 'app-players-page',
   standalone: true,
-  imports: [CommonModule, Table, TitleBar],
+  imports: [Table, TitleBar],
   providers: [Dialog, SnackBar],
   templateUrl: './players-page.html',
   styleUrl: './players-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlayersPage implements OnInit {
+export class PlayersPage {
   private dataService = inject(Data);
   private dialogService = inject(Dialog);
   private snackBarService = inject(SnackBar);
 
-  playerTableRows$: Observable<PlayerTableRow[]> = new Observable<PlayerTableRow[]>();
-
-  ngOnInit() {
-    this.initPlayerTableRowsObservable();
-  }
+  playerTableRows = signal<PlayerTableRow[]>(this.mapPlayersTableRows());
 
   /**
-   * Initializes player table rows observable
+   * Maps players data into player table rows data
+   * @returns Players table row
    */
-  private initPlayerTableRowsObservable(): void {
-    this.playerTableRows$ = this.dataService.getPlayerTableRowsObs();
+  private mapPlayersTableRows(): PlayerTableRow[] {
+    return this.dataService
+      .getPlayers()
+      .sort(comparePlayersBySetsWon.bind(this))
+      .map((player, index) => ({
+        id: player.id,
+        position: index + 1,
+        name: player.name,
+        setsWon: player.setsWon,
+      }));
   }
 
   /**
    * After closed observer
    * @param addPlayerFormData Add player form data
    */
-  private async onAfterClosedObserver(
-    addPlayerFormData: AddPlayerFormData | undefined,
-  ): Promise<void> {
+  private onAfterClosedObserver(addPlayerFormData: AddPlayerFormData | undefined): void {
     if (addPlayerFormData) {
-      const newPlayerExists = await this.dataService.doesPlayerByNameExist(
-        addPlayerFormData.name || '',
-      );
+      const newPlayerExists = this.dataService.doesPlayerByNameExist(addPlayerFormData.name || '');
 
       if (newPlayerExists) {
         this.snackBarService.showSnackBar('Player already exists');
       } else {
         this.dataService.addPlayer(addPlayerFormData);
+        this.playerTableRows.set(this.mapPlayersTableRows());
         this.snackBarService.showSnackBar('Player added');
       }
     }
@@ -75,8 +77,8 @@ export class PlayersPage implements OnInit {
    * Opens player overview dialog, shows snackbar if no player found
    * @param event Table row click event
    */
-  async openPlayerDialog(event: PlayerTableRow): Promise<void> {
-    const player = await this.dataService.getPlayerById(event.id);
+  openPlayerOverview(event: PlayerTableRow): void {
+    const player = this.dataService.getPlayerById(event.id);
     if (player) {
       this.dialogService.openDialog(PlayerOverviewDialog, player);
     } else {

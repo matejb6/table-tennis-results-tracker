@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { filter, map, Observable } from 'rxjs';
@@ -10,29 +10,18 @@ import { appRoutes } from '../../../app.routes';
 @Component({
   selector: 'app-nav-buttons',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, RouterModule, FirstLetterUppercase],
+  imports: [MatButtonModule, RouterModule, FirstLetterUppercase],
   templateUrl: './nav-buttons.html',
   styleUrl: './nav-buttons.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavButtons implements OnInit {
+export class NavButtons {
   private router = inject(Router);
 
   get routes(): string[] {
     return Object.values(appRoutes);
   }
-  routeChangeUrl$: Observable<string> = new Observable<string>();
-
-  ngOnInit() {
-    this.initRouteChangeUrlObservable();
-  }
-
-  /**
-   * Initializes route change URL observable
-   */
-  private initRouteChangeUrlObservable(): void {
-    this.routeChangeUrl$ = this.getRouteChangeUrlObservable();
-  }
+  routeChangeUrl = toSignal(this.getRouteChangeUrlObservable());
 
   /**
    * Modifies router events observable to observe only navigation start event and URL

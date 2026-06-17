@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Player } from '@app/core/interfaces';
-import { Set } from '@app/core/types';
+import { MatchSet } from '@app/core/types';
 
 @Component({
   selector: 'app-match-overview',
@@ -14,7 +14,7 @@ import { Set } from '@app/core/types';
 })
 export class MatchOverview {
   readonly players = input<Player[]>([]);
-  readonly sets = input<Set[]>([]);
+  readonly sets = input<MatchSet[]>([]);
   readonly winner = input<Player>({ id: 0, name: '', matchesPlayed: 0, matchesWon: 0, setsWon: 0 });
 
   /**
@@ -31,7 +31,7 @@ export class MatchOverview {
    * @param set Set
    * @returns Set game win index
    */
-  getSetGameWinIndex(set: Set): number {
+  getSetGameWinIndex(set: MatchSet): number {
     return set[0] > set[1] ? 0 : 1;
   }
 
