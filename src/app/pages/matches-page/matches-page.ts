@@ -28,7 +28,7 @@ export class MatchesPage {
    * @returns Matches table row
    */
   private mapMatchTableRows(): MatchTableRow[] {
-    return this.dataService.matches().map((match) => ({
+    return this.dataService.getMatches().map((match) => ({
       id: match.id,
       players: match.players.map((player) => player.name).join(' vs. '),
       score: `${match.score[0]}:${match.score[1]}`,
@@ -54,7 +54,7 @@ export class MatchesPage {
   async addMatch(): Promise<void> {
     const dialogRef = this.dialogService.openDialog<AddMatchDialog, AddMatchFormData, Player[]>(
       AddMatchDialog,
-      this.dataService.players(),
+      this.dataService.getPlayers(),
     );
 
     dialogRef

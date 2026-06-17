@@ -8,8 +8,8 @@ import { getPlayerById, getPlayersFromMatch, parseMatchForm, parsePlayerForm } f
   providedIn: 'root',
 })
 export class Data {
-  players = signal<Player[]>(PLAYERS);
-  matches = signal<Match[]>(MATCHES);
+  private players = signal<Player[]>(PLAYERS);
+  private matches = signal<Match[]>(MATCHES);
 
   /**
    * Update players with last match, creates new match players data which are added to existing players
@@ -31,6 +31,22 @@ export class Data {
       });
       return updatedPlayers;
     });
+  }
+
+  /**
+   * Get players
+   * @returns Players
+   */
+  getPlayers(): Player[] {
+    return this.players();
+  }
+
+  /**
+   * Get matches
+   * @returns Matches
+   */
+  getMatches(): Match[] {
+    return this.matches();
   }
 
   /**

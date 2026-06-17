@@ -29,7 +29,7 @@ export class PlayersPage {
    */
   private mapPlayersTableRows(): PlayerTableRow[] {
     return this.dataService
-      .players()
+      .getPlayers()
       .sort(comparePlayersBySetsWon.bind(this))
       .map((player, index) => ({
         id: player.id,
